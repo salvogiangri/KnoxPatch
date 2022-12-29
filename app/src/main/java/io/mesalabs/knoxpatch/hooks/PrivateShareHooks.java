@@ -16,29 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch;
+package io.mesalabs.knoxpatch.hooks;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import io.mesalabs.knoxpatch.hooks.FastHooks;
-import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
-import io.mesalabs.knoxpatch.hooks.PrivateShareHooks;
 
-public class MainHook implements IXposedHookLoadPackage {
+public class PrivateShareHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "PrivateShareHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        if (("android".equals(lpparam.packageName)) && (lpparam.processName.equals("android"))) {
-            new KnoxDARHooks().handleLoadPackage(lpparam);
-        }
+        XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        if ("com.samsung.android.fast".equals(lpparam.packageName)) {
-            new FastHooks().handleLoadPackage(lpparam);
-        }
-
-        if ("com.samsung.android.privateshare".equals(lpparam.packageName)) {
-            new PrivateShareHooks().handleLoadPackage(lpparam);
-        }
+        /* Bypass SAK integrity check */
+        XposedHelpers.findAndHookMethod(
+                "com.samsung.android.security.keystore.AttestParameterSpec",
+                lpparam.classLoader,
+                "isVerifiableIntegrity",
+                XC_MethodReplacement.returnConstant(Boolean.TRUE));
     }
-
 }
