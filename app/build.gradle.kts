@@ -61,4 +61,6 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0") {
         exclude(group = "androidx.recyclerview", module = "recyclerview")
     }
+    // Xposed
+    compileOnly("de.robv.android.xposed:api:82")
 }

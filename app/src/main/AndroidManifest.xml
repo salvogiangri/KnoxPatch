@@ -13,6 +13,14 @@
             android:name="SamsungBasicInteraction"
             android:value="SEP10" />
 
+        <!-- Xposed -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
