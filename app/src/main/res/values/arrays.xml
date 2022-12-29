@@ -4,5 +4,6 @@
         <item>android</item>
         <item>com.samsung.android.fast</item>
         <item>com.samsung.android.privateshare</item>
+        <item>com.sec.android.app.shealth</item>
     </string-array>
 </resources>
