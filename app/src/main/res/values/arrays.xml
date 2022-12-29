@@ -2,5 +2,6 @@
 <resources>
     <string-array name="scope">
         <item>android</item>
+        <item>com.samsung.android.fast</item>
     </string-array>
 </resources>

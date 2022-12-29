@@ -20,6 +20,7 @@ package io.mesalabs.knoxpatch;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import io.mesalabs.knoxpatch.hooks.FastHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 
 public class MainHook implements IXposedHookLoadPackage {
@@ -28,6 +29,10 @@ public class MainHook implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         if (("android".equals(lpparam.packageName)) && (lpparam.processName.equals("android"))) {
             new KnoxDARHooks().handleLoadPackage(lpparam);
+        }
+
+        if ("com.samsung.android.fast".equals(lpparam.packageName)) {
+            new FastHooks().handleLoadPackage(lpparam);
         }
     }
 

@@ -18,26 +18,31 @@
 
 package io.mesalabs.knoxpatch.hooks;
 
-import java.security.cert.Certificate;
-
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class KnoxDARHooks implements IXposedHookLoadPackage {
-    private final static String TAG = "KnoxDARHooks";
+public class FastHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "FastHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        /* Bypass ICCC verification */
+        /* Spoof bootloader and warranty bit check */
         XposedHelpers.findAndHookMethod(
-                "com.android.server.knox.dar.DarManagerService",
+                "com.samsung.android.fast.common.k0.c",
                 lpparam.classLoader,
-                "checkDeviceIntegrity", Certificate[].class,
+                "o",
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+
+        /* Bypass SAK integrity check */
+        XposedHelpers.findAndHookMethod(
+                "com.samsung.android.security.keystore.AttestParameterSpec",
+                lpparam.classLoader,
+                "isVerifiableIntegrity",
                 XC_MethodReplacement.returnConstant(Boolean.TRUE));
     }
 
