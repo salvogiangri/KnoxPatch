@@ -37,13 +37,6 @@ public class FastHooks implements IXposedHookLoadPackage {
                 lpparam.classLoader,
                 "o",
                 XC_MethodReplacement.returnConstant(Boolean.FALSE));
-
-        /* Bypass SAK integrity check */
-        XposedHelpers.findAndHookMethod(
-                "com.samsung.android.security.keystore.AttestParameterSpec",
-                lpparam.classLoader,
-                "isVerifiableIntegrity",
-                XC_MethodReplacement.returnConstant(Boolean.TRUE));
     }
 
 }

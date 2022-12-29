@@ -22,7 +22,7 @@ import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import io.mesalabs.knoxpatch.hooks.FastHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
-import io.mesalabs.knoxpatch.hooks.PrivateShareHooks;
+import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks;
 
 public class MainHook implements IXposedHookLoadPackage {
 
@@ -33,11 +33,12 @@ public class MainHook implements IXposedHookLoadPackage {
         }
 
         if ("com.samsung.android.fast".equals(lpparam.packageName)) {
+            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
             new FastHooks().handleLoadPackage(lpparam);
         }
 
         if ("com.samsung.android.privateshare".equals(lpparam.packageName)) {
-            new PrivateShareHooks().handleLoadPackage(lpparam);
+            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
         }
     }
 

@@ -24,8 +24,8 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class PrivateShareHooks implements IXposedHookLoadPackage {
-    private final static String TAG = "PrivateShareHooks";
+public class SamsungKeystoreHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "SamsungKeystoreHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
