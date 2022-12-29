@@ -16,19 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch;
+package io.mesalabs.knoxpatch.hooks;
+
+import java.security.cert.Certificate;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 
-public class MainHook implements IXposedHookLoadPackage {
+public class KnoxDARHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "KnoxDARHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        if (("android".equals(lpparam.packageName)) && (lpparam.processName.equals("android"))) {
-            new KnoxDARHooks().handleLoadPackage(lpparam);
-        }
+        XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
+
+        XposedHelpers.findAndHookMethod(
+                "com.android.server.knox.dar.DarManagerService",
+                lpparam.classLoader,
+                "checkDeviceIntegrity", Certificate[].class,
+                XC_MethodReplacement.returnConstant(Boolean.TRUE));
     }
 
 }
