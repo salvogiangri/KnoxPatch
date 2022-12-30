@@ -4,7 +4,7 @@
     android:height="28.0dip"
     android:viewportWidth="24.0"
     android:viewportHeight="24.0"
-    android:tint="@color/github_icon_color">
+    android:tint="@color/info_github_icon_color">
 
     <path
         android:fillColor="#ff000000"

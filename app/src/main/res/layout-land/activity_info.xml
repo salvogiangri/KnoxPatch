@@ -50,14 +50,15 @@
                     android:textSize="30.0sp"
                     android:fontFamily="sec-roboto-light"
                     android:textStyle="bold"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="@color/info_app_name_color" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/main_app_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17.0sp"
-                    android:textColor="?android:attr/textColorSecondary" />
+                    android:layout_marginTop="2.0dp"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/info_app_version_color" />
 
             </LinearLayout>
 

@@ -46,14 +46,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
                     android:textSize="18.0sp"
-                    android:textAppearance="?android:attr/textAppearanceListItem" />
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:textColor="@color/info_app_name_color" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/main_app_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceListItemSecondary"
-                    android:textColor="?android:attr/textColorSecondary" />
+                    android:textColor="@color/info_app_version_color" />
 
             </LinearLayout>
 

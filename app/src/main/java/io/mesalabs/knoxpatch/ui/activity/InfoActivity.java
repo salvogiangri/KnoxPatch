@@ -29,6 +29,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -66,6 +67,7 @@ public class InfoActivity extends AppCompatActivity {
         ActionBar toolBar = getSupportActionBar();
         toolBar.setDisplayHomeAsUpEnabled(true);
         toolBar.setDisplayShowTitleEnabled(false);
+        mBinding.mainToolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
     @Override
