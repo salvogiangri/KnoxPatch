@@ -7,6 +7,11 @@ val versionMajor = 0
 val versionMinor = 1
 val versionPatch = 0
 
+val releaseStoreFile: String? by rootProject
+val releaseStorePassword: String? by rootProject
+val releaseKeyAlias: String? by rootProject
+val releaseKeyPassword: String? by rootProject
+
 android {
     namespace = "io.mesalabs.knoxpatch"
     compileSdk = 33
@@ -32,7 +37,26 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    signingConfigs {
+        create("release") {
+            releaseStoreFile?.also {
+                storeFile = rootProject.file(it)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
+        all {
+            signingConfig =
+                if (releaseStoreFile.isNullOrEmpty()) {
+                    signingConfigs.getByName("debug")
+                } else {
+                    signingConfigs.getByName("release")
+                }
+        }
         getByName("debug") {
             isDebuggable = true
             isMinifyEnabled = false
