@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="sep_theme_background_color">@color/sesl_round_and_bgcolor_light</color>
+
     <color name="info_app_name_color">#ff010101</color>
     <color name="info_app_version_color">#ff8c8c8c</color>
     <color name="info_github_icon_color">#ff8c8c8c</color>

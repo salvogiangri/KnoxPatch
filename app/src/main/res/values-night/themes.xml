@@ -1,10 +1,12 @@
 <resources>
 
     <style name="Theme.KnoxPatch" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:statusBarColor">@color/sesl_round_and_bgcolor_dark</item>
-        <item name="android:navigationBarColor">@color/sesl_round_and_bgcolor_dark</item>
+        <item name="android:statusBarColor">@color/sep_theme_background_color</item>
+        <item name="android:navigationBarColor">@color/sep_theme_background_color</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowSplashScreenBackground">@color/sep_theme_background_color</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@color/sep_theme_background_color</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:listChoiceBackgroundIndicator">?attr/listChoiceBackgroundIndicator</item>
     </style>
