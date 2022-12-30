@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/listPreferredItemHeightSmall"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:background="?attr/listChoiceBackgroundIndicator"
+    android:baselineAligned="false"
+    tools:viewBindingIgnore="true">
+
+    <RelativeLayout
+        android:layout_width="0.0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="14.0dp"
+        android:paddingBottom="14.0dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/list_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textAlignment="viewStart"
+            android:maxLines="5"
+            android:ellipsize="end" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/list_item_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_item_title"
+            android:layout_alignStart="@id/list_item_title"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAlignment="viewStart" />
+
+    </RelativeLayout>
+
+</LinearLayout>

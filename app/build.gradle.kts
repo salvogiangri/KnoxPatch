@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("dev.rikka.tools.refine")
 }
 
 val versionMajor = 0
@@ -20,6 +21,10 @@ android {
 
     lint {
         disable += "AppCompatResource"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     compileOptions {
@@ -63,4 +68,9 @@ dependencies {
     }
     // Xposed
     compileOnly("de.robv.android.xposed:api:82")
+    implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
+    // Rikka
+    implementation("dev.rikka.tools.refine:runtime:3.1.1")
+
+    compileOnly(project(":stub"))
 }

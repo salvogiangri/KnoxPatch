@@ -25,12 +25,17 @@
             android:resource="@array/scope" />
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.InfoActivity"
             android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="com.sec.android.intent.action.SEC_APPLICATION_SETTINGS"/>
+                <category android:name="com.sec.android.intent.category.SEC_APPLICATION_SETTINGS"/>
             </intent-filter>
 
         </activity>

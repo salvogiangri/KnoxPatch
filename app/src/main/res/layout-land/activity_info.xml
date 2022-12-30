@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/roundedCornerColor"
+    tools:context=".ui.activity.InfoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dp"
+        android:layout_weight="1"
+        android:weightSum="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0.0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:paddingHorizontal="24dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_app_icon"
+                android:layout_width="108.0dp"
+                android:layout_height="108.0dp"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8.0dp"
+                android:layout_below="@id/main_app_icon"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textSize="30.0sp"
+                    android:fontFamily="sec-roboto-light"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/main_app_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17.0sp"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_list"
+            android:layout_width="0.0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:background="?android:attr/colorBackground"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+
+</LinearLayout>
