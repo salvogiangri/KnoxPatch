@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ThemeMetaData FormatVersion="1.3" GuideVersion="1.4">
+    <AppMetaData Name="KnoxPatch" TargetApi="33" TargetPackageName="io.mesalabs.knoxpatch" VersionCode="1" VersionName="">
+        <Include RefName="SESL" />
+        <Property Comment="GitHub Icon color" DefaultValue="#ff909090" DestAttribName="github_icon_color" UID="610-1" ValueRef="1-11-3" ValueType="Color" />
+    </AppMetaData>
+</ThemeMetaData>

@@ -13,6 +13,14 @@
             android:name="SamsungBasicInteraction"
             android:value="SEP10" />
 
+        <!-- Samsung Color Theme -->
+        <meta-data
+            android:name="theming-meta"
+            android:value="sep_color_theme_meta" />
+        <meta-data
+            android:name="theming-meta-xml"
+            android:value="@xml/sep_color_theme_meta"/>
+
         <!-- Xposed -->
         <meta-data
             android:name="xposedmodule"
@@ -27,6 +35,11 @@
         <activity
             android:name=".ui.activity.InfoActivity"
             android:exported="true">
+
+            <!-- Samsung Icon Color Theme -->
+            <meta-data
+                android:name="com.sec.android.app.launcher.icon_theme"
+                android:value="themeColor" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
