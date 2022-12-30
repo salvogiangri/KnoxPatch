@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">KnoxPatch</string>
-    <string name="app_info">App info</string>
+    <string name="module_description">Get Knox features working again in your rooted Samsung Galaxy device.</string>
 
+    <string name="app_info">App info</string>
     <string name="oneui_version_title">One UI version</string>
     <string name="android_version_title">Android version</string>
     <string name="build_number_title">Build number</string>

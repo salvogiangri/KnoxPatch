@@ -26,6 +26,9 @@
             android:name="xposedmodule"
             android:value="true" />
         <meta-data
+            android:name="xposeddescription"
+            android:value="@string/module_description" />
+        <meta-data
             android:name="xposedminversion"
             android:value="93" />
         <meta-data
