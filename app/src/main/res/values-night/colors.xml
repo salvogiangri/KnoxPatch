@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="info_app_name_color">#fffafafa</color>
+    <color name="info_app_version_color">#ff999999</color>
+    <color name="info_github_icon_color">#ff999999</color>
+</resources>
