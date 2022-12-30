@@ -6,7 +6,7 @@
   <img loading="lazy" src="https://img.shields.io/github/downloads/BlackMesa123/KnoxPatch/total?style=flat-square"/>
   <img loading="lazy" src="https://img.shields.io/github/last-commit/BlackMesa123/KnoxPatch/main?style=flat-square"/>
   <br><br>
-  A <a href="https://github.com/LSPosed/LSPosed">LSPosed</a> module to get Knox features working again in your rooted Samsung Galaxy device.
+  An <a href="https://github.com/LSPosed/LSPosed">LSPosed</a> module to get Knox features working again in your rooted Samsung Galaxy device.
   <br>
 </p>
 
