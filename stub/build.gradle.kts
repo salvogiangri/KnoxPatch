@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "stub"
+    namespace = "io.mesalabs.stub"
     compileSdk = 33
 
     defaultConfig {
