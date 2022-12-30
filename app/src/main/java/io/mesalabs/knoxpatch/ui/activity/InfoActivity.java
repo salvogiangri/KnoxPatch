@@ -25,14 +25,18 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import io.mesalabs.knoxpatch.BuildConfig;
 import io.mesalabs.knoxpatch.R;
@@ -89,6 +93,29 @@ public class InfoActivity extends AppCompatActivity {
     private void initAppBanner() {
         mBinding.mainAppIcon.setImageDrawable(getPackageManager().getApplicationIcon(getApplicationInfo()));
         mBinding.mainAppVersion.setText(BuildConfig.VERSION_NAME);
+        mBinding.mainAppGithub.setOnClickListener(new View.OnClickListener() {
+            private long mLastClickTime;
+
+            @Override
+            public void onClick(View v) {
+                long uptimeMillis = SystemClock.uptimeMillis();
+
+                if (uptimeMillis - mLastClickTime > 600L) {
+                    final String url = "https://github.com/BlackMesa123/KnoxPatch";
+
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(InfoActivity.this,
+                                "No suitable activity found", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                mLastClickTime = uptimeMillis;
+            }
+        });
     }
 
     private void initListView() {
