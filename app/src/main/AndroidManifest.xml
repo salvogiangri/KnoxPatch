@@ -41,6 +41,7 @@
 
         <activity
             android:name=".ui.activity.InfoActivity"
+            android:launchMode="singleTask"
             android:exported="true">
 
             <!-- Samsung Icon Color Theme -->
