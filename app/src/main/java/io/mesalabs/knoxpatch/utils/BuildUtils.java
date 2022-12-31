@@ -37,6 +37,7 @@ public class BuildUtils {
 
     public static int getKnoxAPIVersion() {
         switch (getSEPVersion()) {
+            case Constants.ONEUI_4_0:
             case Constants.ONEUI_4_1:
             case Constants.ONEUI_4_1_1:
                 return EnterpriseDeviceManager.getAPILevelForInternal();

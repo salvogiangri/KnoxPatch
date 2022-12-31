@@ -38,6 +38,7 @@ public class MainHook implements IXposedHookLoadPackage {
         final int sepVersion = BuildUtils.getSEPVersion();
 
         switch (sepVersion) {
+            case Constants.ONEUI_4_0:
             case Constants.ONEUI_4_1:
             case Constants.ONEUI_4_1_1:
             case Constants.ONEUI_5_0: {
