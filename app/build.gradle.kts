@@ -4,8 +4,8 @@ plugins {
 }
 
 val versionMajor = 0
-val versionMinor = 1
-val versionPatch = 1
+val versionMinor = 2
+val versionPatch = 0
 
 val releaseStoreFile: String? by rootProject
 val releaseStorePassword: String? by rootProject
