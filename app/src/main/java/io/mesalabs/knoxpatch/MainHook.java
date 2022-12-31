@@ -37,6 +37,7 @@ public class MainHook implements IXposedHookLoadPackage {
         final int sepVersion = BuildUtils.getSEPVersion();
 
         switch (sepVersion) {
+            case Constants.ONEUI_4_1:
             case Constants.ONEUI_5_0: {
                 if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
                         && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {

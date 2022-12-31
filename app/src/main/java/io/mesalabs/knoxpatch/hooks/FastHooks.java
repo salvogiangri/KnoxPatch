@@ -32,11 +32,19 @@ public class FastHooks implements IXposedHookLoadPackage {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
         /* Spoof bootloader and warranty bit check */
-        XposedHelpers.findAndHookMethod(
-                "com.samsung.android.fast.common.k0.c",
-                lpparam.classLoader,
-                "o",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        if (lpparam.appInfo.minSdkVersion == 26) {
+            XposedHelpers.findAndHookMethod(
+                    "com.samsung.android.fast.common.b.d",
+                    lpparam.classLoader,
+                    "d",
+                    XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        } else if (lpparam.appInfo.minSdkVersion == 30) {
+            XposedHelpers.findAndHookMethod(
+                    "com.samsung.android.fast.common.k0.c",
+                    lpparam.classLoader,
+                    "o",
+                    XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        }
     }
 
 }
