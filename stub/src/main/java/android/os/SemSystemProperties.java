@@ -18,7 +18,7 @@
 
 package android.os;
 
-public class SystemProperties {
+public class SemSystemProperties {
 
     public static String get(String key) {
         throw new RuntimeException("Stub!");
@@ -37,6 +37,27 @@ public class SystemProperties {
     }
 
     public static boolean getBoolean(String key, boolean def) {
+        throw new RuntimeException("Stub!");
+    }
+
+    public static void set(String key, String val) {
+        throw new RuntimeException("Stub!");
+    }
+
+    @Deprecated
+    public static String getDeviceSerialNumber() {
+        throw new RuntimeException("Stub!");
+    }
+
+    public static String getSalesCode() {
+        throw new RuntimeException("Stub!");
+    }
+
+    public static String getCountryCode() {
+        throw new RuntimeException("Stub!");
+    }
+
+    public static String getCountryIso() {
         throw new RuntimeException("Stub!");
     }
 

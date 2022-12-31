@@ -16,35 +16,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.ui.utils;
+package io.mesalabs.knoxpatch.ui.list;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.SemBuild;
-import android.os.SystemProperties;
-
-import androidx.annotation.NonNull;
-
-import com.samsung.android.knox.EdmUtils;
-import com.samsung.android.knox.EnterpriseDeviceManager;
+import android.os.SemSystemProperties;
 import com.samsung.android.knox.SemPersonaManager;
 import com.samsung.android.knox.SemPersonaManager.KnoxContainerVersion;
 import com.samsung.android.knox.ddar.DualDARPolicy;
 import com.samsung.android.knox.hdm.HdmManager;
-
-import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
+import org.lsposed.hiddenapibypass.HiddenApiBypass;
+
 import io.mesalabs.knoxpatch.R;
+import io.mesalabs.knoxpatch.utils.BuildUtils;
 import io.mesalabs.knoxpatch.utils.Constants;
 
-public class BuildUtils {
+public class InfoListViewUtils {
     private static final int ONE_UI_VERSION_SEP_VERSION_GAP = 90000;
 
     private enum EnterpriseKnoxSdkVersion {
@@ -160,7 +158,7 @@ public class BuildUtils {
     }
 
     private static EnterpriseKnoxSdkVersion getEnterpriseKnoxSdkVersion() {
-        switch (getKnoxAPIVersion()) {
+        switch (BuildUtils.getKnoxAPIVersion()) {
             case 13:
                 return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_2;
             case 14:
@@ -214,17 +212,6 @@ public class BuildUtils {
         }
     }
 
-    private static int getKnoxAPIVersion() {
-        switch (SemBuild.VERSION.SEM_PLATFORM_INT) {
-            case Constants.ONEUI_4_1:
-                return EnterpriseDeviceManager.getAPILevelForInternal();
-            case Constants.ONEUI_5_0:
-                return EdmUtils.getAPILevelForInternal();
-            default:
-                return -1;
-        }
-    }
-
     public static String getKnoxComponentsVersion(@NonNull Context context) {
         final KnoxContainerVersion knoxContainerVersion = SemPersonaManager.getKnoxContainerVersion();
         if (knoxContainerVersion.compareTo(
@@ -240,7 +227,7 @@ public class BuildUtils {
             }
 
             summary += "\n" + context.getString(R.string.knox_version_knox_api) + " ";
-            summary += getKnoxAPIVersion();
+            summary += BuildUtils.getKnoxAPIVersion();
 
             try {
                 PackageInfo knoxMLApp = context.getPackageManager().getPackageInfo(
@@ -276,7 +263,7 @@ public class BuildUtils {
     public static String getKnoxFeatures() {
         List<String> features = new ArrayList<>();
 
-        if (SemBuild.VERSION.SEM_PLATFORM_INT == Constants.ONEUI_5_0) {
+        if (BuildUtils.getSEPVersion() == Constants.ONEUI_5_0) {
             try {
                 Class<?> cls = Class.forName("com.samsung.android.knox.dar.DarRune");
                 if (cls != null) {
@@ -323,7 +310,7 @@ public class BuildUtils {
     }
 
     public static String getOneUIVersion() {
-        final int oneUiOwnVersion = SystemProperties.getInt("ro.build.version.oneui", 0);
+        final int oneUiOwnVersion = SemSystemProperties.getInt("ro.build.version.oneui", 0);
 
         if (oneUiOwnVersion > 0) {
             final int major = oneUiOwnVersion / 10000;

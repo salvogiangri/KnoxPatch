@@ -18,8 +18,6 @@
 
 package io.mesalabs.knoxpatch;
 
-import android.os.SemBuild;
-
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -28,6 +26,7 @@ import io.mesalabs.knoxpatch.hooks.FastHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungHealthHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks;
+import io.mesalabs.knoxpatch.utils.BuildUtils;
 import io.mesalabs.knoxpatch.utils.Constants;
 
 public class MainHook implements IXposedHookLoadPackage {
@@ -35,28 +34,29 @@ public class MainHook implements IXposedHookLoadPackage {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        final int sepVersion = SemBuild.VERSION.SEM_PLATFORM_INT;
+        final int sepVersion = BuildUtils.getSEPVersion();
 
         switch (sepVersion) {
             case Constants.ONEUI_5_0: {
-                if (("android".equals(lpparam.packageName)) && (lpparam.processName.equals("android"))) {
+                if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
+                        && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
                     new KnoxDARHooks().handleLoadPackage(lpparam);
                 }
 
-                if ("com.samsung.android.authfw".equals(lpparam.packageName)) {
+                if (Constants.AUTHFW_PACKAGE_NAME.equals(lpparam.packageName)) {
                     new AuthFwHooks().handleLoadPackage(lpparam);
                 }
 
-                if ("com.samsung.android.fast".equals(lpparam.packageName)) {
+                if (Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
                     new SamsungKeystoreHooks().handleLoadPackage(lpparam);
                     new FastHooks().handleLoadPackage(lpparam);
                 }
 
-                if ("com.samsung.android.privateshare".equals(lpparam.packageName)) {
+                if (Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
                     new SamsungKeystoreHooks().handleLoadPackage(lpparam);
                 }
 
-                if ("com.sec.android.app.shealth".equals(lpparam.packageName)) {
+                if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
                     new SamsungHealthHooks().handleLoadPackage(lpparam);
                 }
             } break;

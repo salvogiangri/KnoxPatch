@@ -18,15 +18,31 @@
 
 package io.mesalabs.knoxpatch.utils;
 
-public class Constants {
+import android.os.SemBuild;
 
-    public static final int ONEUI_4_1 = 130100;
-    public static final int ONEUI_5_0 = 140000;
+import com.samsung.android.knox.EdmUtils;
+import com.samsung.android.knox.EnterpriseDeviceManager;
 
-    public static final String AUTHFW_PACKAGE_NAME = "com.samsung.android.authfw";
-    public static final String PRIVATE_SHARE_PACKAGE_NAME = "com.samsung.android.privateshare";
-    public static final String SAMSUNG_HEALTH_PACKAGE_NAME = "com.sec.android.app.shealth";
-    public static final String SECURE_WIFI_PACKAGE_NAME = "com.samsung.android.fast";
-    public static final String SYSTEM_PACKAGE_NAME = "android";
+public class BuildUtils {
+
+    public static int getSEPVersion() {
+        try {
+            final int sepVersion = SemBuild.VERSION.SEM_PLATFORM_INT;
+            return sepVersion;
+        } catch (NoSuchFieldError e) {
+            return -1;
+        }
+    }
+
+    public static int getKnoxAPIVersion() {
+        switch (getSEPVersion()) {
+            case Constants.ONEUI_4_1:
+                return EnterpriseDeviceManager.getAPILevelForInternal();
+            case Constants.ONEUI_5_0:
+                return EdmUtils.getAPILevelForInternal();
+            default:
+                return -1;
+        }
+    }
 
 }

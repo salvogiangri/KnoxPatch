@@ -20,13 +20,12 @@ package io.mesalabs.knoxpatch.ui.list;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 import io.mesalabs.knoxpatch.R;
-import io.mesalabs.knoxpatch.ui.utils.BuildUtils;
 
 public class InfoListItemContent {
     private final List<String> mTitles = new ArrayList<>();
@@ -34,15 +33,15 @@ public class InfoListItemContent {
 
     InfoListItemContent(@NonNull Context context) {
         mTitles.add(context.getString(R.string.oneui_version_title));
-        mSummaries.add(BuildUtils.getOneUIVersion());
+        mSummaries.add(InfoListViewUtils.getOneUIVersion());
         mTitles.add(context.getString(R.string.android_version_title));
-        mSummaries.add(BuildUtils.getAndroidVersion());
+        mSummaries.add(InfoListViewUtils.getAndroidVersion());
         mTitles.add(context.getString(R.string.build_number_title));
-        mSummaries.add(BuildUtils.getBuildNumber());
+        mSummaries.add(InfoListViewUtils.getBuildNumber());
         mTitles.add(context.getString(R.string.knox_version_title));
-        mSummaries.add(BuildUtils.getKnoxComponentsVersion(context));
+        mSummaries.add(InfoListViewUtils.getKnoxComponentsVersion(context));
         mTitles.add(context.getString(R.string.knox_features_title));
-        mSummaries.add(BuildUtils.getKnoxFeatures());
+        mSummaries.add(InfoListViewUtils.getKnoxFeatures());
     }
 
     public String[] getItemContentAt(int index) {
