@@ -50,7 +50,15 @@ class InfoListViewUtils {
     }
 
     static String getBuildNumber() {
-        return Build.DISPLAY;
+        String buildDisplay = "";
+
+        String buildId = SemSystemProperties.get("ro.build.id", "");
+        if (!buildId.isEmpty()) {
+            buildDisplay += buildId + ".";
+        }
+        buildDisplay += Build.VERSION.INCREMENTAL;
+
+        return buildDisplay;
     }
 
     static String getKnoxComponentsVersion(@NonNull Context context) {
