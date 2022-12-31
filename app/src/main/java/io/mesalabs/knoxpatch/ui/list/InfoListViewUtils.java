@@ -42,18 +42,18 @@ import io.mesalabs.knoxpatch.R;
 import io.mesalabs.knoxpatch.utils.BuildUtils;
 import io.mesalabs.knoxpatch.utils.Constants;
 
-public class InfoListViewUtils {
+class InfoListViewUtils {
     private static final int ONE_UI_VERSION_SEP_VERSION_GAP = 90000;
 
-    public static String getAndroidVersion() {
+    static String getAndroidVersion() {
         return Build.VERSION.RELEASE;
     }
 
-    public static String getBuildNumber() {
+    static String getBuildNumber() {
         return Build.DISPLAY;
     }
 
-    public static String getKnoxComponentsVersion(@NonNull Context context) {
+    static String getKnoxComponentsVersion(@NonNull Context context) {
         final KnoxContainerVersion knoxContainerVersion = SemPersonaManager.getKnoxContainerVersion();
         if (knoxContainerVersion.compareTo(
                 KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_2_0) >= 0) {
@@ -101,7 +101,7 @@ public class InfoListViewUtils {
         }
     }
 
-    public static String getKnoxFeatures() {
+    static String getKnoxFeatures() {
         List<String> features = new ArrayList<>();
 
         if (BuildUtils.getSEPVersion() == Constants.ONEUI_5_0) {
@@ -150,7 +150,7 @@ public class InfoListViewUtils {
         return String.join("\n", features);
     }
 
-    public static String getOneUIVersion() {
+    static String getOneUIVersion() {
         final int oneUiOwnVersion = SemSystemProperties.getInt("ro.build.version.oneui", 0);
 
         if (oneUiOwnVersion > 0) {

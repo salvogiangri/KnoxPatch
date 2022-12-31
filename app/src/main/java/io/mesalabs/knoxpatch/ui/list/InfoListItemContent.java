@@ -27,7 +27,7 @@ import androidx.annotation.NonNull;
 
 import io.mesalabs.knoxpatch.R;
 
-public class InfoListItemContent {
+class InfoListItemContent {
     private final List<String> mTitles = new ArrayList<>();
     private final List<String> mSummaries = new ArrayList<>();
 
@@ -44,14 +44,14 @@ public class InfoListItemContent {
         mSummaries.add(InfoListViewUtils.getKnoxFeatures());
     }
 
-    public String[] getItemContentAt(int index) {
+    String[] getItemContentAt(int index) {
         return new String[] {
                 mTitles.get(index),
                 mSummaries.get(index)
         };
     }
 
-    public int getListSize() {
+    int getListSize() {
         final int titlesSize = mTitles.size();
         final int summariesSize = mSummaries.size();
 

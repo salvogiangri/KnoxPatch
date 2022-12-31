@@ -26,23 +26,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import io.mesalabs.knoxpatch.R;
 
-public class InfoListViewViewHolder extends RecyclerView.ViewHolder {
+class InfoListViewViewHolder extends RecyclerView.ViewHolder {
     @NonNull private final AppCompatTextView mTitle;
     @NonNull private final AppCompatTextView mSummary;
 
-    public InfoListViewViewHolder(@NonNull View itemView) {
+    InfoListViewViewHolder(@NonNull View itemView) {
         super(itemView);
         mTitle = itemView.findViewById(R.id.list_item_title);
         mSummary = itemView.findViewById(R.id.list_item_summary);
     }
 
     @NonNull
-    public AppCompatTextView getTitleTextView() {
+    AppCompatTextView getTitleTextView() {
         return mTitle;
     }
 
     @NonNull
-    public AppCompatTextView getSummaryTextView() {
+    AppCompatTextView getSummaryTextView() {
         return mSummary;
     }
 }
