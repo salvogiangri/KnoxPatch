@@ -21,6 +21,7 @@ package io.mesalabs.knoxpatch.utils;
 public class Constants {
 
     public static final int ONEUI_4_1 = 130100;
+    public static final int ONEUI_4_1_1 = 130500;
     public static final int ONEUI_5_0 = 140000;
 
     public enum EnterpriseKnoxSdkVersion {
