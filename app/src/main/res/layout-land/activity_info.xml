@@ -30,8 +30,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/main_app_icon"
-                android:layout_width="108.0dp"
-                android:layout_height="108.0dp"
+                android:layout_width="96.0dp"
+                android:layout_height="96.0dp"
                 android:layout_centerHorizontal="true" />
 
             <LinearLayout
