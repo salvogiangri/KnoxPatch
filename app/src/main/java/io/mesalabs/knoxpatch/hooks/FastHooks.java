@@ -19,7 +19,7 @@
 package io.mesalabs.knoxpatch.hooks;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -32,19 +32,22 @@ public class FastHooks implements IXposedHookLoadPackage {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
         /* Spoof bootloader and warranty bit check */
-        if (lpparam.appInfo.minSdkVersion == 26) {
-            XposedHelpers.findAndHookMethod(
-                    "com.samsung.android.fast.common.b.d",
-                    lpparam.classLoader,
-                    "d",
-                    XC_MethodReplacement.returnConstant(Boolean.FALSE));
-        } else if (lpparam.appInfo.minSdkVersion == 30) {
-            XposedHelpers.findAndHookMethod(
-                    "com.samsung.android.fast.common.k0.c",
-                    lpparam.classLoader,
-                    "o",
-                    XC_MethodReplacement.returnConstant(Boolean.FALSE));
-        }
+        XposedHelpers.findAndHookMethod(
+                "android.os.SemSystemProperties",
+                lpparam.classLoader,
+                "get", String.class, String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String key = (String) param.args[0];
+                        String def = (String) param.args[1];
+
+                        if (key.equals("ro.boot.flash.locked")
+                                || key.equals("ro.boot.warranty_bit")) {
+                            param.setResult(def);
+                        }
+                    }
+                });
     }
 
 }
