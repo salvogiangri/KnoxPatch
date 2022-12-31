@@ -28,6 +28,7 @@ import android.os.SystemProperties;
 import androidx.annotation.NonNull;
 
 import com.samsung.android.knox.EdmUtils;
+import com.samsung.android.knox.EnterpriseDeviceManager;
 import com.samsung.android.knox.SemPersonaManager;
 import com.samsung.android.knox.SemPersonaManager.KnoxContainerVersion;
 import com.samsung.android.knox.ddar.DualDARPolicy;
@@ -41,6 +42,7 @@ import java.util.Collections;
 import java.util.List;
 
 import io.mesalabs.knoxpatch.R;
+import io.mesalabs.knoxpatch.utils.Constants;
 
 public class BuildUtils {
     private static final int ONE_UI_VERSION_SEP_VERSION_GAP = 90000;
@@ -158,7 +160,7 @@ public class BuildUtils {
     }
 
     private static EnterpriseKnoxSdkVersion getEnterpriseKnoxSdkVersion() {
-        switch (EdmUtils.getAPILevelForInternal()) {
+        switch (getKnoxAPIVersion()) {
             case 13:
                 return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_2;
             case 14:
@@ -212,6 +214,17 @@ public class BuildUtils {
         }
     }
 
+    private static int getKnoxAPIVersion() {
+        switch (SemBuild.VERSION.SEM_PLATFORM_INT) {
+            case Constants.ONEUI_4_1:
+                return EnterpriseDeviceManager.getAPILevelForInternal();
+            case Constants.ONEUI_5_0:
+                return EdmUtils.getAPILevelForInternal();
+            default:
+                return -1;
+        }
+    }
+
     public static String getKnoxComponentsVersion(@NonNull Context context) {
         final KnoxContainerVersion knoxContainerVersion = SemPersonaManager.getKnoxContainerVersion();
         if (knoxContainerVersion.compareTo(
@@ -227,7 +240,7 @@ public class BuildUtils {
             }
 
             summary += "\n" + context.getString(R.string.knox_version_knox_api) + " ";
-            summary += EdmUtils.getAPILevelForInternal();
+            summary += getKnoxAPIVersion();
 
             try {
                 PackageInfo knoxMLApp = context.getPackageManager().getPackageInfo(
@@ -263,20 +276,22 @@ public class BuildUtils {
     public static String getKnoxFeatures() {
         List<String> features = new ArrayList<>();
 
-        try {
-            Class<?> cls = Class.forName("com.samsung.android.knox.dar.DarRune");
-            if (cls != null) {
-                List<Field> fields = HiddenApiBypass.getStaticFields(cls);
+        if (SemBuild.VERSION.SEM_PLATFORM_INT == Constants.ONEUI_5_0) {
+            try {
+                Class<?> cls = Class.forName("com.samsung.android.knox.dar.DarRune");
+                if (cls != null) {
+                    List<Field> fields = HiddenApiBypass.getStaticFields(cls);
 
-                // KNOX_SUPPORT_*
-                for (Field field : fields) {
-                    if (field.getName().contains("KNOX_SUPPORT_")) {
-                        features.add(field.getName() + " = " + field.get(null));
+                    // KNOX_SUPPORT_*
+                    for (Field field : fields) {
+                        if (field.getName().contains("KNOX_SUPPORT_")) {
+                            features.add(field.getName() + " = " + field.get(null));
+                        }
                     }
                 }
+            } catch (ClassNotFoundException | IllegalAccessException e) {
+                throw new RuntimeException(e);
             }
-        } catch (ClassNotFoundException | IllegalAccessException e) {
-            throw new RuntimeException(e);
         }
 
         try {

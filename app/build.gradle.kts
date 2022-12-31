@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId = "io.mesalabs.knoxpatch"
-        minSdk = 33
+        minSdk = 31
         targetSdk = 33
         versionCode = versionMajor * 100000 + versionMinor * 1000 + versionPatch
         versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
