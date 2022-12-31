@@ -45,171 +45,12 @@ import io.mesalabs.knoxpatch.utils.Constants;
 public class InfoListViewUtils {
     private static final int ONE_UI_VERSION_SEP_VERSION_GAP = 90000;
 
-    private enum EnterpriseKnoxSdkVersion {
-        KNOX_ENTERPRISE_SDK_VERSION_NONE,
-        KNOX_ENTERPRISE_SDK_VERSION_1_0,
-        KNOX_ENTERPRISE_SDK_VERSION_1_0_1,
-        KNOX_ENTERPRISE_SDK_VERSION_1_0_2,
-        KNOX_ENTERPRISE_SDK_VERSION_1_1_0,
-        KNOX_ENTERPRISE_SDK_VERSION_1_2_0,
-        KNOX_ENTERPRISE_SDK_VERSION_2_0,
-        KNOX_ENTERPRISE_SDK_VERSION_2_1,
-        KNOX_ENTERPRISE_SDK_VERSION_2_2,
-        KNOX_ENTERPRISE_SDK_VERSION_2_3,
-        KNOX_ENTERPRISE_SDK_VERSION_2_4,
-        KNOX_ENTERPRISE_SDK_VERSION_2_4_1,
-        KNOX_ENTERPRISE_SDK_VERSION_2_5,
-        KNOX_ENTERPRISE_SDK_VERSION_2_5_1,
-        KNOX_ENTERPRISE_SDK_VERSION_2_6,
-        KNOX_ENTERPRISE_SDK_VERSION_2_7,
-        KNOX_ENTERPRISE_SDK_VERSION_2_7_1,
-        KNOX_ENTERPRISE_SDK_VERSION_2_8,
-        KNOX_ENTERPRISE_SDK_VERSION_2_9,
-        KNOX_ENTERPRISE_SDK_VERSION_3_0,
-        KNOX_ENTERPRISE_SDK_VERSION_3_1,
-        KNOX_ENTERPRISE_SDK_VERSION_3_2,
-        KNOX_ENTERPRISE_SDK_VERSION_3_2_1,
-        KNOX_ENTERPRISE_SDK_VERSION_3_3,
-        KNOX_ENTERPRISE_SDK_VERSION_3_4,
-        KNOX_ENTERPRISE_SDK_VERSION_3_4_1,
-        KNOX_ENTERPRISE_SDK_VERSION_3_5,
-        KNOX_ENTERPRISE_SDK_VERSION_3_6,
-        KNOX_ENTERPRISE_SDK_VERSION_3_7,
-        KNOX_ENTERPRISE_SDK_VERSION_3_7_1,
-        KNOX_ENTERPRISE_SDK_VERSION_3_8,
-        KNOX_ENTERPRISE_SDK_VERSION_3_9;
-
-        String getInternalVersion() {
-            switch (EnterpriseKnoxSdkVersion.values()[ordinal()]) {
-                case KNOX_ENTERPRISE_SDK_VERSION_1_0:
-                    return "1.0.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_1_0_1:
-                    return "1.0.1";
-                case KNOX_ENTERPRISE_SDK_VERSION_1_0_2:
-                    return "1.0.2";
-                case KNOX_ENTERPRISE_SDK_VERSION_1_1_0:
-                    return "1.1.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_1_2_0:
-                    return "1.2.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_0:
-                    return "2.0.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_1:
-                    return "2.1.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_2:
-                    return "2.2.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_3:
-                    return "2.3.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_4:
-                    return "2.4.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_4_1:
-                    return "2.4.1";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_5:
-                    return "2.5.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_5_1:
-                    return "2.5.1";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_6:
-                    return "2.6.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_7:
-                    return "2.7.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_7_1:
-                    return "2.7.1";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_8:
-                    return "2.8.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_2_9:
-                    return "2.9.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_0:
-                    return "3.0.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_1:
-                    return "3.1.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_2:
-                    return "3.2.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_2_1:
-                    return "3.2.1";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_3:
-                    return "3.3.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_4:
-                    return "3.4.0";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_4_1:
-                    return "3.4.1";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_5:
-                    return "3.5";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_6:
-                    return "3.6";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_7:
-                    return "3.7";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_7_1:
-                    return "3.7.1";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_8:
-                    return "3.8";
-                case KNOX_ENTERPRISE_SDK_VERSION_3_9:
-                    return "3.9";
-                default:
-                    return "N/A";
-            }
-        }
-    }
-
     public static String getAndroidVersion() {
         return Build.VERSION.RELEASE;
     }
 
     public static String getBuildNumber() {
         return Build.DISPLAY;
-    }
-
-    private static EnterpriseKnoxSdkVersion getEnterpriseKnoxSdkVersion() {
-        switch (BuildUtils.getKnoxAPIVersion()) {
-            case 13:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_2;
-            case 14:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_3;
-            case 15:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_4;
-            case 16:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_4_1;
-            case 17:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_5;
-            case 18:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_5_1;
-            case 19:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_6;
-            case 20:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_7;
-            case 21:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_7_1;
-            case 22:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_8;
-            case 23:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_9;
-            case 24:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_0;
-            case 25:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_1;
-            case 26:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_2;
-            case 27:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_2_1;
-            case 28:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_3;
-            case 29:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_4;
-            case 30:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_4_1;
-            case 31:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_5;
-            case 32:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_6;
-            case 33:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_7;
-            case 34:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_7_1;
-            case 35:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_8;
-            case 36:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_9;
-            default:
-                return EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_1;
-        }
     }
 
     public static String getKnoxComponentsVersion(@NonNull Context context) {
@@ -219,7 +60,7 @@ public class InfoListViewUtils {
             String summary = "";
             summary += context.getString(R.string.knox_version_knox) + " ";
 
-            String knoxVersion = getEnterpriseKnoxSdkVersion().getInternalVersion();
+            String knoxVersion = BuildUtils.getEnterpriseKnoxSdkVersion().getInternalVersion();
             if (Integer.parseInt(Character.toString(knoxVersion.charAt(knoxVersion.length() - 1))) > 0) {
                 summary += knoxVersion;
             } else {
