@@ -5,12 +5,20 @@
   <img loading="lazy" src="https://img.shields.io/github/repo-size/BlackMesa123/KnoxPatch?style=flat-square"/>
   <img loading="lazy" src="https://img.shields.io/github/downloads/BlackMesa123/KnoxPatch/total?style=flat-square"/>
   <img loading="lazy" src="https://img.shields.io/github/last-commit/BlackMesa123/KnoxPatch/main?style=flat-square"/>
+  <img loading="lazy" src="https://img.shields.io/github/stars/BlackMesa123/KnoxPatch?style=flat-square"/>
+  <img loading="lazy" src="https://img.shields.io/github/contributors/BlackMesa123/KnoxPatch?style=flat-square"/>
+  <img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/BlackMesa123/KnoxPatch/android.yml?style=flat-square"/>
   <br><br>
   An <a href="https://github.com/LSPosed/LSPosed">LSPosed</a> module to get Knox features working again in your rooted Samsung Galaxy device.
+  <br><br>
+  Any form of contribution, suggestions, bug report or feature request for the project will be welcome.
   <br>
 </p>
 
-The module currently supports only Samsung devices with **One UI 5.0**, support for older OSs is in the to-do list. Any form of contribution, suggestions, bug report or feature request for the project will be welcome.
+## Supported Android versions
+- Android 12 (One UI 4.x)
+- Android 12L (One UI 4.1.1)
+- Android 13 (One UI 5.0)
 
 ## Supported apps
 - ✅ [Samsung Health](https://www.samsung.com/uk/apps/samsung-health/)
@@ -25,5 +33,22 @@ The module currently supports only Samsung devices with **One UI 5.0**, support 
 - [LSPosed Team](https://github.com/LSPosed)
 - [Rikka](https://github.com/RikkaApps)
 
-## Stargazers over time
-[![Stargazers over time](https://starchart.cc/BlackMesa123/KnoxPatch.svg)](https://starchart.cc/BlackMesa123/KnoxPatch)
+## Copyright
+```
+/*
+ * Copyright (C) 2022 BlackMesa123
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+```
