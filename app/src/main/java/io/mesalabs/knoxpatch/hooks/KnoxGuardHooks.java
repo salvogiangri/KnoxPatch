@@ -18,8 +18,10 @@
 
 package io.mesalabs.knoxpatch.hooks;
 
+import android.content.Context;
+
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -31,18 +33,26 @@ public class KnoxGuardHooks implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        Class<?> cls = XposedHelpers.findClass(
-                "com.samsung.android.knoxguard.service.utils.Utils",
-                lpparam.classLoader);
-
         /* Disable KnoxGuard support */
-        XposedHelpers.findAndHookMethod(
-                cls,
-                "isSupportKGOnSEC",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
-        XposedHelpers.findAndHookMethod(
-                cls,
-                "isSupportKGOnCsc",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        XposedHelpers.findAndHookConstructor(
+                "com.samsung.android.knoxguard.service.KnoxGuardService",
+                lpparam.classLoader,
+                Context.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        param.setThrowable(new UnsupportedOperationException("KnoxGuard is unsupported"));
+                    }
+                });
+        XposedHelpers.findAndHookConstructor(
+                "com.samsung.android.knoxguard.service.KnoxGuardSeService",
+                lpparam.classLoader,
+                Context.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        param.setThrowable(new UnsupportedOperationException("KnoxGuard is unsupported"));
+                    }
+                });
     }
 }
