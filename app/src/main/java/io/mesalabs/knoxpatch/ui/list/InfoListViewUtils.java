@@ -61,6 +61,7 @@ class InfoListViewUtils {
         return buildDisplay;
     }
 
+    @SuppressWarnings("deprecation")
     static String getKnoxComponentsVersion(@NonNull Context context) {
         final KnoxContainerVersion knoxContainerVersion = SemPersonaManager.getKnoxContainerVersion();
         if (knoxContainerVersion.compareTo(
@@ -109,6 +110,7 @@ class InfoListViewUtils {
         }
     }
 
+    @SuppressWarnings("unchecked")
     static String getKnoxFeatures() {
         List<String> features = new ArrayList<>();
 
