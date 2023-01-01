@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ThemeMetaData FormatVersion="1.3" GuideVersion="1.4">
-    <AppMetaData Name="KnoxPatch" TargetApi="33" TargetPackageName="io.mesalabs.knoxpatch" VersionCode="1" VersionName="">
+    <AppMetaData Name="KnoxPatch" TargetApi="31" TargetPackageName="io.mesalabs.knoxpatch" VersionCode="1" VersionName="">
         <Include RefName="SESL" />
         <Property Comment="App name text color" DefaultValue="#ff010101" DestAttribName="info_app_name_color" UID="610-1" ValueRef="1-1-3" ValueType="Color"/>
         <Property Comment="App version text color" DefaultValue="#ff8c8c8c" DestAttribName="info_app_version_color" UID="610-2" ValueRef="1-1-4" ValueType="Color"/>
