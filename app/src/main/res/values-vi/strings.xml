@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Phiên bản Knox</string>
+    <string name="build_number_title">Số hiệu bản tạo</string>
+    <string name="app_info">Thông tin ứng dụng</string>
+    <string name="android_version_title">Phiên bản Android</string>
+    <string name="oneui_version_title">Phiên bản One UI</string>
+</resources>

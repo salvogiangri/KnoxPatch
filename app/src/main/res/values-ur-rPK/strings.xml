@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">‏Knox ورژن</string>
+    <string name="build_number_title">ساخت نمبر</string>
+    <string name="app_info">ایپلیکیشن کی معلومات</string>
+    <string name="android_version_title">‏Android ورژن</string>
+    <string name="oneui_version_title">‏One UI ورژن</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knox-versio</string>
+    <string name="build_number_title">Koontiversio</string>
+    <string name="app_info">Sovelluksen tiedot</string>
+    <string name="android_version_title">Android-versio</string>
+    <string name="oneui_version_title">One UI -versio</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Верзија на Knox</string>
+    <string name="build_number_title">Број на верзија</string>
+    <string name="app_info">Информации за апликација</string>
+    <string name="android_version_title">Верзија на Android</string>
+    <string name="oneui_version_title">Верзија на One UI</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knox версиясы</string>
+    <string name="build_number_title">Куралыш номери</string>
+    <string name="app_info">Колдонмо маалыматы</string>
+    <string name="android_version_title">Android версиясы</string>
+    <string name="oneui_version_title">One UI версиясы</string>
+</resources>

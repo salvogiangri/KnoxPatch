@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">نسخه Knox</string>
+    <string name="build_number_title">شماره ساخت</string>
+    <string name="app_info">اطلاعات برنامه</string>
+    <string name="android_version_title">نسخه Android</string>
+    <string name="oneui_version_title">نسخه One UI</string>
+</resources>

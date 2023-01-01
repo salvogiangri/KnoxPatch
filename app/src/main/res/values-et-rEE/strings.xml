@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knoxi versioon</string>
+    <string name="build_number_title">Järgu number</string>
+    <string name="app_info">Rakenduse teave</string>
+    <string name="android_version_title">Androidi versioon</string>
+    <string name="oneui_version_title">One UI versioon</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knox ಆವೃತ್ತಿ</string>
+    <string name="build_number_title">ಬಿಲ್ಡ್ ಸಂಖ್ಯೆ</string>
+    <string name="app_info">ಅನ್ವಯಿಸುವಿಕೆ ಮಾಹಿತಿ</string>
+    <string name="android_version_title">ಆಂಡ್ರಾಯ್ಡ್ ಆವೃತ್ತಿ</string>
+    <string name="oneui_version_title">One UI ಆವೃತ್ತಿ</string>
+</resources>

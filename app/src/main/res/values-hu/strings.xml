@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knox verziója</string>
+    <string name="build_number_title">Build száma</string>
+    <string name="app_info">Alkalmazásinfó</string>
+    <string name="android_version_title">Android verziója</string>
+    <string name="oneui_version_title">One UI-verzió</string>
+</resources>

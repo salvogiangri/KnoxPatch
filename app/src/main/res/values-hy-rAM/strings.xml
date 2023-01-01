@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knox-ի վարկած</string>
+    <string name="build_number_title">Մշակման համարը</string>
+    <string name="app_info">Ծրագրի տեղեկություններ</string>
+    <string name="android_version_title">Android վարկած</string>
+    <string name="oneui_version_title">One UI-ի վարկած</string>
+</resources>

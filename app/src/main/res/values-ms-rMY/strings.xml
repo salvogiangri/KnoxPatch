@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Versi Knox</string>
+    <string name="build_number_title">Nombor binaan</string>
+    <string name="app_info">Maklumat aplikasi</string>
+    <string name="android_version_title">Versi Android</string>
+    <string name="oneui_version_title">Versi One UI</string>
+</resources>

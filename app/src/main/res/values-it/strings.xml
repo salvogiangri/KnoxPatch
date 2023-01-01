@@ -1,0 +1,10 @@
+<resources>
+    <string name="module_description">Ottieni di nuovo le funzioni di Knox nel tuo Samsung Galaxy.</string>
+
+    <string name="app_info">Informazioni applicazione</string>
+    <string name="oneui_version_title">Versione di One UI</string>
+    <string name="android_version_title">Versione Android</string>
+    <string name="build_number_title">Versione build</string>
+    <string name="knox_version_title">Versione Knox</string>
+    <string name="knox_features_title">Funzionalità Knox</string>
+</resources>

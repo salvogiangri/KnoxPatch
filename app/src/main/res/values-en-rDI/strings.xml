@@ -1,0 +1,6 @@
+<resources>
+    <string name="knox_version_title">IDS_ST_BODY_KNOX_VERSION</string>
+    <string name="build_number_title">IDS_ST_BODY_BUILD_NUMBER</string>
+    <string name="android_version_title">IDS_ST_HEADER_ANDROID_VERSION_ABB</string>
+    <string name="oneui_version_title">DREAM_ST_TMBODY_ONE_UI_VERSION</string>
+</resources>

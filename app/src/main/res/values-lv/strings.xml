@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knox versija</string>
+    <string name="build_number_title">Būvējuma numurs</string>
+    <string name="app_info">Programmas dati</string>
+    <string name="android_version_title">Android versija</string>
+    <string name="oneui_version_title">One UI versija</string>
+</resources>

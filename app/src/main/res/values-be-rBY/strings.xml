@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Версія Knox</string>
+    <string name="build_number_title">Нумар зборкі</string>
+    <string name="app_info">Інфармацыя аб праграме</string>
+    <string name="android_version_title">Версія Android</string>
+    <string name="oneui_version_title">Версія One UI</string>
+</resources>

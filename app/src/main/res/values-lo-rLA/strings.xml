@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">ເວີຊັນ Knox</string>
+    <string name="build_number_title">ໝາຍເລກລຸ້ນ</string>
+    <string name="app_info">ຂໍ້ມູນແອັບ</string>
+    <string name="android_version_title">ເວີຊັນແອນດຣອຍ</string>
+    <string name="oneui_version_title">ເວີຊັນ One UI</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="knox_version_title">Knox අනුවාදය</string>
+    <string name="build_number_title">ගොඩනැගුම් අංකය</string>
+    <string name="app_info">යෙදුම් තතු</string>
+    <string name="android_version_title">ඇන්ඩ්‍රොයිඩ් අනුවාදය</string>
+    <string name="oneui_version_title">One UI අනුවාදය</string>
+</resources>
