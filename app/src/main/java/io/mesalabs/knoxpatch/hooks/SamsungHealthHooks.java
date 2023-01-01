@@ -37,6 +37,10 @@ public class SamsungHealthHooks implements IXposedHookLoadPackage {
                 "com.samsung.android.service.health.security.KnoxAdapter",
                 lpparam.classLoader);
 
+        Class<?> cls2 = XposedHelpers.findClass(
+                "com.samsung.android.sdk.healthdata.privileged.KnoxControl",
+                lpparam.classLoader);
+
         /* Disable Knox support */
         XposedHelpers.findAndHookMethod(
                 cls,
@@ -44,7 +48,16 @@ public class SamsungHealthHooks implements IXposedHookLoadPackage {
                 XC_MethodReplacement.returnConstant(Boolean.FALSE));
         XposedHelpers.findAndHookMethod(
                 cls,
+                "checkKnoxCompromised", Context.class,
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        XposedHelpers.findAndHookMethod(
+                cls,
                 "isKnoxAvailableCore", Context.class,
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+
+        XposedHelpers.findAndHookMethod(
+                cls2,
+                "checkKnoxCompromised", Context.class,
                 XC_MethodReplacement.returnConstant(Boolean.FALSE));
 
         /* Disable SAK support */
