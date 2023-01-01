@@ -5,7 +5,7 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
--keep class io.mesalabs.knoxpatch.MainHook
+-keep class com.unbound.patches.MainHook
 
 -repackageclasses
 -allowaccessmodification

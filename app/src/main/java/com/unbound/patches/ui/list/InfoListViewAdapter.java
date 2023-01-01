@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.ui.list;
+package com.unbound.patches.ui.list;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import io.mesalabs.knoxpatch.R;
+import com.unbound.patches.R;
 
 public class InfoListViewAdapter extends RecyclerView.Adapter<InfoListViewViewHolder> {
     private final static int TITLE = 0;

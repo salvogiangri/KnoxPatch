@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.ui.list;
+package com.unbound.patches.ui.list;
 
 import android.content.Context;
 
@@ -25,7 +25,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 
-import io.mesalabs.knoxpatch.R;
+import com.unbound.patches.R;
 
 class InfoListItemContent {
     private final List<String> mTitles = new ArrayList<>();

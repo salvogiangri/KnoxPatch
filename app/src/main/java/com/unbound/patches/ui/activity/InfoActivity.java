@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.ui.activity;
+package com.unbound.patches.ui.activity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -38,11 +38,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import io.mesalabs.knoxpatch.BuildConfig;
-import io.mesalabs.knoxpatch.R;
-import io.mesalabs.knoxpatch.databinding.ActivityInfoBinding;
-import io.mesalabs.knoxpatch.ui.list.InfoListRoundedCorners;
-import io.mesalabs.knoxpatch.ui.list.InfoListViewAdapter;
+import com.unbound.patches.BuildConfig;
+import com.unbound.patches.R;
+import com.unbound.patches.databinding.ActivityInfoBinding;
+import com.unbound.patches.ui.list.InfoListRoundedCorners;
+import com.unbound.patches.ui.list.InfoListViewAdapter;
 
 public class InfoActivity extends AppCompatActivity {
     private ActivityInfoBinding mBinding;
@@ -102,7 +102,7 @@ public class InfoActivity extends AppCompatActivity {
                 long uptimeMillis = SystemClock.uptimeMillis();
 
                 if (uptimeMillis - mLastClickTime > 600L) {
-                    final String url = "https://github.com/BlackMesa123/KnoxPatch";
+                    final String url = "https://github.com/LeeXDA21/UnboundPatches";
 
                     try {
                         Intent intent = new Intent(Intent.ACTION_VIEW);

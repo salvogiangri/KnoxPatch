@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.utils;
+package com.unbound.patches.utils;
 
 public class Constants {
 

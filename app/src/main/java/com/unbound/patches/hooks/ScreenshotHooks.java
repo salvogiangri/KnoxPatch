@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.hooks;
+package com.unbound.patches.hooks;
 
-import java.security.cert.Certificate;
+import android.content.Context;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -26,18 +26,29 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class KnoxDARHooks implements IXposedHookLoadPackage {
-    private final static String TAG = "KnoxDARHooks";
+public class ScreenshotHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "ScreenshotHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
+        XposedBridge.log("SamsungPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        /* Bypass ICCC verification */
+        Class<?> cls = XposedHelpers.findClass(
+                "com.android.server.wm.WindowState",
+                lpparam.classLoader);
+
+        Class<?> cls2 = XposedHelpers.findClass(
+                "com.android.server.wm.ScreenshotExecutor",
+                lpparam.classLoader);
+
+        /* Disable Secure Flag */
         XposedHelpers.findAndHookMethod(
-                "com.android.server.knox.dar.DarManagerService",
-                lpparam.classLoader,
-                "checkDeviceIntegrity", Certificate[].class,
+                cls,
+                "isSecureLocked", Context.class,
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        XposedHelpers.findAndHookMethod(
+                cls2,
+                "isScreenshotAllowedByPolicy", Context.class,
                 XC_MethodReplacement.returnConstant(Boolean.TRUE));
     }
 

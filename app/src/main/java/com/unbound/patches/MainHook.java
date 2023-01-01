@@ -16,20 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch;
+package com.unbound.patches;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-import io.mesalabs.knoxpatch.hooks.AuthFwHooks;
-import io.mesalabs.knoxpatch.hooks.FastHooks;
-import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
-import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks;
-import io.mesalabs.knoxpatch.hooks.SamsungHealthHooks;
-import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks;
-import io.mesalabs.knoxpatch.hooks.ScreenshotHooks;
-import io.mesalabs.knoxpatch.utils.BuildUtils;
-import io.mesalabs.knoxpatch.utils.Constants;
+import com.unbound.patches.hooks.AuthFwHooks;
+import com.unbound.patches.hooks.FastHooks;
+import com.unbound.patches.hooks.KnoxDARHooks;
+import com.unbound.patches.hooks.KnoxGuardHooks;
+import com.unbound.patches.hooks.SamsungHealthHooks;
+import com.unbound.patches.hooks.SamsungKeystoreHooks;
+import com.unbound.patches.hooks.ScreenshotHooks;
+import com.unbound.patches.utils.BuildUtils;
+import com.unbound.patches.utils.Constants;
 
 public class MainHook implements IXposedHookLoadPackage {
     private static final String TAG = "MainHook";

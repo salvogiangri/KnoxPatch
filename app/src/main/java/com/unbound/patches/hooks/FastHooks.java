@@ -16,41 +16,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.hooks;
+package com.unbound.patches.hooks;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class KnoxGuardHooks implements IXposedHookLoadPackage {
-    private final static String TAG = "KnoxGuardHooks";
+public class FastHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "FastHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        Class<?> cls = XposedHelpers.findClass(
-                "com.samsung.android.knoxguard.service.utils.Utils",
-                lpparam.classLoader);
+        /* Spoof bootloader and warranty bit check */
+        XposedHelpers.findAndHookMethod(
+                "android.os.SemSystemProperties",
+                lpparam.classLoader,
+                "get", String.class, String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String key = (String) param.args[0];
+                        String def = (String) param.args[1];
 
-        Class<?> cls2 = XposedHelpers.findClass(
-                "com.android.server.enterprise.EnterpriseDeviceManagerServiceImpl",
-                lpparam.classLoader);
-
-        /* Disable KnoxGuard support */
-        XposedHelpers.findAndHookMethod(
-                cls,
-                "isSupportKGOnSEC",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
-        XposedHelpers.findAndHookMethod(
-                cls,
-                "isSupportKGOnCsc",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
-        XposedHelpers.findAndHookMethod(
-                cls2,
-                "isKgTurnedOn",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+                        if (key.equals("ro.boot.flash.locked")
+                                || key.equals("ro.boot.warranty_bit")) {
+                            param.setResult(def);
+                        }
+                    }
+                });
     }
+
 }

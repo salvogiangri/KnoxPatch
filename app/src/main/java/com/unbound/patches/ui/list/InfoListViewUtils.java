@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.ui.list;
+package com.unbound.patches.ui.list;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -38,9 +38,9 @@ import androidx.annotation.NonNull;
 
 import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
-import io.mesalabs.knoxpatch.R;
-import io.mesalabs.knoxpatch.utils.BuildUtils;
-import io.mesalabs.knoxpatch.utils.Constants;
+import com.unbound.patches.R;
+import com.unbound.patches.utils.BuildUtils;
+import com.unbound.patches.utils.Constants;
 
 class InfoListViewUtils {
     private static final int ONE_UI_VERSION_SEP_VERSION_GAP = 90000;

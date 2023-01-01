@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.utils;
+package com.unbound.patches.utils;
 
 import android.os.SemBuild;
 import com.samsung.android.knox.EdmUtils;
 import com.samsung.android.knox.EnterpriseDeviceManager;
 
-import io.mesalabs.knoxpatch.utils.Constants.EnterpriseKnoxSdkVersion;
+import com.unbound.patches.utils.Constants.EnterpriseKnoxSdkVersion;
 
 public class BuildUtils {
 

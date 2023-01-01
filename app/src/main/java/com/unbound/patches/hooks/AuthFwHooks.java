@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.hooks;
+package com.unbound.patches.hooks;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -24,18 +24,19 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class SamsungKeystoreHooks implements IXposedHookLoadPackage {
-    private final static String TAG = "SamsungKeystoreHooks";
+public class AuthFwHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "AuthFwHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        /* Bypass SAK integrity check */
+        /* Spoof warranty bit check */
         XposedHelpers.findAndHookMethod(
-                "com.samsung.android.security.keystore.AttestParameterSpec",
+                "com.samsung.android.authfw.trustzone.TzUtil",
                 lpparam.classLoader,
-                "isVerifiableIntegrity",
-                XC_MethodReplacement.returnConstant(Boolean.TRUE));
+                "isDeviceTampered",
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
     }
+
 }

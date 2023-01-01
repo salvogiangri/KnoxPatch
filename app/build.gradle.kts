@@ -4,7 +4,7 @@ plugins {
 }
 
 val versionMajor = 0
-val versionMinor = 2
+val versionMinor = 3
 val versionPatch = 0
 
 val releaseStoreFile: String? by rootProject
@@ -13,11 +13,11 @@ val releaseKeyAlias: String? by rootProject
 val releaseKeyPassword: String? by rootProject
 
 android {
-    namespace = "io.mesalabs.knoxpatch"
+    namespace = "com.unbound.patches"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "io.mesalabs.knoxpatch"
+        applicationId = "com.unbound.patches"
         minSdk = 31
         targetSdk = 33
         versionCode = versionMajor * 100000 + versionMinor * 1000 + versionPatch

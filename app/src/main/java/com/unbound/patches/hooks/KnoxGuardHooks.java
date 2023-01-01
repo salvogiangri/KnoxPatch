@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.hooks;
+package com.unbound.patches.hooks;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -24,19 +24,33 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class AuthFwHooks implements IXposedHookLoadPackage {
-    private final static String TAG = "AuthFwHooks";
+public class KnoxGuardHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "KnoxGuardHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        /* Spoof warranty bit check */
+        Class<?> cls = XposedHelpers.findClass(
+                "com.samsung.android.knoxguard.service.utils.Utils",
+                lpparam.classLoader);
+
+        Class<?> cls2 = XposedHelpers.findClass(
+                "com.android.server.enterprise.EnterpriseDeviceManagerServiceImpl",
+                lpparam.classLoader);
+
+        /* Disable KnoxGuard support */
         XposedHelpers.findAndHookMethod(
-                "com.samsung.android.authfw.trustzone.TzUtil",
-                lpparam.classLoader,
-                "isDeviceTampered",
+                cls,
+                "isSupportKGOnSEC",
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        XposedHelpers.findAndHookMethod(
+                cls,
+                "isSupportKGOnCsc",
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        XposedHelpers.findAndHookMethod(
+                cls2,
+                "isKgTurnedOn",
                 XC_MethodReplacement.returnConstant(Boolean.FALSE));
     }
-
 }

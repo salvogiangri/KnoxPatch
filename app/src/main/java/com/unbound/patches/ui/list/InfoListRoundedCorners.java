@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.mesalabs.knoxpatch.ui.list;
+package com.unbound.patches.ui.list;
 
 import android.content.Context;
 import android.graphics.Canvas;
