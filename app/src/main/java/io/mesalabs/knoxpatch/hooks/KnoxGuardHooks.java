@@ -35,6 +35,10 @@ public class KnoxGuardHooks implements IXposedHookLoadPackage {
                 "com.samsung.android.knoxguard.service.utils.Utils",
                 lpparam.classLoader);
 
+        Class<?> cls2 = XposedHelpers.findClass(
+                "com.android.server.enterprise.EnterpriseDeviceManagerServiceImpl",
+                lpparam.classLoader);
+
         /* Disable KnoxGuard support */
         XposedHelpers.findAndHookMethod(
                 cls,
@@ -43,6 +47,10 @@ public class KnoxGuardHooks implements IXposedHookLoadPackage {
         XposedHelpers.findAndHookMethod(
                 cls,
                 "isSupportKGOnCsc",
+                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+        XposedHelpers.findAndHookMethod(
+                cls2,
+                "isKgTurnedOn",
                 XC_MethodReplacement.returnConstant(Boolean.FALSE));
     }
 }
