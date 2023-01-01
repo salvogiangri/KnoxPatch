@@ -27,6 +27,7 @@ import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungHealthHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks;
+import io.mesalabs.knoxpatch.hooks.ScreenshotHooks;
 import io.mesalabs.knoxpatch.utils.BuildUtils;
 import io.mesalabs.knoxpatch.utils.Constants;
 
@@ -46,6 +47,7 @@ public class MainHook implements IXposedHookLoadPackage {
                         && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
                     new KnoxDARHooks().handleLoadPackage(lpparam);
                     new KnoxGuardHooks().handleLoadPackage(lpparam);
+                    new ScreenshotHooks().handleLoadPackage(lpparam);
                 }
 
                 if (Constants.AUTHFW_PACKAGE_NAME.equals(lpparam.packageName)) {
