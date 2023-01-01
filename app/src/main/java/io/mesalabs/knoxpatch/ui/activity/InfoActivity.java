@@ -18,6 +18,9 @@
 
 package io.mesalabs.knoxpatch.ui.activity;
 
+import static android.view.SemWindowManager.LayoutParams.SEM_EXTENSION_FLAG_RESIZE_FULLSCREEN_WINDOW_ON_SOFT_INPUT;
+
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -27,8 +30,11 @@ import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SemWindowManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +44,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import dev.rikka.tools.refine.Refine;
 import io.mesalabs.knoxpatch.BuildConfig;
 import io.mesalabs.knoxpatch.R;
 import io.mesalabs.knoxpatch.databinding.ActivityInfoBinding;
@@ -50,6 +57,7 @@ public class InfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applyLandscapeFullScreen();
 
         mBinding = ActivityInfoBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
@@ -128,6 +136,27 @@ public class InfoActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL));
         listView.seslSetFillBottomEnabled(true);
         listView.seslSetLastRoundedCorner(true);
+    }
+
+    @SuppressWarnings("deprecation")
+    private void applyLandscapeFullScreen() {
+        Configuration config = getResources().getConfiguration();
+        Window window = getWindow();
+        WindowManager.LayoutParams attributes = window.getAttributes();
+
+        if (!isInMultiWindowMode()
+                && config.smallestScreenWidthDp < 420
+                && config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            attributes.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        } else {
+            attributes.flags &= -WindowManager.LayoutParams.FLAG_FULLSCREEN
+                    | WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON;
+        }
+
+        Refine.<SemWindowManager.LayoutParams>unsafeCast(attributes)
+                .semAddExtensionFlags(
+                        SEM_EXTENSION_FLAG_RESIZE_FULLSCREEN_WINDOW_ON_SOFT_INPUT);
+        window.setAttributes(attributes);
     }
 
     private void setContentSideMargin(@NonNull Configuration config, @NonNull ViewGroup layout) {
