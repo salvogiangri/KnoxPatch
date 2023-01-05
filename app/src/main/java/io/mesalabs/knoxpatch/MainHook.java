@@ -53,6 +53,32 @@ public class MainHook implements IXposedHookLoadPackage {
                 }
             } break;
 
+            case Constants.ONEUI_3_0:
+            case Constants.ONEUI_3_1:
+            case Constants.ONEUI_3_1_1: {
+                if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
+                        && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
+                    new KnoxGuardHooks().handleLoadPackage(lpparam);
+                }
+
+                if (Constants.AUTHFW_PACKAGE_NAME.equals(lpparam.packageName)) {
+                    new AuthFwHooks().handleLoadPackage(lpparam);
+                }
+
+                if (Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
+                    new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+                    new FastHooks().handleLoadPackage(lpparam);
+                }
+
+                if (Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
+                    new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+                }
+
+                if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
+                    new SamsungHealthHooks().handleLoadPackage(lpparam);
+                }
+            } break;
+
             case Constants.ONEUI_4_0:
             case Constants.ONEUI_4_1:
             case Constants.ONEUI_4_1_1:
