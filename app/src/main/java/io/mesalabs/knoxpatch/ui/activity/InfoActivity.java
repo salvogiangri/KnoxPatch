@@ -25,6 +25,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
@@ -35,11 +36,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EdgeEffect;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.SeslEdgeEffect;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -129,6 +132,19 @@ public class InfoActivity extends AppCompatActivity {
 
     private void initListView() {
         RecyclerView listView = mBinding.mainList;
+        if (Build.VERSION.SDK_INT < 31) {
+            listView.setEdgeEffectFactory(new RecyclerView.EdgeEffectFactory() {
+                @SuppressLint("RestrictedApi")
+                @NonNull
+                @Override
+                protected EdgeEffect createEdgeEffect(@NonNull RecyclerView view, int direction) {
+                    SeslEdgeEffect edgeEffect = new SeslEdgeEffect(view.getContext());
+                    edgeEffect.setHostView(view, false);
+                    return edgeEffect;
+                }
+            });
+        }
+
         listView.setLayoutManager(new LinearLayoutManager(this));
         listView.setAdapter(new InfoListViewAdapter(this));
         listView.addItemDecoration(new InfoListRoundedCorners(this));

@@ -79,6 +79,10 @@ class InfoListViewUtils {
             summary += "\n" + context.getString(R.string.knox_version_knox_api) + " ";
             summary += BuildUtils.getKnoxAPIVersion();
 
+            if (SemSystemProperties.get("ro.config.timaversion", "").equals("3.0")) {
+                summary += "\n" + "TIMA 4.1.0";
+            }
+
             try {
                 PackageInfo knoxMLApp = context.getPackageManager().getPackageInfo(
                         "com.samsung.android.app.kfa", PackageManager.GET_META_DATA);
@@ -114,7 +118,7 @@ class InfoListViewUtils {
     static String getKnoxFeatures() {
         List<String> features = new ArrayList<>();
 
-        if (BuildUtils.getSEPVersion() == Constants.ONEUI_5_0) {
+        if (BuildUtils.getSEPVersion() >= Constants.ONEUI_5_0) {
             try {
                 Class<?> cls = Class.forName("com.samsung.android.knox.dar.DarRune");
                 if (cls != null) {

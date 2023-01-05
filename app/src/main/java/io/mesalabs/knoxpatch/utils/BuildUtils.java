@@ -36,15 +36,16 @@ public class BuildUtils {
     }
 
     public static int getKnoxAPIVersion() {
-        switch (getSEPVersion()) {
-            case Constants.ONEUI_4_0:
-            case Constants.ONEUI_4_1:
-            case Constants.ONEUI_4_1_1:
-                return EnterpriseDeviceManager.getAPILevelForInternal();
-            case Constants.ONEUI_5_0:
-                return EdmUtils.getAPILevelForInternal();
-            default:
-                return -1;
+        final int sepVersion = getSEPVersion();
+
+        if (sepVersion == -1) {
+            return -1;
+        }
+
+        if (sepVersion >= Constants.ONEUI_5_0) {
+            return EdmUtils.getAPILevelForInternal();
+        } else {
+            return EnterpriseDeviceManager.getAPILevelForInternal();
         }
     }
 

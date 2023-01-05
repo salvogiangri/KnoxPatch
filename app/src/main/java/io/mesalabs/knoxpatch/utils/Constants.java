@@ -20,6 +20,12 @@ package io.mesalabs.knoxpatch.utils;
 
 public class Constants {
 
+    public static final int ONEUI_2_0 = 110000;
+    public static final int ONEUI_2_1 = 110100;
+    public static final int ONEUI_2_5 = 110500;
+    public static final int ONEUI_3_0 = 120000;
+    public static final int ONEUI_3_1 = 120100;
+    public static final int ONEUI_3_1_1 = 120500;
     public static final int ONEUI_4_0 = 130000;
     public static final int ONEUI_4_1 = 130100;
     public static final int ONEUI_4_1_1 = 130500;
