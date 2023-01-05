@@ -19,6 +19,7 @@
 package io.mesalabs.knoxpatch.hooks;
 
 import android.content.Context;
+import android.os.Build;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -44,15 +45,18 @@ public class KnoxGuardHooks implements IXposedHookLoadPackage {
                         param.setThrowable(new UnsupportedOperationException("KnoxGuard is unsupported"));
                     }
                 });
-        XposedHelpers.findAndHookConstructor(
-                "com.samsung.android.knoxguard.service.KnoxGuardSeService",
-                lpparam.classLoader,
-                Context.class,
-                new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        param.setThrowable(new UnsupportedOperationException("KnoxGuard is unsupported"));
-                    }
-                });
+
+        if (Build.VERSION.SDK_INT >= 30) {
+            XposedHelpers.findAndHookConstructor(
+                    "com.samsung.android.knoxguard.service.KnoxGuardSeService",
+                    lpparam.classLoader,
+                    Context.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            param.setThrowable(new UnsupportedOperationException("KnoxGuard is unsupported"));
+                        }
+                    });
+        }
     }
 }

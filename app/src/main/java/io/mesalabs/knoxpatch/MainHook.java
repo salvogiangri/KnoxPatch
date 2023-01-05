@@ -45,6 +45,7 @@ public class MainHook implements IXposedHookLoadPackage {
                 if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
                         && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
                     new TIMAHooks().handleLoadPackage(lpparam);
+                    new KnoxGuardHooks().handleLoadPackage(lpparam);
                 }
 
                 if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
