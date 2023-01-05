@@ -46,6 +46,10 @@ public class MainHook implements IXposedHookLoadPackage {
                         && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
                     new TIMAHooks().handleLoadPackage(lpparam);
                 }
+
+                if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
+                    new SamsungHealthHooks().handleLoadPackage(lpparam);
+                }
             } break;
 
             case Constants.ONEUI_4_0:
