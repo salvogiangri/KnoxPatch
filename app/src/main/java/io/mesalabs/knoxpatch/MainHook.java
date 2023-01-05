@@ -25,6 +25,7 @@ import io.mesalabs.knoxpatch.hooks.AuthFwHooks;
 import io.mesalabs.knoxpatch.hooks.FastHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks;
+import io.mesalabs.knoxpatch.hooks.TIMAHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungHealthHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks;
 import io.mesalabs.knoxpatch.utils.BuildUtils;
@@ -38,6 +39,15 @@ public class MainHook implements IXposedHookLoadPackage {
         final int sepVersion = BuildUtils.getSEPVersion();
 
         switch (sepVersion) {
+            case Constants.ONEUI_2_0:
+            case Constants.ONEUI_2_1:
+            case Constants.ONEUI_2_5: {
+                if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
+                        && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
+                    new TIMAHooks().handleLoadPackage(lpparam);
+                }
+            } break;
+
             case Constants.ONEUI_4_0:
             case Constants.ONEUI_4_1:
             case Constants.ONEUI_4_1_1:
