@@ -98,7 +98,10 @@ public class MainHook implements IXposedHookLoadPackage {
                     new FastHooks().handleLoadPackage(lpparam);
                 }
 
-                if (Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
+                if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
+                        Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
+                        Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
+                        Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
                     new SamsungKeystoreHooks().handleLoadPackage(lpparam);
                 }
 

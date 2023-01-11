@@ -136,8 +136,11 @@ public class Constants {
     }
 
     public static final String AUTHFW_PACKAGE_NAME = "com.samsung.android.authfw";
+    public static final String FIND_MY_MOBILE_PACKAGE_NAME = "com.samsung.android.fmm";
     public static final String PRIVATE_SHARE_PACKAGE_NAME = "com.samsung.android.privateshare";
+    public static final String SAMSUNG_ACCOUNT_PACKAGE_NAME = "com.osp.app.signin";
     public static final String SAMSUNG_HEALTH_PACKAGE_NAME = "com.sec.android.app.shealth";
+    public static final String SAMSUNG_WALLET_PACKAGE_NAME = "com.samsung.android.spay";
     public static final String SECURE_WIFI_PACKAGE_NAME = "com.samsung.android.fast";
     public static final String SYSTEM_PACKAGE_NAME = "android";
 
