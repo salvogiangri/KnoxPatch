@@ -1,7 +1,10 @@
 <resources>
-    <string name="knox_version_title">Versión de Knox</string>
-    <string name="build_number_title">Número de compilación</string>
+    <string name="module_description">Haz que ciertas características de Knox vuelvan a funcionar en tu dispositivo Samsung Galaxy con root.</string>
+    
     <string name="app_info">Información de la aplicación</string>
-    <string name="android_version_title">Versión de Android</string>
     <string name="oneui_version_title">Versión de One UI</string>
+    <string name="android_version_title">Versión de Android</string>
+    <string name="build_number_title">Número de compilación</string>
+    <string name="knox_version_title">Versión de Knox</string>
+    <string name="knox_features_title">Características de Knox</string>
 </resources>
