@@ -18,9 +18,8 @@
 
 package io.mesalabs.knoxpatch.hooks;
 
-import android.content.Context;
-
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -33,25 +32,46 @@ public class SamsungHealthHooks implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        Class<?> cls = XposedHelpers.findClass(
-                "com.samsung.android.service.health.security.KnoxAdapter",
-                lpparam.classLoader);
-
         /* Disable Knox support */
         XposedHelpers.findAndHookMethod(
-                cls,
-                "isKnoxAvailable", Context.class,
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+                "com.samsung.android.knox.EnterpriseDeviceManager",
+                lpparam.classLoader,
+                "getAPILevel",
+                XC_MethodReplacement.returnConstant(-1));
+
+        /* Disable TIMA support */
         XposedHelpers.findAndHookMethod(
-                cls,
-                "isKnoxAvailableCore", Context.class,
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+                "android.os.SystemProperties",
+                lpparam.classLoader,
+                "get", String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String key = (String) param.args[0];
+
+                        if (key.equals("ro.config.tima")
+                                || key.equals("ro.config.timaversion")) {
+                            param.setResult("0");
+                        }
+                    }
+                });
 
         /* Disable SAK support */
         XposedHelpers.findAndHookMethod(
-                cls,
-                "isAksSakMandatory",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+                "android.os.SemSystemProperties",
+                lpparam.classLoader,
+                "get", String.class, String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String key = (String) param.args[0];
+                        String def = (String) param.args[1];
+
+                        if (key.equals("ro.security.keystore.keytype")) {
+                            param.setResult(def);
+                        }
+                    }
+                });
     }
 
 }
