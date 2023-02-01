@@ -37,96 +37,58 @@ public class MainHook implements IXposedHookLoadPackage {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        // The OneUI version is determined by the SEP version
+        // (SEP 14.0 == OneUI 5.0 | [SEP - 9.0 = OneUI] )
         final int sepVersion = BuildUtils.getSEPVersion();
 
-        switch (sepVersion) {
-            case Constants.ONEUI_2_0:
-            case Constants.ONEUI_2_1:
-            case Constants.ONEUI_2_5: {
-                if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
-                        && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
-                    new TIMAHooks().handleLoadPackage(lpparam);
-                    new KnoxGuardHooks().handleLoadPackage(lpparam);
-                }
+        /*
+         * Currently supported versions:
+         * - Android 10 (One UI 2.x)
+         * - Android 11 (One UI 3.x)
+         * - Android 12/12.1 (One UI 4.x)
+         * - Android 13 (One UI 5.0)
+         */
+        if (sepVersion < Constants.ONEUI_2_0 || sepVersion > Constants.ONEUI_5_0) {
+            XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: "
+                    + "unsupported SEP version: " + sepVersion);
+            return;
+        }
 
-                if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungHealthHooks().handleLoadPackage(lpparam);
-                }
+        if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
+                && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
+            if (sepVersion >= Constants.ONEUI_4_0) {
+                new KnoxDARHooks().handleLoadPackage(lpparam);
+            } else if (sepVersion >= Constants.ONEUI_3_0) {
+                // no-op
+            } else if (sepVersion >= Constants.ONEUI_2_0) {
+                new TIMAHooks().handleLoadPackage(lpparam);
+            }
 
-                if (Constants.SAMSUNG_HEALTH_SERVICE_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungHealthMonitorHooks().handleLoadPackage(lpparam);
-                }
-            } break;
+            new KnoxGuardHooks().handleLoadPackage(lpparam);
+        }
 
-            case Constants.ONEUI_3_0:
-            case Constants.ONEUI_3_1:
-            case Constants.ONEUI_3_1_1: {
-                if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
-                        && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
-                    new KnoxGuardHooks().handleLoadPackage(lpparam);
-                }
+        if (Constants.AUTHFW_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new AuthFwHooks().handleLoadPackage(lpparam);
+        }
 
-                if (Constants.AUTHFW_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new AuthFwHooks().handleLoadPackage(lpparam);
-                }
+        if (Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+            new FastHooks().handleLoadPackage(lpparam);
+        }
 
-                if (Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungKeystoreHooks().handleLoadPackage(lpparam);
-                    new FastHooks().handleLoadPackage(lpparam);
-                }
+        if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
+                Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
+                Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
+                Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+        }
 
-                if (Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungKeystoreHooks().handleLoadPackage(lpparam);
-                }
+        if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new SamsungHealthHooks().handleLoadPackage(lpparam);
+        }
 
-                if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungHealthHooks().handleLoadPackage(lpparam);
-                }
-
-                if (Constants.SAMSUNG_HEALTH_SERVICE_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungHealthMonitorHooks().handleLoadPackage(lpparam);
-                }
-            } break;
-
-            case Constants.ONEUI_4_0:
-            case Constants.ONEUI_4_1:
-            case Constants.ONEUI_4_1_1:
-            case Constants.ONEUI_5_0: {
-                if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
-                        && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
-                    new KnoxDARHooks().handleLoadPackage(lpparam);
-                    new KnoxGuardHooks().handleLoadPackage(lpparam);
-                }
-
-                if (Constants.AUTHFW_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new AuthFwHooks().handleLoadPackage(lpparam);
-                }
-
-                if (Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungKeystoreHooks().handleLoadPackage(lpparam);
-                    new FastHooks().handleLoadPackage(lpparam);
-                }
-
-                if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
-                        Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
-                        Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
-                        Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungKeystoreHooks().handleLoadPackage(lpparam);
-                }
-
-                if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungHealthHooks().handleLoadPackage(lpparam);
-                }
-
-                if (Constants.SAMSUNG_HEALTH_SERVICE_PACKAGE_NAME.equals(lpparam.packageName)) {
-                    new SamsungHealthMonitorHooks().handleLoadPackage(lpparam);
-                }
-            } break;
-
-            default:
-                XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: "
-                        + "unsupported SEP version: " + sepVersion);
-                break;
+        if (Constants.SAMSUNG_HEALTH_SERVICE_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new SamsungHealthMonitorHooks().handleLoadPackage(lpparam);
         }
     }
 
