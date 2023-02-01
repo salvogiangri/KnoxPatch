@@ -5,6 +5,8 @@
         <item name="android:navigationBarColor">@color/sep_theme_background_color</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowSplashScreenBackground">@color/sep_theme_background_color</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@color/sep_theme_background_color</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:listChoiceBackgroundIndicator">?attr/listChoiceBackgroundIndicator</item>
     </style>
