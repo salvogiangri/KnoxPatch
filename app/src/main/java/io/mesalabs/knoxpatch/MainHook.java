@@ -25,7 +25,7 @@ import io.mesalabs.knoxpatch.hooks.AuthFwHooks;
 import io.mesalabs.knoxpatch.hooks.FastHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks;
-import io.mesalabs.knoxpatch.hooks.SamsungHealthMonitorHooks;
+import io.mesalabs.knoxpatch.hooks.RootDetectionHooks;
 import io.mesalabs.knoxpatch.hooks.TIMAHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungHealthHooks;
 import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks;
@@ -87,8 +87,9 @@ public class MainHook implements IXposedHookLoadPackage {
             new SamsungHealthHooks().handleLoadPackage(lpparam);
         }
 
-        if (Constants.SAMSUNG_HEALTH_SERVICE_PACKAGE_NAME.equals(lpparam.packageName)) {
-            new SamsungHealthMonitorHooks().handleLoadPackage(lpparam);
+        if (Constants.SAMSUNG_FLOW_PACKAGE_NAME.equals(lpparam.packageName) ||
+                Constants.SAMSUNG_HEALTH_SERVICE_PACKAGE_NAME.equals(lpparam.packageName) ) {
+            new RootDetectionHooks().handleLoadPackage(lpparam);
         }
     }
 
