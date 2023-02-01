@@ -59,4 +59,5 @@ public class KnoxGuardHooks implements IXposedHookLoadPackage {
                     });
         }
     }
+
 }

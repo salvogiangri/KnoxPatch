@@ -116,7 +116,7 @@ public class SamsungHealthMonitorHooks implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        final String packageName = (String) param.args[0];
+                        String packageName = (String) param.args[0];
 
                         if (packageName != null) {
                             for (String cmd : rootPackages) {
