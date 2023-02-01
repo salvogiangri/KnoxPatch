@@ -23,10 +23,13 @@
 - Android 13 (One UI 5.0)
 
 ## Supported apps
+- ✅ [Samsung Flow](https://www.samsung.com/uk/apps/samsung-flow/)
 - ✅ [Samsung Health](https://www.samsung.com/uk/apps/samsung-health/)
+- ✅ [Samsung Health Monitor](https://www.samsung.com/uk/apps/samsung-health-monitor/)
 - ➖ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) (not working on Android 11)
 - ✅ [Secure Wi-Fi](https://www.samsung.com/uk/support/mobile-devices/what-is-the-secure-wifi-feature-and-how-do-i-enable-or-use-it/)
 - ✅ [Private Share](https://www.samsung.com/uk/support/mobile-devices/how-to-keep-your-personal-data-safe-using-private-share/)
+- ❌ [Galaxy Wearable (Gear Manager)](https://www.samsung.com/us/support/owners/app/galaxy-wearable-watch)
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
 - ❌ [Samsung Wallet (Pay)](https://www.samsung.com/uk/apps/samsung-wallet/)
 
@@ -54,3 +57,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 ```
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/BlackMesa123/KnoxPatch.svg)](https://starchart.cc/BlackMesa123/KnoxPatch)
