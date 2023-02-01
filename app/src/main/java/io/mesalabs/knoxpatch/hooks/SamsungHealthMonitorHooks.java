@@ -18,10 +18,13 @@
 
 package io.mesalabs.knoxpatch.hooks;
 
-import android.content.Context;
+import android.os.Build;
+
+import java.io.File;
+import java.io.IOException;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -29,16 +32,102 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class SamsungHealthMonitorHooks implements IXposedHookLoadPackage {
     private final static String TAG = "SamsungHealthMonitorHooks";
 
+    private final String[] rootPackages = {
+            "com.noshufou.android.su",
+            "com.noshufou.android.su.elite",
+            "eu.chainfire.supersu",
+            "com.koushikdutta.superuser",
+            "com.thirdparty.superuser",
+            "com.yellowes.su",
+            "com.devadvance.rootcloak",
+            "com.devadvance.rootcloakplus",
+            "de.robv.android.xposed.installer",
+            "com.saurik.substrate",
+            "com.zachspong.temprootremovejb",
+            "com.amphoras.hidemyroot",
+            "com.amphoras.hidemyrootadfree",
+            "com.formyhm.hiderootPremium",
+            "com.formyhm.hideroot",
+            "com.koushikdutta.rommanager",
+            "com.koushikdutta.rommanager.license",
+            "com.dimonvideo.luckypatcher",
+            "com.chelpus.lackypatch",
+            "com.ramdroid.appquarantine",
+            "com.ramdroid.appquarantinepro"
+    };
+
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        /* Spoof root check */
+        /* Spoof root checks in RootingCheckUtil class */
+
+        // RootingCheckUtil.detectTestKeys();
+        if (Build.TAGS.contains("test-keys")) {
+            XposedHelpers.setStaticObjectField(
+                    Build.class,
+                    "TAGS",
+                    "release-keys");
+        }
+
+        // RootingCheckUtil.checkBinaryPath();
+        XposedHelpers.findAndHookConstructor(
+                File.class,
+                String.class, String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String child = (String) param.args[1];
+
+                        if (child != null) {
+                            if (child.equals("su") || child.equals("busybox")) {
+                                param.args[1] = "fakebin";
+                            }
+                        }
+                    }
+                });
+
+        // RootingCheckUtil.checkSuExists();
         XposedHelpers.findAndHookMethod(
-                "com.samsung.android.shealthmonitor.util.RootingCheckUtil",
+                Runtime.class,
+                "exec", String[].class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String[] cmdArray = (String[]) param.args[0];
+
+                        if (cmdArray != null && cmdArray.length > 0) {
+                            for (String cmd : cmdArray) {
+                                if (cmd != null) {
+                                    if (cmd.endsWith("/which") || cmd.equals("su")) {
+                                        param.setThrowable(new IOException());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+        // RootingCheckUtil.checkRootingPackage();
+        XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
                 lpparam.classLoader,
-                "isRooted", "androidx.fragment.app.FragmentManager", Context.class,
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+                "getPackageInfo", String.class, int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        final String packageName = (String) param.args[0];
+
+                        if (packageName != null) {
+                            for (String cmd : rootPackages) {
+                                if (packageName.equals(cmd)) {
+                                    param.args[0] = "io.fake.pkg";
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
     }
 
 }
