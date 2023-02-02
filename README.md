@@ -9,7 +9,7 @@
   <img loading="lazy" src="https://img.shields.io/github/contributors/BlackMesa123/KnoxPatch?style=flat-square"/>
   <img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/BlackMesa123/KnoxPatch/android.yml?style=flat-square"/>
   <br><br>
-  An <a href="https://github.com/LSPosed/LSPosed">LSPosed</a> module to get Knox features working again in your rooted Samsung Galaxy device.
+  An <a href="https://github.com/LSPosed/LSPosed">LSPosed</a> module to get Samsung apps/features working again in your rooted Galaxy device.
   <br><br>
   Any form of contribution, suggestions, bug report or feature request for the project will be welcome.
   <br>
@@ -23,15 +23,23 @@
 - Android 13 (One UI 5.0)
 
 ## Supported apps
+- ➖ [Galaxy Wearable (Gear Manager)](https://www.samsung.com/us/support/owners/app/galaxy-wearable-watch) ([Enhancer](#knoxpatch-enhancer) required)
 - ✅ [Samsung Flow](https://www.samsung.com/uk/apps/samsung-flow/)
 - ✅ [Samsung Health](https://www.samsung.com/uk/apps/samsung-health/)
 - ✅ [Samsung Health Monitor](https://www.samsung.com/uk/apps/samsung-health-monitor/)
 - ➖ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) (not working on Android 11)
 - ✅ [Secure Wi-Fi](https://www.samsung.com/uk/support/mobile-devices/what-is-the-secure-wifi-feature-and-how-do-i-enable-or-use-it/)
 - ✅ [Private Share](https://www.samsung.com/uk/support/mobile-devices/how-to-keep-your-personal-data-safe-using-private-share/)
-- ❌ [Galaxy Wearable (Gear Manager)](https://www.samsung.com/us/support/owners/app/galaxy-wearable-watch)
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
 - ❌ [Samsung Wallet (Pay)](https://www.samsung.com/uk/apps/samsung-wallet/)
+
+## KnoxPatch Enhancer
+
+KnoxPatch Enhancer is a [Magisk](https://github.com/topjohnwu/Magisk) module that will take care of the (currently) non-fixable apps/features via the Xposed API's, such as the Galaxy Wearable apps. To install it, download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it from the "Modules" tab inside the Magisk Manager app. The app will then show an "Enhanced" badge if the module is installed and active:
+
+<p align="center">
+  <img loading="lazy" src="readme-res/kp-enhancer.jpg" width="40%" />
+</p>
 
 ## Credits
 - Samsung
