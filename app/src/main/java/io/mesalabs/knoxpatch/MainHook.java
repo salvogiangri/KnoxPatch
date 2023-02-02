@@ -88,7 +88,7 @@ public class MainHook implements IXposedHookLoadPackage {
         }
 
         if (Constants.SAMSUNG_FLOW_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.SAMSUNG_HEALTH_SERVICE_PACKAGE_NAME.equals(lpparam.packageName) ) {
+                Constants.SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME.equals(lpparam.packageName) ) {
             new RootDetectionHooks().handleLoadPackage(lpparam);
         }
     }
