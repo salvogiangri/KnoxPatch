@@ -4,3 +4,4 @@ version=v0.1
 versionCode=1
 author=BlackMesa123
 description=Get Samsung apps/features working again in your rooted Galaxy device.
+updateJson=https://raw.githubusercontent.com/BlackMesa123/KnoxPatch/main/enhancer/update.json
