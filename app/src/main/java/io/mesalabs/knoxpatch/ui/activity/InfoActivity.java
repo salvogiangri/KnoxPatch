@@ -23,11 +23,16 @@ import static android.view.SemWindowManager.LayoutParams.SEM_EXTENSION_FLAG_RESI
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.FeatureInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,8 +58,10 @@ import io.mesalabs.knoxpatch.R;
 import io.mesalabs.knoxpatch.databinding.ActivityInfoBinding;
 import io.mesalabs.knoxpatch.ui.list.InfoListRoundedCorners;
 import io.mesalabs.knoxpatch.ui.list.InfoListViewAdapter;
+import io.mesalabs.knoxpatch.utils.Constants;
 
 public class InfoActivity extends AppCompatActivity {
+    private static final String DOT_SEPARATOR = "  •  ";
     private ActivityInfoBinding mBinding;
 
     @Override
@@ -104,7 +111,7 @@ public class InfoActivity extends AppCompatActivity {
 
     private void initAppBanner() {
         mBinding.mainAppIcon.setImageDrawable(getPackageManager().getApplicationIcon(getApplicationInfo()));
-        mBinding.mainAppVersion.setText(BuildConfig.VERSION_NAME);
+        mBinding.mainAppVersion.setText(getModuleVersion());
         mBinding.mainAppGithub.setOnClickListener(new View.OnClickListener() {
             private long mLastClickTime;
 
@@ -128,6 +135,31 @@ public class InfoActivity extends AppCompatActivity {
                 mLastClickTime = uptimeMillis;
             }
         });
+    }
+
+    private SpannableStringBuilder getModuleVersion() {
+        SpannableStringBuilder span = new SpannableStringBuilder();
+        span.append(BuildConfig.VERSION_NAME);
+
+        final FeatureInfo[] featuresList = getPackageManager().getSystemAvailableFeatures();
+        for (FeatureInfo f : featuresList) {
+            if (f.name != null && f.name.equals(Constants.ENHANCER_SYSTEM_FEATURE)) {
+                span.append(DOT_SEPARATOR);
+
+                String eVer = "Enhanced";
+                eVer += " (v" + f.version / 100 + "." + f.version % 100 + ")";
+
+                span.append(eVer);
+                span.setSpan(new ForegroundColorSpan(getColor(R.color.sep_theme_functional_green_color)),
+                        span.length() - eVer.length(),
+                        span.length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                break;
+            }
+        }
+
+        return span;
     }
 
     private void initListView() {

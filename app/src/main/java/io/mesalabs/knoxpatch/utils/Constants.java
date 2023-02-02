@@ -135,6 +135,8 @@ public class Constants {
         }
     }
 
+    public static final String ENHANCER_SYSTEM_FEATURE = "io.mesalabs.knoxpatch_enhancer";
+
     public static final String AUTHFW_PACKAGE_NAME = "com.samsung.android.authfw";
     public static final String FIND_MY_MOBILE_PACKAGE_NAME = "com.samsung.android.fmm";
     public static final String PRIVATE_SHARE_PACKAGE_NAME = "com.samsung.android.privateshare";
