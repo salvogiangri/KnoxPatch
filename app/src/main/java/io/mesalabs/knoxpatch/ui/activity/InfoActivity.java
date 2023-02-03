@@ -146,7 +146,7 @@ public class InfoActivity extends AppCompatActivity {
             if (f.name != null && f.name.equals(Constants.ENHANCER_SYSTEM_FEATURE)) {
                 span.append(DOT_SEPARATOR);
 
-                String eVer = "Enhanced";
+                String eVer = getString(R.string.enhanced_badge);
                 eVer += " (v" + f.version / 100 + "." + f.version % 100 + ")";
 
                 span.append(eVer);

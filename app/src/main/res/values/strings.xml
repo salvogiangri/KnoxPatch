@@ -15,4 +15,6 @@
     <string name="knox_version_knox_dualdar" translatable="false">DualDAR</string>
     <string name="knox_version_knox_hdm" translatable="false">HDM</string>
     <string name="knox_features_title">Knox features</string>
+
+    <string name="enhanced_badge">Enhanced</string>
 </resources>
