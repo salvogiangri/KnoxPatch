@@ -48,7 +48,7 @@ public class MainHook implements IXposedHookLoadPackage {
          * - Android 12/12.1 (One UI 4.x)
          * - Android 13 (One UI 5.0)
          */
-        if (sepVersion < Constants.ONEUI_2_0 || sepVersion > Constants.ONEUI_5_0) {
+        if (sepVersion < Constants.ONEUI_2_0 || sepVersion > Constants.ONEUI_5_1) {
             XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: "
                     + "unsupported SEP version: " + sepVersion);
             return;
