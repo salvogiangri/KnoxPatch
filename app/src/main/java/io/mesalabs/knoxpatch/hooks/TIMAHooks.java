@@ -41,18 +41,6 @@ public class TIMAHooks implements IXposedHookLoadPackage {
                 "isTimaSupported",
                 XC_MethodReplacement.returnConstant(Boolean.FALSE));
 
-        XposedHelpers.findAndHookMethod(
-                "com.android.server.pm.TimaHelper",
-                lpparam.classLoader,
-                "isTimaAvailable",
-                new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        Log.d("TimaHelper", "TIMA KeyStore is deprecated");
-                        param.setResult(Boolean.FALSE);
-                    }
-                });
-
         /* Enable Knox UKS */
         XposedHelpers.findAndHookMethod(
                 "com.android.server.locksettings.SyntheticPasswordManager",
