@@ -18,7 +18,10 @@
 
 package io.mesalabs.knoxpatch.hooks;
 
+import android.os.Build;
+
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -26,16 +29,34 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class SamsungKeystoreHooks implements IXposedHookLoadPackage {
     private final static String TAG = "SamsungKeystoreHooks";
+    private final static int KM_TAG_SAMSUNG_ATTESTATION_ROOT = -1879046090;
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
         /* Bypass SAK integrity check */
-        XposedHelpers.findAndHookMethod(
-                "com.samsung.android.security.keystore.AttestParameterSpec",
-                lpparam.classLoader,
-                "isVerifiableIntegrity",
-                XC_MethodReplacement.returnConstant(Boolean.TRUE));
+        if (Build.VERSION.SDK_INT >= 29) {
+            XposedHelpers.findAndHookMethod(
+                    "com.samsung.android.security.keystore.AttestParameterSpec",
+                    lpparam.classLoader,
+                    "isVerifiableIntegrity",
+                    XC_MethodReplacement.returnConstant(Boolean.TRUE));
+        } else {
+            XposedHelpers.findAndHookMethod(
+                    "android.security.keymaster.KeymasterArguments",
+                    lpparam.classLoader,
+                    "addBytes", Integer.TYPE, byte[].class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            int tag = (int) param.args[0];
+
+                            if (tag == KM_TAG_SAMSUNG_ATTESTATION_ROOT) {
+                                param.setResult(null);
+                            }
+                        }
+                    });
+        }
     }
 }
