@@ -43,12 +43,13 @@ public class MainHook implements IXposedHookLoadPackage {
 
         /*
          * Currently supported versions:
+         * - Android 9 (One UI 1.x)
          * - Android 10 (One UI 2.x)
          * - Android 11 (One UI 3.x)
          * - Android 12/12.1 (One UI 4.x)
-         * - Android 13 (One UI 5.0)
+         * - Android 13 (One UI 5.x)
          */
-        if (sepVersion < Constants.ONEUI_2_0 || sepVersion > Constants.ONEUI_5_1) {
+        if (sepVersion < Constants.ONEUI_1_0 || sepVersion > Constants.ONEUI_5_1) {
             XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: "
                     + "unsupported SEP version: " + sepVersion);
             return;
@@ -60,7 +61,7 @@ public class MainHook implements IXposedHookLoadPackage {
                 new KnoxDARHooks().handleLoadPackage(lpparam);
             } else if (sepVersion >= Constants.ONEUI_3_0) {
                 // no-op
-            } else if (sepVersion >= Constants.ONEUI_2_0) {
+            } else if (sepVersion >= Constants.ONEUI_1_0) {
                 new TIMAHooks().handleLoadPackage(lpparam);
             }
 
