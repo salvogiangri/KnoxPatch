@@ -22,7 +22,7 @@ import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import io.mesalabs.knoxpatch.hooks.AuthFwHooks;
-import io.mesalabs.knoxpatch.hooks.FastHooks;
+import io.mesalabs.knoxpatch.hooks.PropSpoofHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks;
 import io.mesalabs.knoxpatch.hooks.RootDetectionHooks;
@@ -72,14 +72,15 @@ public class MainHook implements IXposedHookLoadPackage {
             new AuthFwHooks().handleLoadPackage(lpparam);
         }
 
-        if (Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
-            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
-            new FastHooks().handleLoadPackage(lpparam);
+        if (Constants.SECURE_FOLDER_PACKAGE_NAME.equals(lpparam.packageName) ||
+                Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new PropSpoofHooks().handleLoadPackage(lpparam);
         }
 
         if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
                 Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
                 Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
+                Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName) ||
                 Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
             new SamsungKeystoreHooks().handleLoadPackage(lpparam);
         }

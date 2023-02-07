@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="scope">
+        <item>android</item>
+        <item>com.osp.app.signin</item>
+        <item>com.samsung.android.authfw</item>
+        <item>com.samsung.android.galaxycontinuity</item>
+        <item>com.samsung.android.fast</item>
+        <item>com.samsung.android.fmm</item>
+        <item>com.samsung.android.privateshare</item>
+        <item>com.samsung.android.shealthmonitor</item>
+        <item>com.samsung.android.spay</item>
+        <item>com.sec.android.app.shealth</item>
+    </string-array>
+</resources>
