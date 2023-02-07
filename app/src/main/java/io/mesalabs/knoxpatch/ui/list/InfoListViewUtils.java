@@ -102,10 +102,12 @@ class InfoListViewUtils {
                 summary += dualDARVersion;
             }
 
-            String hdmVersion = HdmManager.getHdmVersion();
-            if (hdmVersion != null) {
-                summary += "\n" + context.getString(R.string.knox_version_knox_hdm) + " ";
-                summary += hdmVersion;
+            if (Build.VERSION.SDK_INT >= 29) {
+                String hdmVersion = HdmManager.getHdmVersion();
+                if (hdmVersion != null) {
+                    summary += "\n" + context.getString(R.string.knox_version_knox_hdm) + " ";
+                    summary += hdmVersion;
+                }
             }
 
             return summary;
