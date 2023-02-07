@@ -19,7 +19,6 @@
 package io.mesalabs.knoxpatch.utils;
 
 import android.os.SemBuild;
-import com.samsung.android.knox.EdmUtils;
 import com.samsung.android.knox.EnterpriseDeviceManager;
 
 import io.mesalabs.knoxpatch.utils.Constants.EnterpriseKnoxSdkVersion;
@@ -42,11 +41,7 @@ public class BuildUtils {
             return -1;
         }
 
-        if (sepVersion >= Constants.ONEUI_5_0) {
-            return EdmUtils.getAPILevelForInternal();
-        } else {
-            return EnterpriseDeviceManager.getAPILevelForInternal();
-        }
+        return EnterpriseDeviceManager.getAPILevel();
     }
 
     public static EnterpriseKnoxSdkVersion getEnterpriseKnoxSdkVersion() {

@@ -20,7 +20,7 @@ package com.samsung.android.knox;
 
 public class EnterpriseDeviceManager {
 
-    public static int getAPILevelForInternal() {
+    public static int getAPILevel() {
         throw new RuntimeException("Stub!");
     }
 
