@@ -77,12 +77,14 @@ public class MainHook implements IXposedHookLoadPackage {
             new PropSpoofHooks().handleLoadPackage(lpparam);
         }
 
-        if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
-            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+        if (sepVersion >= Constants.ONEUI_2_0) {
+            if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
+                new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+            }
         }
 
         if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {

@@ -2,6 +2,7 @@
 <resources>
     <string-array name="scope">
         <item>android</item>
+        <item>com.samsung.android.fast</item>
         <item>com.samsung.android.galaxycontinuity</item>
         <item>com.samsung.android.shealthmonitor</item>
         <item>com.samsung.knox.securefolder</item>

@@ -35,6 +35,20 @@ public class PropSpoofHooks implements IXposedHookLoadPackage {
         XposedHelpers.findAndHookMethod(
                 "android.os.SemSystemProperties",
                 lpparam.classLoader,
+                "get", String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String key = (String) param.args[0];
+
+                        if (key.equals("ro.build.type")) {
+                            param.setResult("eng");
+                        }
+                    }
+                });
+        XposedHelpers.findAndHookMethod(
+                "android.os.SemSystemProperties",
+                lpparam.classLoader,
                 "get", String.class, String.class,
                 new XC_MethodHook() {
                     @Override
