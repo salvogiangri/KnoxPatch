@@ -18,6 +18,8 @@
 
 package io.mesalabs.knoxpatch.ui.list;
 
+import static io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.isKnoxAvailable;
+
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -39,7 +41,8 @@ class InfoListItemContent {
         mTitles.add(context.getString(R.string.build_number_title));
         mSummaries.add(InfoListViewUtils.getBuildNumber());
         mTitles.add(context.getString(R.string.knox_version_title));
-        mSummaries.add(InfoListViewUtils.getKnoxComponentsVersion(context));
+        mSummaries.add(isKnoxAvailable() ?
+                InfoListViewUtils.getKnoxComponentsVersion(context) : "Unsupported");
         mTitles.add(context.getString(R.string.knox_features_title));
         mSummaries.add(InfoListViewUtils.getKnoxFeatures());
     }
