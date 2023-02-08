@@ -18,7 +18,13 @@
 
 package io.mesalabs.knoxpatch.hooks;
 
+import android.content.Context;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import java.lang.reflect.Member;
+import java.lang.reflect.Method;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -38,8 +44,8 @@ public class TIMAHooks implements IXposedHookLoadPackage {
         XposedHelpers.findAndHookMethod(
                 "com.android.server.pm.PersonaServiceHelper",
                 lpparam.classLoader,
-                "isTimaSupported",
-                XC_MethodReplacement.returnConstant(Boolean.FALSE));
+                "isTimaAvailable", Context.class,
+                XC_MethodReplacement.returnConstant(Boolean.TRUE));
 
         /* Enable Knox UKS */
         XposedHelpers.findAndHookMethod(
@@ -53,6 +59,36 @@ public class TIMAHooks implements IXposedHookLoadPackage {
                         param.setResult(Boolean.TRUE);
                     }
                 });
+
+        /* De-optimize inlined methods */
+        findAndDeoptimizeMethod("com.android.server.locksettings.LockSettingsService",
+                lpparam.classLoader,
+                "verifyToken");
+        findAndDeoptimizeMethod("com.android.server.locksettings.LockSettingsService$VirtualLock",
+                lpparam.classLoader,
+                "doVerifyCredential");
+        findAndDeoptimizeMethod("com.android.server.locksettings.SyntheticPasswordManager",
+                lpparam.classLoader,
+                "createSyntheticPasswordBlobSpecific");
+        findAndDeoptimizeMethod("com.android.server.locksettings.SyntheticPasswordManager",
+                lpparam.classLoader,
+                "destroySPBlobKey");
+    }
+
+    private static void findAndDeoptimizeMethod(@NonNull String className,
+                                                @NonNull ClassLoader classLoader,
+                                                @NonNull String methodName) {
+        try {
+            Class<?> clz = Class.forName(className, false, classLoader);
+            for (Method m : clz.getDeclaredMethods()) {
+                if (methodName.equals(m.getName())) {
+                    XposedBridge.log("KnoxPatch: " + TAG + " findAndDeoptimizeMethod: " + m);
+                    XposedBridge.class.getDeclaredMethod("deoptimizeMethod", Member.class).invoke(null, m);
+                }
+            }
+        } catch (Throwable e) {
+            XposedBridge.log("KnoxPatch: " + TAG + " findAndDeoptimizeMethod: " + e);
+        }
     }
 
 }
