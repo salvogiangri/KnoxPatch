@@ -16,11 +16,12 @@
 </p>
 
 ## Supported Android versions
+- Android 9 (One UI 1.x)
 - Android 10 (One UI 2.x)
 - Android 11 (One UI 3.x) (Secure Folder not working)
 - Android 12 (One UI 4.x)
 - Android 12L (One UI 4.1.1)
-- Android 13 (One UI 5.0)
+- Android 13 (One UI 5.x)
 
 ## Supported apps
 - ➖ [Galaxy Wearable (Gear Manager)](https://www.samsung.com/us/support/owners/app/galaxy-wearable-watch) ([Enhancer](#knoxpatch-enhancer) required)
