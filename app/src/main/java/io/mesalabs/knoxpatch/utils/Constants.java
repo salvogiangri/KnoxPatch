@@ -20,6 +20,9 @@ package io.mesalabs.knoxpatch.utils;
 
 public class Constants {
 
+    public static final int ONEUI_1_0 = 100000;
+    public static final int ONEUI_1_1 = 100100;
+    public static final int ONEUI_1_5 = 100500;
     public static final int ONEUI_2_0 = 110000;
     public static final int ONEUI_2_1 = 110100;
     public static final int ONEUI_2_5 = 110500;
@@ -146,6 +149,7 @@ public class Constants {
     public static final String SAMSUNG_HEALTH_PACKAGE_NAME = "com.sec.android.app.shealth";
     public static final String SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME = "com.samsung.android.shealthmonitor";
     public static final String SAMSUNG_WALLET_PACKAGE_NAME = "com.samsung.android.spay";
+    public static final String SECURE_FOLDER_PACKAGE_NAME = "com.samsung.knox.securefolder";
     public static final String SECURE_WIFI_PACKAGE_NAME = "com.samsung.android.fast";
     public static final String SYSTEM_PACKAGE_NAME = "android";
 

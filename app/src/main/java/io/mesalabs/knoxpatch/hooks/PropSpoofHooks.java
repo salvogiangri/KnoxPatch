@@ -24,14 +24,28 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-public class FastHooks implements IXposedHookLoadPackage {
-    private final static String TAG = "FastHooks";
+public class PropSpoofHooks implements IXposedHookLoadPackage {
+    private final static String TAG = "PropSpoofHooks";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
-        /* Spoof bootloader and warranty bit check */
+        /* Spoof critical system props */
+        XposedHelpers.findAndHookMethod(
+                "android.os.SemSystemProperties",
+                lpparam.classLoader,
+                "get", String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String key = (String) param.args[0];
+
+                        if (key.equals("ro.build.type")) {
+                            param.setResult("eng");
+                        }
+                    }
+                });
         XposedHelpers.findAndHookMethod(
                 "android.os.SemSystemProperties",
                 lpparam.classLoader,
@@ -43,7 +57,8 @@ public class FastHooks implements IXposedHookLoadPackage {
                         String def = (String) param.args[1];
 
                         if (key.equals("ro.boot.flash.locked")
-                                || key.equals("ro.boot.warranty_bit")) {
+                                || key.equals("ro.boot.warranty_bit")
+                                || key.equals("ro.config.iccc_version")) {
                             param.setResult(def);
                         }
                     }

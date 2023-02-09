@@ -22,7 +22,7 @@ import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import io.mesalabs.knoxpatch.hooks.AuthFwHooks;
-import io.mesalabs.knoxpatch.hooks.FastHooks;
+import io.mesalabs.knoxpatch.hooks.PropSpoofHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks;
 import io.mesalabs.knoxpatch.hooks.RootDetectionHooks;
@@ -43,12 +43,13 @@ public class MainHook implements IXposedHookLoadPackage {
 
         /*
          * Currently supported versions:
+         * - Android 9 (One UI 1.x)
          * - Android 10 (One UI 2.x)
          * - Android 11 (One UI 3.x)
          * - Android 12/12.1 (One UI 4.x)
-         * - Android 13 (One UI 5.0)
+         * - Android 13 (One UI 5.x)
          */
-        if (sepVersion < Constants.ONEUI_2_0 || sepVersion > Constants.ONEUI_5_1) {
+        if (sepVersion < Constants.ONEUI_1_0 || sepVersion > Constants.ONEUI_5_1) {
             XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: "
                     + "unsupported SEP version: " + sepVersion);
             return;
@@ -60,7 +61,7 @@ public class MainHook implements IXposedHookLoadPackage {
                 new KnoxDARHooks().handleLoadPackage(lpparam);
             } else if (sepVersion >= Constants.ONEUI_3_0) {
                 // no-op
-            } else if (sepVersion >= Constants.ONEUI_2_0) {
+            } else if (sepVersion >= Constants.ONEUI_1_0) {
                 new TIMAHooks().handleLoadPackage(lpparam);
             }
 
@@ -71,16 +72,19 @@ public class MainHook implements IXposedHookLoadPackage {
             new AuthFwHooks().handleLoadPackage(lpparam);
         }
 
-        if (Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
-            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
-            new FastHooks().handleLoadPackage(lpparam);
+        if (Constants.SECURE_FOLDER_PACKAGE_NAME.equals(lpparam.packageName) ||
+                Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new PropSpoofHooks().handleLoadPackage(lpparam);
         }
 
-        if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
-                Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
-            new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+        if (sepVersion >= Constants.ONEUI_1_5) {
+            if (Constants.FIND_MY_MOBILE_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.SAMSUNG_WALLET_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.SECURE_WIFI_PACKAGE_NAME.equals(lpparam.packageName) ||
+                    Constants.PRIVATE_SHARE_PACKAGE_NAME.equals(lpparam.packageName)) {
+                new SamsungKeystoreHooks().handleLoadPackage(lpparam);
+            }
         }
 
         if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {

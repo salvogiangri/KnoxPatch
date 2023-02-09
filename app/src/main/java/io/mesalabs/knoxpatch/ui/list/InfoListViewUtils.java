@@ -61,57 +61,85 @@ class InfoListViewUtils {
         return buildDisplay;
     }
 
+    static boolean isKnoxAvailable() {
+        final KnoxContainerVersion currentVersion = SemPersonaManager.getKnoxContainerVersion();
+        return currentVersion.compareTo(KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_2_0) >= 0;
+    }
+
     @SuppressWarnings("deprecation")
     static String getKnoxComponentsVersion(@NonNull Context context) {
-        final KnoxContainerVersion knoxContainerVersion = SemPersonaManager.getKnoxContainerVersion();
-        if (knoxContainerVersion.compareTo(
-                KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_2_0) >= 0) {
-            String summary = "";
-            summary += context.getString(R.string.knox_version_knox) + " ";
+        String knoxVersion = "";
 
-            String knoxVersion = BuildUtils.getEnterpriseKnoxSdkVersion().getInternalVersion();
-            if (Integer.parseInt(Character.toString(knoxVersion.charAt(knoxVersion.length() - 1))) > 0) {
-                summary += knoxVersion;
-            } else {
-                summary += knoxVersion.substring(0, knoxVersion.lastIndexOf('.'));
-            }
+        // Knox version
+        knoxVersion += context.getString(R.string.knox_version_knox) + " ";
 
-            summary += "\n" + context.getString(R.string.knox_version_knox_api) + " ";
-            summary += BuildUtils.getKnoxAPIVersion();
+        final String knoxVersionName = BuildUtils.getEnterpriseKnoxSdkVersion().getInternalVersion();
+        int lastInt = Integer.parseInt(Character.toString(knoxVersionName.charAt(knoxVersionName.length() - 1)));
+        if (lastInt > 0) {
+            knoxVersion += knoxVersionName;
+        } else {
+            final int index = knoxVersionName.lastIndexOf('.');
+            knoxVersion += knoxVersionName.substring(0, index);
+        }
 
+        // Knox API level
+        knoxVersion += "\n" + context.getString(R.string.knox_version_knox_api) + " ";
+        knoxVersion += BuildUtils.getKnoxAPIVersion();
+
+        // TIMA version
+        final String timaProp = SemSystemProperties.get("ro.config.tima", "");
+        final boolean isTimaSupported = !timaProp.isEmpty() && timaProp.equals("1");
+
+        if (isTimaSupported) {
+            knoxVersion += "\n" + context.getString(R.string.knox_version_knox_tima) + " ";
             if (SemSystemProperties.get("ro.config.timaversion", "").equals("3.0")) {
-                summary += "\n" + "TIMA 4.1.0";
-            }
 
-            try {
-                PackageInfo knoxMLApp = context.getPackageManager().getPackageInfo(
-                        "com.samsung.android.app.kfa", PackageManager.GET_META_DATA);
-                if (knoxMLApp != null) {
-                    summary += "\n" + context.getString(R.string.knox_version_knox_ml) + " ";
-
-                    String knoxMLVersion = knoxMLApp.versionName;
-                    summary += knoxMLVersion.substring(0, knoxMLVersion.length() - 3);
+                if (BuildUtils.getSEPVersion() >= Constants.ONEUI_1_1) {
+                    knoxVersion += "4.1.0";
+                } else {
+                    if (SemPersonaManager.getKnoxContainerVersion()
+                            .compareTo(KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_7_0) >= 0) {
+                        knoxVersion += "3.3.0";
+                    } else {
+                        knoxVersion += "3.2.0";
+                    }
                 }
-            } catch (PackageManager.NameNotFoundException e) {
-                // no-op
+            } else {
+                knoxVersion += SemSystemProperties.get("ro.config.timaversion", "No Policy Version");
             }
+        }
 
-            String dualDARVersion = DualDARPolicy.getDualDARVersion();
-            if (dualDARVersion != null) {
-                summary += "\n" + context.getString(R.string.knox_version_knox_dualdar) + " ";
-                summary += dualDARVersion;
+        // Knox ML version
+        try {
+            PackageInfo knoxMLApp = context.getPackageManager().getPackageInfo(
+                    "com.samsung.android.app.kfa", PackageManager.GET_META_DATA);
+            if (knoxMLApp != null) {
+                knoxVersion += "\n" + context.getString(R.string.knox_version_knox_ml) + " ";
+
+                String knoxMLVersion = knoxMLApp.versionName;
+                knoxVersion += knoxMLVersion.substring(0, knoxMLVersion.length() - 3);
             }
+        } catch (PackageManager.NameNotFoundException e) {
+            // no-op
+        }
 
+        // DualDAR version
+        String dualDARVersion = DualDARPolicy.getDualDARVersion();
+        if (dualDARVersion != null) {
+            knoxVersion += "\n" + context.getString(R.string.knox_version_knox_dualdar) + " ";
+            knoxVersion += dualDARVersion;
+        }
+
+        // HDM version
+        if (Build.VERSION.SDK_INT >= 30) {
             String hdmVersion = HdmManager.getHdmVersion();
             if (hdmVersion != null) {
-                summary += "\n" + context.getString(R.string.knox_version_knox_hdm) + " ";
-                summary += hdmVersion;
+                knoxVersion += "\n" + context.getString(R.string.knox_version_knox_hdm) + " ";
+                knoxVersion += hdmVersion;
             }
-
-            return summary;
-        } else {
-            return "Unsupported";
         }
+
+        return knoxVersion;
     }
 
     @SuppressWarnings("unchecked")
