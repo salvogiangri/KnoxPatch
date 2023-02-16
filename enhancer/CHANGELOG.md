@@ -1,1 +1,1 @@
-* First release
+* Add Smart View fix
