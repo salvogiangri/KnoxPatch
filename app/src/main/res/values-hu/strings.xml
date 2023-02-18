@@ -1,7 +1,19 @@
 <resources>
-    <string name="knox_version_title">Knox verziója</string>
-    <string name="build_number_title">Build száma</string>
-    <string name="app_info">Alkalmazásinfó</string>
-    <string name="android_version_title">Android verziója</string>
-    <string name="oneui_version_title">One UI-verzió</string>
+    <string name="app_name" translatable="false">KnoxPatch</string>
+    <string name="module_description">A Knox funkciók újra működnek a rootolt Samsung Galaxy készüléken.</string>
+
+    <string name="github" translatable="false">GitHub</string>
+
+    <string name="app_info">App infó</string>
+    <string name="oneui_version_title">One UI verzió</string>
+    <string name="android_version_title">Android verzió</string>
+    <string name="build_number_title">Build szám</string>
+    <string name="knox_version_title">Knox verzió</string>
+    <string name="knox_version_knox" translatable="false">Knox</string>
+    <string name="knox_version_knox_api" translatable="false">Knox API szint</string>
+    <string name="knox_version_knox_tima" translatable="false">TIMA</string>
+    <string name="knox_version_knox_ml" translatable="false">Knox ML</string>
+    <string name="knox_version_knox_dualdar" translatable="false">DualDAR</string>
+    <string name="knox_version_knox_hdm" translatable="false">HDM</string>
+    <string name="knox_features_title">Knox funkciók</string>
 </resources>
