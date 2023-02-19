@@ -35,6 +35,12 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleRelease assembleDebug
 
+    - name: Zip Enhancer module
+      run: |
+        cd enhancer
+        zip -r ../app/build/outputs/apk/KnoxPatch-Enhancer.zip * -x *.json -x *.md
+        cd ..
+
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
