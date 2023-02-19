@@ -233,13 +233,10 @@ public class InfoActivity extends AppCompatActivity {
             return 0.0f;
         }
         if (screenHeightDp > 411 && screenWidthDp <= 959) {
-            return 0.05f;
+            return 0.07f;
         }
-        if (screenWidthDp >= 960 && screenHeightDp <= 1919) {
-            return 0.125f;
-        }
-        if (screenWidthDp >= 1920) {
-            return 0.25f;
+        if (screenWidthDp >= 960) {
+            return 0.1812f;
         }
 
         return 0.0f;
