@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">Verze Knox</string>
     <string name="build_number_title">Číslo sestavení</string>
-    <string name="app_info">Informace o aplikaci</string>
-    <string name="android_version_title">Verze Android</string>
     <string name="oneui_version_title">Verze One UI</string>
+    <string name="oneui_version_title_seplite">Verze One UI Core</string>
+    <string name="android_version_title">Verze Android</string>
+    <string name="app_info">Informace o aplikaci</string>
+    <string name="knox_version_title">Verze Knox</string>
 </resources>

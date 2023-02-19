@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">Versão Knox</string>
     <string name="build_number_title">Número de compilação</string>
-    <string name="app_info">Informações do aplicativo</string>
-    <string name="android_version_title">Versão Android</string>
     <string name="oneui_version_title">Versão do One UI</string>
+    <string name="oneui_version_title_seplite">Versão do One UI Core</string>
+    <string name="android_version_title">Versão Android</string>
+    <string name="app_info">Informações do aplicativo</string>
+    <string name="knox_version_title">Versão Knox</string>
 </resources>

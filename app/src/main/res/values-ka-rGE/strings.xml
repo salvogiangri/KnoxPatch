@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">Knox ვერსია</string>
     <string name="build_number_title">ჩაშენების რაოდენობა</string>
-    <string name="app_info">აპლიკაციის ინფორმაცია</string>
-    <string name="android_version_title">Android-ის ვერსია</string>
     <string name="oneui_version_title">One UI ვერსია</string>
+    <string name="oneui_version_title_seplite">One UI Core-ს ვერსია</string>
+    <string name="android_version_title">Android-ის ვერსია</string>
+    <string name="app_info">აპლიკაციის ინფორმაცია</string>
+    <string name="knox_version_title">Knox ვერსია</string>
 </resources>

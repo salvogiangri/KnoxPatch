@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">កំណែ Knox</string>
     <string name="build_number_title">លេខ​បង្កើត</string>
-    <string name="app_info">ព័ត៌មាន​កម្មវិធី</string>
-    <string name="android_version_title">កំណែ Android</string>
     <string name="oneui_version_title">កំណែ One UI</string>
+    <string name="oneui_version_title_seplite">កំណែ One UI Core</string>
+    <string name="android_version_title">កំណែ Android</string>
+    <string name="app_info">ព័ត៌មាន​កម្មវិធី</string>
+    <string name="knox_version_title">កំណែ Knox</string>
 </resources>

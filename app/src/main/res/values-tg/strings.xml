@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">Версияи Knox</string>
     <string name="build_number_title">Рақами бастабандӣ</string>
-    <string name="app_info">Маълумот оиди барнома</string>
-    <string name="android_version_title">Версияи Android</string>
     <string name="oneui_version_title">Версияи One UI</string>
+    <string name="oneui_version_title_seplite">Версияи One UI Core</string>
+    <string name="android_version_title">Версияи Android</string>
+    <string name="app_info">Маълумот оиди барнома</string>
+    <string name="knox_version_title">Версияи Knox</string>
 </resources>

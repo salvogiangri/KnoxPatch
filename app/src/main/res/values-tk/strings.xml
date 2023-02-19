@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">Knox wersiýasy</string>
     <string name="build_number_title">Oturdylan belgi</string>
-    <string name="app_info">Programma maglumaty</string>
-    <string name="android_version_title">Android görnüşi</string>
     <string name="oneui_version_title">One UI wersiýa</string>
+    <string name="oneui_version_title_seplite">One UI Core wersiýasy</string>
+    <string name="android_version_title">Android görnüşi</string>
+    <string name="app_info">Programma maglumaty</string>
+    <string name="knox_version_title">Knox wersiýasy</string>
 </resources>

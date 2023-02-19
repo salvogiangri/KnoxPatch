@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">Wersyjŏ ôd KNOX</string>
     <string name="build_number_title">Nōmer wersyje</string>
-    <string name="app_info">Informacyje ô aplikacyji</string>
-    <string name="android_version_title">Wersjŏ systemu Android</string>
     <string name="oneui_version_title">Wersyjŏ One UI</string>
+    <string name="oneui_version_title_seplite">Wersyjŏ One UI Core</string>
+    <string name="android_version_title">Wersjŏ systemu Android</string>
+    <string name="app_info">Informacyje ô aplikacyji</string>
+    <string name="knox_version_title">Wersyjŏ ôd KNOX</string>
 </resources>

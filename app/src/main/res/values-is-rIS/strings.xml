@@ -1,7 +1,8 @@
 <resources>
-    <string name="knox_version_title">Útgáfa Knox</string>
     <string name="build_number_title">Gerð</string>
-    <string name="app_info">Upplýsingar um forrit</string>
-    <string name="android_version_title">Android-útgáfa</string>
     <string name="oneui_version_title">Útgáfa One UI</string>
+    <string name="oneui_version_title_seplite">Útgáfa One UI Core</string>
+    <string name="android_version_title">Android-útgáfa</string>
+    <string name="app_info">Upplýsingar um forrit</string>
+    <string name="knox_version_title">Útgáfa Knox</string>
 </resources>

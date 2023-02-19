@@ -24,6 +24,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.SemBuild;
 import android.os.SemSystemProperties;
+
+import com.samsung.android.feature.SemFloatingFeature;
 import com.samsung.android.knox.SemPersonaManager;
 import com.samsung.android.knox.SemPersonaManager.KnoxContainerVersion;
 import com.samsung.android.knox.ddar.DualDARPolicy;
@@ -190,6 +192,17 @@ class InfoListViewUtils {
         }
 
         return String.join("\n", features);
+    }
+
+    static boolean isSepLiteAvailable(@NonNull Context context) {
+        final String sepCategoryFeature = SemFloatingFeature.getInstance()
+                .getString("SEC_FLOATING_FEATURE_COMMON_CONFIG_SEP_CATEGORY");
+        if (sepCategoryFeature.equals("sep_lite") || sepCategoryFeature.equals("sep_lite_new")) {
+            return true;
+        } else {
+            return context.getPackageManager()
+                    .hasSystemFeature("com.samsung.feature.samsung_experience_mobile_lite");
+        }
     }
 
     static String getOneUIVersion() {

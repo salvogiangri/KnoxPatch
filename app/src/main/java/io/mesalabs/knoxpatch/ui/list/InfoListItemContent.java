@@ -19,6 +19,7 @@
 package io.mesalabs.knoxpatch.ui.list;
 
 import static io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.isKnoxAvailable;
+import static io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.isSepLiteAvailable;
 
 import android.content.Context;
 
@@ -34,7 +35,8 @@ class InfoListItemContent {
     private final List<String> mSummaries = new ArrayList<>();
 
     InfoListItemContent(@NonNull Context context) {
-        mTitles.add(context.getString(R.string.oneui_version_title));
+        mTitles.add(context.getString(isSepLiteAvailable(context) ?
+                R.string.oneui_version_title_seplite : R.string.oneui_version_title));
         mSummaries.add(InfoListViewUtils.getOneUIVersion());
         mTitles.add(context.getString(R.string.android_version_title));
         mSummaries.add(InfoListViewUtils.getAndroidVersion());
