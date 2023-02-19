@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-feature
-        android:name="com.samsung.android.api.version.2801"
-        android:required="true" />
-
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.KnoxPatch">
+
+        <uses-library
+            android:name="com.samsung.device"
+            android:required="true" />
 
         <!-- SamsungBasicInteraction -->
         <meta-data
