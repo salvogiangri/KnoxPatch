@@ -1,8 +1,11 @@
 <resources>
-    <string name="build_number_title">Nomor versi</string>
+    <string name="module_description">Dapatkan fitur Knox agar bekerja kembali di perangkat Samsung Galaxy Anda yang telah di-rooting.</string>
+
+    <string name="app_info">Info aplikasi</string>
     <string name="oneui_version_title">Versi One UI</string>
     <string name="oneui_version_title_seplite">Versi One UI Core</string>
     <string name="android_version_title">Versi Android</string>
-    <string name="app_info">Info aplikasi</string>
+    <string name="build_number_title">Nomor versi</string>
     <string name="knox_version_title">Versi Knox</string>
+    <string name="knox_features_title">Fitur Knox</string>
 </resources>
