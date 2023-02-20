@@ -9,7 +9,7 @@
         android:theme="@style/Theme.KnoxPatch">
 
         <uses-library
-            android:name="sec_platform_library"
+            android:name="com.samsung.device"
             android:required="true" />
 
         <!-- SamsungBasicInteraction -->
