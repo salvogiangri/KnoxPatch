@@ -8,6 +8,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KnoxPatch">
 
+        <uses-library
+            android:name="com.samsung.device.lite"
+            android:required="true" />
+
         <!-- SamsungBasicInteraction -->
         <meta-data
             android:name="SamsungBasicInteraction"

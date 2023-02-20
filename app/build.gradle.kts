@@ -70,6 +70,26 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    flavorDimensions += "sepCategory"
+
+    productFlavors {
+        create("sepBasic") {
+            dimension = "sepCategory"
+        }
+        create("sepLite") {
+            dimension = "sepCategory"
+        }
+    }
+
+    sourceSets {
+        named("sepBasic") {
+            manifest.srcFile("config/AndroidManifest_SEPBasic.xml")
+        }
+        named("sepLite") {
+            manifest.srcFile("config/AndroidManifest_SEPLite.xml")
+        }
+    }
 }
 
 configurations.all {
