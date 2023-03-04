@@ -8,7 +8,6 @@ android {
 
     defaultConfig {
         minSdk = 28
-        targetSdk = 33
     }
 
     buildFeatures {
@@ -19,5 +18,5 @@ android {
 dependencies {
     annotationProcessor("dev.rikka.tools.refine:annotation-processor:4.1.0")
     compileOnly("dev.rikka.tools.refine:annotation:4.1.0")
-    implementation("androidx.annotation:annotation:1.5.0")
+    implementation("androidx.annotation:annotation:1.6.0")
 }
