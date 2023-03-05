@@ -8,4 +8,6 @@
     <string name="build_number_title">Número de compilación</string>
     <string name="knox_version_title">Versión de Knox</string>
     <string name="knox_features_title">Características de Knox</string>
+    
+    <string name="enhanced_badge">Mejorado</string>
 </resources>
