@@ -18,7 +18,7 @@
 ## Supported Android versions
 - Android 9 (One UI 1.x)
 - Android 10 (One UI 2.x)
-- Android 11 (One UI 3.x) (Secure Folder not working)
+- Android 11 (One UI 3.x)
 - Android 12 (One UI 4.x)
 - Android 12L (One UI 4.1.1)
 - Android 13 (One UI 5.x)
@@ -28,12 +28,14 @@
 - ✅ [Samsung Flow](https://www.samsung.com/uk/apps/samsung-flow/)
 - ✅ [Samsung Health](https://www.samsung.com/uk/apps/samsung-health/)
 - ✅ [Samsung Health Monitor](https://www.samsung.com/uk/apps/samsung-health-monitor/)
-- ➖ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) (not working on Android 11)
+- ✅ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) *
 - ✅ [Secure Wi-Fi](https://www.samsung.com/uk/support/mobile-devices/what-is-the-secure-wifi-feature-and-how-do-i-enable-or-use-it/)
 - ➖ [Smart View](https://www.samsung.com/uk/tvs/tv-buying-guide/what-is-samsung-smart-view/) ([Enhancer](#knoxpatch-enhancer) required)
 - ✅ [Private Share](https://www.samsung.com/uk/support/mobile-devices/how-to-keep-your-personal-data-safe-using-private-share/)
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
 - ❌ [Samsung Wallet (Pay)](https://www.samsung.com/uk/apps/samsung-wallet/)
+
+\* Secure Folder might not work properly on devices with One UI 3.x and encrypted data partition.
 
 ## KnoxPatch Enhancer
 
