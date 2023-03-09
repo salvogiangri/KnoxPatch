@@ -8,4 +8,8 @@
     <string name="build_number_title">Versione build</string>
     <string name="knox_version_title">Versione Knox</string>
     <string name="knox_features_title">Funzionalità Knox</string>
+
+    <string name="sep_12_crypto_warning_dialog_title">Partizione dati criptata</string>
+    <string name="sep_12_crypto_warning_dialog_message">L\'app ha rilevato che la partizione dati del tuo dispositivo è criptata, l\'app Area Personale potrebbe non funzionare correttamente.</string>
+    <string name="sep_12_crypto_warning_dialog_btn">Ho capito</string>
 </resources>

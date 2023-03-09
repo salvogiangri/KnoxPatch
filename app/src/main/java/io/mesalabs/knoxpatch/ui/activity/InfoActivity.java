@@ -29,6 +29,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SemSystemProperties;
 import android.os.SystemClock;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -46,6 +47,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.SeslEdgeEffect;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -77,6 +79,8 @@ public class InfoActivity extends AppCompatActivity {
         setContentSideMargin(getResources().getConfiguration(),
                 mBinding.mainContent);
         initListView();
+
+        showCryptoWarningDialog();
     }
 
     private void initToolbar() {
@@ -184,6 +188,22 @@ public class InfoActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL));
         listView.seslSetFillBottomEnabled(true);
         listView.seslSetLastRoundedCorner(true);
+    }
+
+    private void showCryptoWarningDialog() {
+        if (Build.VERSION.SDK_INT == 30) {
+            String cryptoState = SemSystemProperties.get("ro.crypto.state", "");
+            String cryptoType = SemSystemProperties.get("ro.crypto.type", "");
+
+            if (!cryptoState.equals("unencrypted") && !cryptoType.isEmpty()) {
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(R.string.sep_12_crypto_warning_dialog_title)
+                        .setMessage(R.string.sep_12_crypto_warning_dialog_message)
+                        .setPositiveButton(R.string.sep_12_crypto_warning_dialog_btn, null)
+                        .create();
+                dialog.show();
+            }
+        }
     }
 
     @SuppressWarnings("deprecation")
