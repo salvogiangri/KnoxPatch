@@ -18,6 +18,8 @@
 
 package io.mesalabs.knoxpatch.hooks;
 
+import android.os.Build;
+
 import java.security.cert.Certificate;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -34,11 +36,19 @@ public class KnoxDARHooks implements IXposedHookLoadPackage {
         XposedBridge.log("KnoxPatch: " + TAG + " handleLoadPackage: " + lpparam.packageName);
 
         /* Bypass ICCC verification */
-        XposedHelpers.findAndHookMethod(
-                "com.android.server.knox.dar.DarManagerService",
-                lpparam.classLoader,
-                "checkDeviceIntegrity", Certificate[].class,
-                XC_MethodReplacement.returnConstant(Boolean.TRUE));
+        if (Build.VERSION.SDK_INT >= 31) {
+            XposedHelpers.findAndHookMethod(
+                    "com.android.server.knox.dar.DarManagerService",
+                    lpparam.classLoader,
+                    "checkDeviceIntegrity", Certificate[].class,
+                    XC_MethodReplacement.returnConstant(Boolean.TRUE));
+        } else {
+            XposedHelpers.findAndHookMethod(
+                    "com.android.server.pm.PersonaManagerService",
+                    lpparam.classLoader,
+                    "isKnoxKeyInstallable",
+                    XC_MethodReplacement.returnConstant(Boolean.TRUE));
+        }
     }
 
 }

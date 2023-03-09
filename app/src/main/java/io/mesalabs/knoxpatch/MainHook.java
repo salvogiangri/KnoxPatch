@@ -57,10 +57,8 @@ public class MainHook implements IXposedHookLoadPackage {
 
         if ((Constants.SYSTEM_PACKAGE_NAME.equals(lpparam.packageName))
                 && (lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME))) {
-            if (sepVersion >= Constants.ONEUI_4_0) {
+            if (sepVersion >= Constants.ONEUI_3_0) {
                 new KnoxDARHooks().handleLoadPackage(lpparam);
-            } else if (sepVersion >= Constants.ONEUI_3_0) {
-                // no-op
             } else if (sepVersion >= Constants.ONEUI_1_0) {
                 new TIMAHooks().handleLoadPackage(lpparam);
             }
