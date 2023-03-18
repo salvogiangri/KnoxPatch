@@ -7,7 +7,7 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:7.4.2")
-        classpath("dev.rikka.tools.refine:gradle-plugin:4.1.0")
+        classpath("dev.rikka.tools.refine:gradle-plugin:4.3.0")
     }
 }
 

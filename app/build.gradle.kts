@@ -114,7 +114,7 @@ dependencies {
     compileOnly("de.robv.android.xposed:api:82")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
     // Rikka
-    implementation("dev.rikka.tools.refine:runtime:4.1.0")
+    implementation("dev.rikka.tools.refine:runtime:4.3.0")
 
     compileOnly(project(":stub"))
 }
