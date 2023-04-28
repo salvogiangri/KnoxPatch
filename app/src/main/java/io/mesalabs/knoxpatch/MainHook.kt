@@ -74,6 +74,7 @@ object MainHook : IYukiHookXposedInit {
         } else if (sepVersion >= Constants.ONEUI_1_0) {
             loadSystem(TIMAHooks)
         }
+        loadSystem(KnoxGuardHooks)
     }
 
     override fun onXposedEvent() {
@@ -94,11 +95,6 @@ object MainHook : IYukiHookXposedInit {
                 if (sepVersion < Constants.ONEUI_1_0 || sepVersion > Constants.ONEUI_5_1) {
                     loggerE(msg = "$TAG handleLoadPackage: unsupported SEP version: $sepVersion")
                     return@onHandleLoadPackage
-                }
-
-                if (Constants.SYSTEM_PACKAGE_NAME == lpparam.packageName
-                    && lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME)) {
-                    KnoxGuardHooks().handleLoadPackage(lpparam)
                 }
 
                 if (Constants.AUTHFW_PACKAGE_NAME == lpparam.packageName) {
