@@ -26,8 +26,8 @@ import com.highcapable.yukihookapi.hook.xposed.bridge.event.YukiXposedEvent
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 
 import de.robv.android.xposed.callbacks.XC_LoadPackage
-
 import io.mesalabs.knoxpatch.hooks.AuthFwHooks
+
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks
 import io.mesalabs.knoxpatch.hooks.PropSpoofHooks
@@ -76,6 +76,8 @@ object MainHook : IYukiHookXposedInit {
         }
         loadSystem(KnoxGuardHooks)
 
+        loadApp(Constants.AUTHFW_PACKAGE_NAME, AuthFwHooks)
+
         loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, PropSpoofHooks)
 
@@ -91,33 +93,6 @@ object MainHook : IYukiHookXposedInit {
 
         loadApp(Constants.SAMSUNG_FLOW_PACKAGE_NAME, RootDetectionHooks)
         loadApp(Constants.SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME, RootDetectionHooks)
-    }
-
-    override fun onXposedEvent() {
-        YukiXposedEvent.onHandleLoadPackage { lpparam: XC_LoadPackage.LoadPackageParam ->
-            run {
-                // The OneUI version is determined by the SEP version
-                // (SEP 14.0 == OneUI 5.0 | [SEP - 9.0 = OneUI] )
-                val sepVersion: Int = BuildUtils.getSEPVersion()
-
-                /*
-                 * Currently supported versions:
-                 * - Android 9 (One UI 1.x)
-                 * - Android 10 (One UI 2.x)
-                 * - Android 11 (One UI 3.x)
-                 * - Android 12/12.1 (One UI 4.x)
-                 * - Android 13 (One UI 5.x)
-                 */
-                if (sepVersion < Constants.ONEUI_1_0 || sepVersion > Constants.ONEUI_5_1) {
-                    loggerE(msg = "$TAG handleLoadPackage: unsupported SEP version: $sepVersion")
-                    return@onHandleLoadPackage
-                }
-
-                if (Constants.AUTHFW_PACKAGE_NAME == lpparam.packageName) {
-                    AuthFwHooks().handleLoadPackage(lpparam)
-                }
-            }
-        }
     }
 
 }
