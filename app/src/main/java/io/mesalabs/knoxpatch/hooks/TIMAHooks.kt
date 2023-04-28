@@ -23,11 +23,12 @@ import android.util.Log
 
 import java.lang.reflect.Member
 
+import de.robv.android.xposed.XposedBridge
+
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
-import de.robv.android.xposed.XposedBridge
 
 object TIMAHooks : YukiBaseHooker() {
     private const val TAG: String = "TIMAHooks"
