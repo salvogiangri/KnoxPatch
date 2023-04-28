@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.devtools.ksp")
     id("dev.rikka.tools.refine")
 }
 
@@ -34,12 +35,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     signingConfigs {
@@ -118,6 +119,9 @@ dependencies {
     // Xposed
     compileOnly("de.robv.android.xposed:api:82")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
+    // Yuki
+    implementation("com.highcapable.yukihookapi:api:1.1.11")
+    ksp("com.highcapable.yukihookapi:ksp-xposed:1.1.11")
     // Rikka
     implementation("dev.rikka.tools.refine:runtime:4.3.0")
 
