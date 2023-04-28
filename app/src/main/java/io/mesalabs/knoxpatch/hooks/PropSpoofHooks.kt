@@ -18,7 +18,6 @@
 
 package io.mesalabs.knoxpatch.hooks
 
-import com.highcapable.yukihookapi.hook.bean.HookClass
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.java.StringClass
@@ -30,9 +29,7 @@ object PropSpoofHooks : YukiBaseHooker() {
         loggerD(msg = "$TAG: onHook: loaded.")
 
         /* Spoof critical system props */
-        val clz: HookClass = findClass("android.os.SemSystemProperties")
-
-        clz.hook {
+        findClass("android.os.SemSystemProperties").hook {
             injectMember {
                 method {
                     name = "get"
@@ -47,9 +44,7 @@ object PropSpoofHooks : YukiBaseHooker() {
                     }
                 }
             }
-        }
 
-        clz.hook {
             injectMember {
                 method {
                     name = "get"
