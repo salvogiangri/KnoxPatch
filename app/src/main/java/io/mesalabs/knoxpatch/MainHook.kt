@@ -88,6 +88,9 @@ object MainHook : IYukiHookXposedInit {
         }
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, SamsungHealthHooks)
+
+        loadApp(Constants.SAMSUNG_FLOW_PACKAGE_NAME, RootDetectionHooks)
+        loadApp(Constants.SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME, RootDetectionHooks)
     }
 
     override fun onXposedEvent() {
@@ -112,11 +115,6 @@ object MainHook : IYukiHookXposedInit {
 
                 if (Constants.AUTHFW_PACKAGE_NAME == lpparam.packageName) {
                     AuthFwHooks().handleLoadPackage(lpparam)
-                }
-
-                if (Constants.SAMSUNG_FLOW_PACKAGE_NAME == lpparam.packageName ||
-                    Constants.SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME == lpparam.packageName) {
-                    RootDetectionHooks().handleLoadPackage(lpparam)
                 }
             }
         }
