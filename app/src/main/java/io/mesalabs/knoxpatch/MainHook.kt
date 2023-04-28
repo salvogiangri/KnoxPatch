@@ -86,6 +86,8 @@ object MainHook : IYukiHookXposedInit {
             loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.PRIVATE_SHARE_PACKAGE_NAME, SamsungKeystoreHooks)
         }
+
+        loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, SamsungHealthHooks)
     }
 
     override fun onXposedEvent() {
@@ -110,10 +112,6 @@ object MainHook : IYukiHookXposedInit {
 
                 if (Constants.AUTHFW_PACKAGE_NAME == lpparam.packageName) {
                     AuthFwHooks().handleLoadPackage(lpparam)
-                }
-
-                if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME == lpparam.packageName) {
-                    SamsungHealthHooks().handleLoadPackage(lpparam)
                 }
 
                 if (Constants.SAMSUNG_FLOW_PACKAGE_NAME == lpparam.packageName ||
