@@ -52,7 +52,28 @@ object MainHook : IYukiHookXposedInit {
     }
 
     override fun onHook() = encase {
-        // no-op
+        // The OneUI version is determined by the SEP version
+        // (SEP 14.0 == OneUI 5.0 | [SEP - 9.0 = OneUI] )
+        val sepVersion: Int = BuildUtils.getSEPVersion()
+
+        /*
+         * Currently supported versions:
+         * - Android 9 (One UI 1.x)
+         * - Android 10 (One UI 2.x)
+         * - Android 11 (One UI 3.x)
+         * - Android 12/12.1 (One UI 4.x)
+         * - Android 13 (One UI 5.x)
+         */
+        if (sepVersion < Constants.ONEUI_1_0 || sepVersion > Constants.ONEUI_5_1) {
+            loggerE(msg = "$TAG: onHook: unsupported SEP version: $sepVersion")
+            return@encase
+        }
+
+        if (sepVersion >= Constants.ONEUI_3_0) {
+            loadSystem(KnoxDARHooks)
+        } else if (sepVersion >= Constants.ONEUI_1_0) {
+            loadSystem(TIMAHooks)
+        }
     }
 
     override fun onXposedEvent() {
@@ -77,12 +98,6 @@ object MainHook : IYukiHookXposedInit {
 
                 if (Constants.SYSTEM_PACKAGE_NAME == lpparam.packageName
                     && lpparam.processName.equals(Constants.SYSTEM_PACKAGE_NAME)) {
-                    if (sepVersion >= Constants.ONEUI_3_0) {
-                        KnoxDARHooks().handleLoadPackage(lpparam)
-                    } else if (sepVersion >= Constants.ONEUI_1_0) {
-                        TIMAHooks().handleLoadPackage(lpparam)
-                    }
-
                     KnoxGuardHooks().handleLoadPackage(lpparam)
                 }
 
