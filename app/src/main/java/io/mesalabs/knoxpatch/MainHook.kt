@@ -76,6 +76,9 @@ object MainHook : IYukiHookXposedInit {
         }
         loadSystem(KnoxGuardHooks)
 
+        loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
+        loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, PropSpoofHooks)
+
         if (sepVersion >= Constants.ONEUI_1_5) {
             loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME, SamsungKeystoreHooks)
@@ -107,11 +110,6 @@ object MainHook : IYukiHookXposedInit {
 
                 if (Constants.AUTHFW_PACKAGE_NAME == lpparam.packageName) {
                     AuthFwHooks().handleLoadPackage(lpparam)
-                }
-
-                if (Constants.SECURE_FOLDER_PACKAGE_NAME == lpparam.packageName ||
-                    Constants.SECURE_WIFI_PACKAGE_NAME == lpparam.packageName) {
-                    PropSpoofHooks().handleLoadPackage(lpparam)
                 }
 
                 if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME == lpparam.packageName) {
