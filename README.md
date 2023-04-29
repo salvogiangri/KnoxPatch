@@ -48,6 +48,7 @@ KnoxPatch Enhancer is a [Magisk](https://github.com/topjohnwu/Magisk) module tha
 ## Credits
 - Samsung
 - [LSPosed Team](https://github.com/LSPosed)
+- [YukiHookAPI](https://github.com/fankes/YukiHookAPI)
 - [Rikka](https://github.com/RikkaApps)
 
 ## Copyright
