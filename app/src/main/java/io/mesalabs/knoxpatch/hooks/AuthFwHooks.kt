@@ -20,7 +20,7 @@ package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
+import com.highcapable.yukihookapi.hook.type.java.BooleanClass
 
 object AuthFwHooks : YukiBaseHooker() {
     private const val TAG: String = "AuthFwHooks"
@@ -34,7 +34,7 @@ object AuthFwHooks : YukiBaseHooker() {
                 method {
                     name = "isDeviceTampered"
                     emptyParam()
-                    returnType = BooleanType
+                    returnType = BooleanClass
                 }
                 beforeHook {
                     resultFalse()
