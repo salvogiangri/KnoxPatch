@@ -26,6 +26,7 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.factory.field
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
+import com.highcapable.yukihookapi.hook.type.java.IntType
 import com.highcapable.yukihookapi.hook.type.java.StringClass
 
 object RootDetectionHooks : YukiBaseHooker() {
@@ -141,7 +142,7 @@ object RootDetectionHooks : YukiBaseHooker() {
             injectMember {
                 method {
                     name = "getPackageInfo"
-                    param(String::class.java, Int)
+                    param(String::class.java, IntType)
                 }
                 beforeHook {
                     val packageName: String = args(0).string()
