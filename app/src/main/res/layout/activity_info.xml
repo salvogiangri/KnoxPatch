@@ -74,6 +74,14 @@
             android:layout_width="match_parent"
             android:layout_height="10.0dp" />
 
+        <include
+            android:id="@+id/main_switch_view"
+            layout="@layout/main_switch_view" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20.0dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_list"
             android:layout_width="match_parent"

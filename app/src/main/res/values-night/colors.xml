@@ -3,6 +3,10 @@
     <color name="sep_theme_background_color">@color/sesl_round_and_bgcolor_dark</color>
     <color name="sep_theme_functional_green_color">@color/sesl_functional_green_dark</color>
 
+    <color name="sep_theme_main_switch_off_background_color">#ff171717</color>
+    <color name="sep_theme_main_switch_on_background_color">#ff2d2d2d</color>
+    <color name="sep_theme_main_switch_off_text_color">#fffafafa</color>
+
     <color name="info_app_name_color">#fffafafa</color>
     <color name="info_app_version_color">#ff999999</color>
     <color name="info_github_icon_color">#ff999999</color>

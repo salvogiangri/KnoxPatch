@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="58.0dp"
+    android:paddingHorizontal="@dimen/sep_main_switch_padding_horizontal"
+    android:background="@drawable/main_switch_background"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/main_switch_text"
+        android:layout_width="0.0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="20.0sp"
+        android:textAlignment="viewStart"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:importantForAccessibility="no"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/main_switch_widget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:focusable="false"
+        android:clickable="false" />
+
+</LinearLayout>

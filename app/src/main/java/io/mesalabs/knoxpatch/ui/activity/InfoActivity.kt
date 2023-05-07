@@ -24,6 +24,7 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.FeatureInfo
+import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
@@ -46,17 +47,21 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.widget.SeslEdgeEffect
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory
 
+import com.highcapable.yukihookapi.YukiHookAPI
+
 import dev.rikka.tools.refine.Refine
 
 import io.mesalabs.knoxpatch.BuildConfig
 import io.mesalabs.knoxpatch.R
 import io.mesalabs.knoxpatch.databinding.ActivityInfoBinding
+import io.mesalabs.knoxpatch.databinding.MainSwitchViewBinding
 import io.mesalabs.knoxpatch.ui.list.InfoListRoundedCorners
 import io.mesalabs.knoxpatch.ui.list.InfoListViewAdapter
 import io.mesalabs.knoxpatch.utils.Constants
@@ -79,6 +84,7 @@ class InfoActivity : AppCompatActivity() {
 
         initToolbar()
         initAppBanner()
+        initMainSwitch()
         initListView()
 
         showCryptoWarningDialog()
@@ -145,6 +151,33 @@ class InfoActivity : AppCompatActivity() {
         }
 
         return span
+    }
+
+    private fun initMainSwitch() {
+        val switchView: MainSwitchViewBinding = binding.mainSwitchView
+        val isModuleEnabled: Boolean = YukiHookAPI.Status.isModuleActive
+
+        DrawableCompat.setTintList(
+            DrawableCompat.wrap(switchView.root.background).mutate(),
+            ColorStateList.valueOf(
+                getColor(if (isModuleEnabled)
+                    R.color.sep_theme_main_switch_on_background_color
+                else
+                    R.color.sep_theme_main_switch_off_background_color))
+        )
+
+        switchView.mainSwitchText.setTextColor(
+            getColor(if (isModuleEnabled)
+                R.color.sep_theme_main_switch_on_text_color
+            else
+                R.color.sep_theme_main_switch_off_text_color))
+        switchView.mainSwitchText.text =
+            getString(if (isModuleEnabled)
+                R.string.main_switch_on
+            else
+                R.string.main_switch_off)
+
+        switchView.mainSwitchWidget.isChecked = isModuleEnabled
     }
 
     private fun initListView() {
