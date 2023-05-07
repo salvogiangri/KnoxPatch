@@ -1,8 +1,15 @@
 <resources>
-    <string name="build_number_title">Număr versiune</string>
+    <string name="module_description">Activează funcțiile Knox pe telefonul tau Samsung rootat.</string>
+
+    <string name="app_info">Informații despre aplicație</string>
     <string name="oneui_version_title">Versiune One UI</string>
     <string name="oneui_version_title_seplite">Versiune One UI Core</string>
     <string name="android_version_title">Versiune Android</string>
-    <string name="app_info">Informații despre aplicație</string>
+    <string name="build_number_title">Număr versiune</string>
     <string name="knox_version_title">Versiune Knox</string>
+    <string name="knox_features_title">Funcții Knox</string>
+
+    <string name="sep_12_crypto_warning_dialog_title">Partiția ta de date este encriptată</string>
+    <string name="sep_12_crypto_warning_dialog_message">Această aplicație a detectat că partiția ta de date este encriptată, asta însemnând că funcția Secure Folder nu va funcționa.</string>
+    <string name="sep_12_crypto_warning_dialog_btn">Am înțeles</string>
 </resources>
