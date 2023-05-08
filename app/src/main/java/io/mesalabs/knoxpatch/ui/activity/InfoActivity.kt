@@ -40,6 +40,7 @@ import android.view.SemWindowManager
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.widget.EdgeEffect
 import android.widget.Toast
@@ -220,27 +221,32 @@ class InfoActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("WrongConstant")
     @Suppress("DEPRECATION")
     private fun applyLandscapeFullScreen() {
         val config: Configuration = resources.configuration
-        val attributes: WindowManager.LayoutParams = window.attributes
 
         if (!isInMultiWindowMode
             && config.smallestScreenWidthDp < 420
             && config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             if (Build.VERSION.SDK_INT >= 30) {
-                window.insetsController!!.hide(WindowInsets.Type.statusBars())
+                val controller: WindowInsetsController = window.insetsController ?: return
+                controller.hide(WindowInsets.Type.statusBars())
+                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             } else {
                 window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             }
         } else {
             if (Build.VERSION.SDK_INT >= 30) {
-                window.insetsController!!.show(WindowInsets.Type.statusBars())
+                val controller: WindowInsetsController = window.insetsController ?: return
+                controller.show(WindowInsets.Type.statusBars())
+                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_BARS_BY_SWIPE
             } else {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             }
         }
 
+        val attributes: WindowManager.LayoutParams = window.attributes
         Refine.unsafeCast<SemWindowManager.LayoutParams>(attributes)
             .semAddExtensionFlags(SEM_EXTENSION_FLAG_RESIZE_FULLSCREEN_WINDOW_ON_SOFT_INPUT)
         window.attributes = attributes
