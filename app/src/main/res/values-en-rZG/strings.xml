@@ -9,7 +9,7 @@
     <string name="knox_version_title">Knox version</string>
     <string name="knox_features_title">Knox features</string>
 
-    <string name="sep_12_crypto_warning_dialog_title">Your data partition is encrypted</string>
-    <string name="sep_12_crypto_warning_dialog_message">This app has detected that your device data partition is encrypted, this means Secure Folder might not work properly.</string>
-    <string name="sep_12_crypto_warning_dialog_btn">I understand</string>
+    <string name="crypto_warning_dialog_title">Your data partition is encrypted</string>
+    <string name="crypto_warning_dialog_message">This app has detected that your device data partition is encrypted, this means Secure Folder might not work properly.</string>
+    <string name="crypto_warning_dialog_btn">I understand</string>
 </resources>

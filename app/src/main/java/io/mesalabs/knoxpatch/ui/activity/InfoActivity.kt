@@ -206,15 +206,15 @@ class InfoActivity : AppCompatActivity() {
     }
 
     private fun showCryptoWarningDialog() {
-        if (Build.VERSION.SDK_INT == 30) {
+        if (Build.VERSION.SDK_INT < 31) {
             val cryptoState: String = SemSystemProperties.get("ro.crypto.state", "")
             val cryptoType: String = SemSystemProperties.get("ro.crypto.type", "")
 
-            if (cryptoState != "unencrypted" && cryptoType.isNotEmpty()) {
+            if (cryptoState == "encrypted" && cryptoType == "file") {
                 val dialog = AlertDialog.Builder(this)
-                    .setTitle(R.string.sep_12_crypto_warning_dialog_title)
-                    .setMessage(R.string.sep_12_crypto_warning_dialog_message)
-                    .setPositiveButton(R.string.sep_12_crypto_warning_dialog_btn, null)
+                    .setTitle(R.string.crypto_warning_dialog_title)
+                    .setMessage(R.string.crypto_warning_dialog_message)
+                    .setPositiveButton(R.string.crypto_warning_dialog_btn, null)
                     .create()
                 dialog.show()
             }

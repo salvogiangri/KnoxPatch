@@ -9,7 +9,7 @@
     <string name="knox_version_title">Versi Knox</string>
     <string name="knox_features_title">Fitur Knox</string>
 
-    <string name="sep_12_crypto_warning_dialog_title">Partisi data Anda dienkripsi</string>
-    <string name="sep_12_crypto_warning_dialog_message">Aplikasi ini telah mendeteksi bahwa partisi data perangkat Anda dienkripsi, ini berarti Folder Aman mungkin tidak berfungsi dengan benar.</string>
-    <string name="sep_12_crypto_warning_dialog_btn">Saya mengerti</string>
+    <string name="crypto_warning_dialog_title">Partisi data Anda dienkripsi</string>
+    <string name="crypto_warning_dialog_message">Aplikasi ini telah mendeteksi bahwa partisi data perangkat Anda dienkripsi, ini berarti Folder Aman mungkin tidak berfungsi dengan benar.</string>
+    <string name="crypto_warning_dialog_btn">Saya mengerti</string>
 </resources>

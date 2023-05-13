@@ -9,7 +9,7 @@
     <string name="knox_version_title">Versiune Knox</string>
     <string name="knox_features_title">Funcții Knox</string>
 
-    <string name="sep_12_crypto_warning_dialog_title">Partiția ta de date este encriptată</string>
-    <string name="sep_12_crypto_warning_dialog_message">Această aplicație a detectat că partiția ta de date este encriptată, asta însemnând că funcția Secure Folder nu va funcționa.</string>
-    <string name="sep_12_crypto_warning_dialog_btn">Am înțeles</string>
+    <string name="crypto_warning_dialog_title">Partiția ta de date este encriptată</string>
+    <string name="crypto_warning_dialog_message">Această aplicație a detectat că partiția ta de date este encriptată, asta însemnând că funcția Secure Folder nu va funcționa.</string>
+    <string name="crypto_warning_dialog_btn">Am înțeles</string>
 </resources>
