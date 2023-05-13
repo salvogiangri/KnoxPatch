@@ -35,7 +35,7 @@
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
 - ❌ [Samsung Wallet (Pay)](https://www.samsung.com/uk/apps/samsung-wallet/)
 
-\* Secure Folder might not work properly on devices with One UI 3.x and encrypted data partition.
+\* Secure Folder might not work properly on legacy devices (One UI 3.x and lower) with [FBE](https://source.android.com/docs/security/features/encryption/file-based) enabled.
 
 ## KnoxPatch Enhancer
 
