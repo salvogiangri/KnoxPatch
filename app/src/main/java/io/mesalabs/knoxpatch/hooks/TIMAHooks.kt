@@ -19,6 +19,7 @@
 package io.mesalabs.knoxpatch.hooks
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
 
 import java.lang.reflect.Member
@@ -46,6 +47,22 @@ object TIMAHooks : YukiBaseHooker() {
                 }
                 beforeHook {
                     resultTrue()
+                }
+            }
+        }
+
+        /* Bypass ICCC verification */
+        if (Build.VERSION.SDK_INT >= 29) {
+            findClass("com.android.server.SdpManagerService\$LocalService").hook {
+                injectMember {
+                    method {
+                        name = "isKnoxKeyInstallable"
+                        emptyParam()
+                        returnType = BooleanType
+                    }
+                    beforeHook {
+                        resultTrue()
+                    }
                 }
             }
         }
