@@ -38,6 +38,12 @@ jobs:
     - name: Zip Enhancer module
       run: |
         cd enhancer
+        for f in $(find . -type f); do
+          if [[ "$f" == *.gitignore || "$f" == *.sha256 || "$f" == *.md || "$f" == *.json ]]; then
+            continue
+          fi
+          echo -n $(sha256sum $f | cut -f1 -d' ') > $f.sha256
+        done
         zip -r ../app/build/outputs/apk/KnoxPatch-Enhancer.zip * -x *.json -x *.md
         cd ..
 
