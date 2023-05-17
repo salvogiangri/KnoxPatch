@@ -99,6 +99,20 @@ extract "$ZIPFILE" 'system.prop' "$MODPATH"
 mkdir -p "$MODPATH/system/etc/permissions"
 extract "$ZIPFILE" 'system/etc/permissions/knoxpatch_enhancer.xml' "$MODPATH/system/etc/permissions"
 
+if [ "$API" == "29" ]; then
+  if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
+    ui_print "I: Applying Secure Folder fix..."
+    mkdir -p "$MODPATH/system/bin"
+    mkdir -p "$MODPATH/system/lib"
+    extract "$ZIPFILE" 'system/bin/vold' "$MODPATH/system/bin"
+    extract "$ZIPFILE" 'system/lib/libepm.so' "$MODPATH/system/lib"
+    if [ "$IS64BIT" == "true" ]; then
+      mkdir -p "$MODPATH/system/lib64"
+      extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64"
+    fi
+  fi
+fi
+
 ui_print "I: Applying WSM fix..."
 mkdir -p "$MODPATH/system/lib"
 touch "$MODPATH/system/lib/lib.hal.wsm.samsung.so"
