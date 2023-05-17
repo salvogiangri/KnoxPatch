@@ -97,7 +97,7 @@ ui_print "I: Extracting module files..."
 extract "$ZIPFILE" 'module.prop' "$MODPATH"
 extract "$ZIPFILE" 'system.prop' "$MODPATH"
 mkdir -p "$MODPATH/system/etc/permissions"
-extract "$ZIPFILE" 'system/etc/permissions/knoxpatch_enhancer.xml' "$MODPATH/system/etc/permissions"
+extract "$ZIPFILE" 'system/etc/permissions/knoxpatch_enhancer.xml' "$MODPATH/system/etc/permissions" true
 
 if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
   if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
@@ -105,9 +105,9 @@ if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
     mkdir -p "$MODPATH/system/bin"
     mkdir -p "$MODPATH/system/lib"
     mkdir -p "$MODPATH/system/lib64"
-    extract "$ZIPFILE" 'system/bin/vold' "$MODPATH/system/bin"
-    extract "$ZIPFILE" 'system/lib/libepm.so' "$MODPATH/system/lib"
-    extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64"
+    extract "$ZIPFILE" 'system/bin/vold' "$MODPATH/system/bin" true
+    extract "$ZIPFILE" 'system/lib/libepm.so' "$MODPATH/system/lib" true
+    extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64" true
   fi
 fi
 
