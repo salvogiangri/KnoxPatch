@@ -99,17 +99,15 @@ extract "$ZIPFILE" 'system.prop' "$MODPATH"
 mkdir -p "$MODPATH/system/etc/permissions"
 extract "$ZIPFILE" 'system/etc/permissions/knoxpatch_enhancer.xml' "$MODPATH/system/etc/permissions"
 
-if [ "$API" == "29" ]; then
+if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
   if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
     ui_print "I: Applying Secure Folder fix..."
     mkdir -p "$MODPATH/system/bin"
     mkdir -p "$MODPATH/system/lib"
+    mkdir -p "$MODPATH/system/lib64"
     extract "$ZIPFILE" 'system/bin/vold' "$MODPATH/system/bin"
     extract "$ZIPFILE" 'system/lib/libepm.so' "$MODPATH/system/lib"
-    if [ "$IS64BIT" == "true" ]; then
-      mkdir -p "$MODPATH/system/lib64"
-      extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64"
-    fi
+    extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64"
   fi
 fi
 
