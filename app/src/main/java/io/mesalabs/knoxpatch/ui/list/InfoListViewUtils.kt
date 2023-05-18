@@ -87,30 +87,6 @@ object InfoListViewUtils {
         knoxVersion += "\n" + context.getString(R.string.knox_version_knox_api) + " "
         knoxVersion += BuildUtils.getKnoxAPIVersion()
 
-        // TIMA version
-        val timaProp: String = SemSystemProperties.get("ro.config.tima", "")
-        val isTimaSupported: Boolean = timaProp.isNotEmpty() && timaProp == "1"
-
-        if (isTimaSupported) {
-            knoxVersion += "\n" + context.getString(R.string.knox_version_knox_tima) + " "
-
-            if (SemSystemProperties.get("ro.config.timaversion", "") == "3.0") {
-                if (BuildUtils.getSEPVersion() >= Constants.ONEUI_1_1) {
-                    knoxVersion += "4.1.0"
-                } else {
-                    if (SemPersonaManager.getKnoxContainerVersion()
-                        >= KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_7_0) {
-                        knoxVersion += "3.3.0"
-                    } else {
-                        knoxVersion += "3.2.0"
-                    }
-                }
-            } else {
-                knoxVersion += SemSystemProperties.get(
-                    "ro.config.timaversion", "No Policy Version")
-            }
-        }
-
         // Knox ML version
         try {
             val knoxMLApp: PackageInfo? = if (Build.VERSION.SDK_INT >= 33) {
