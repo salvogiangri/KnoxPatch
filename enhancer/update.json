@@ -1,6 +1,6 @@
 {
-    "version": "v0.3",
+    "version": "v0.3-fix",
     "versionCode": "3",
-    "zipUrl": "https://github.com/BlackMesa123/KnoxPatch/releases/download/v0.5.2/KnoxPatch-Enhancer-v0.3.zip",
+    "zipUrl": "https://github.com/BlackMesa123/KnoxPatch/releases/download/v0.5.2/KnoxPatch-Enhancer-v0.3-fix.zip",
     "changelog": "https://raw.githubusercontent.com/BlackMesa123/KnoxPatch/main/enhancer/CHANGELOG.md"
 }
