@@ -113,10 +113,10 @@ fi
 
 ui_print "I: Applying WSM fix..."
 mkdir -p "$MODPATH/system/lib"
-touch "$MODPATH/system/lib/lib.hal.wsm.samsung.so"
+touch "$MODPATH/system/lib/libhal.wsm.samsung.so"
 if [ "$IS64BIT" == "true" ]; then
   mkdir -p "$MODPATH/system/lib64"
-  touch "$MODPATH/system/lib64/lib.hal.wsm.samsung.so"
+  touch "$MODPATH/system/lib64/libhal.wsm.samsung.so"
 fi
 
 set_perm_recursive "$MODPATH" 0 0 0755 0644
