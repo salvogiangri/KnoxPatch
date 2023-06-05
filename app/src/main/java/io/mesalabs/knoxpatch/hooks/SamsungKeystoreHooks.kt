@@ -36,9 +36,7 @@ object SamsungKeystoreHooks : YukiBaseHooker() {
                     emptyParam()
                     returnType = BooleanType
                 }
-                beforeHook {
-                    resultTrue()
-                }
+                replaceToTrue()
             }
         }
     }

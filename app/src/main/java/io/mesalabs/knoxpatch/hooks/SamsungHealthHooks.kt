@@ -37,9 +37,7 @@ object SamsungHealthHooks : YukiBaseHooker() {
                     emptyParam()
                     returnType = IntType
                 }
-                beforeHook {
-                    result = -1
-                }
+                replaceTo(-1)
             }
         }
 

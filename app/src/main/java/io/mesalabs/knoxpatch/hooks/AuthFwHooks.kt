@@ -36,9 +36,7 @@ object AuthFwHooks : YukiBaseHooker() {
                     emptyParam()
                     returnType = BooleanClass
                 }
-                beforeHook {
-                    resultFalse()
-                }
+                replaceToFalse()
             }
         }
     }

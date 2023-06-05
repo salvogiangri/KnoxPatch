@@ -45,9 +45,7 @@ object TIMAHooks : YukiBaseHooker() {
                     param(Context::class.java)
                     returnType = BooleanType
                 }
-                beforeHook {
-                    resultTrue()
-                }
+                replaceToTrue()
             }
         }
 
@@ -60,9 +58,7 @@ object TIMAHooks : YukiBaseHooker() {
                         emptyParam()
                         returnType = BooleanType
                     }
-                    beforeHook {
-                        resultTrue()
-                    }
+                    replaceToTrue()
                 }
             }
         }

@@ -100,9 +100,7 @@ object RootDetectionHooks : YukiBaseHooker() {
                     emptyParam()
                     returnType = BooleanType
                 }
-                beforeHook {
-                    resultFalse()
-                }
+                replaceToFalse()
             }
         }
 

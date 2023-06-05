@@ -41,9 +41,7 @@ object KnoxDARHooks : YukiBaseHooker() {
                         param(Array<Certificate>::class.java)
                         returnType = BooleanType
                     }
-                    beforeHook {
-                        resultTrue()
-                    }
+                    replaceToTrue()
                 }
             }
         } else {
@@ -54,9 +52,7 @@ object KnoxDARHooks : YukiBaseHooker() {
                         emptyParam()
                         returnType = BooleanType
                     }
-                    beforeHook {
-                        resultTrue()
-                    }
+                    replaceToTrue()
                 }
             }
         }
