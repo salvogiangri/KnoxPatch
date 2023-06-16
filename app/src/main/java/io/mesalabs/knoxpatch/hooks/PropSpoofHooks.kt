@@ -22,6 +22,8 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.java.StringClass
 
+import io.mesalabs.knoxpatch.utils.Constants
+
 object PropSpoofHooks : YukiBaseHooker() {
     private const val TAG: String = "PropSpoofHooks"
 
@@ -29,6 +31,24 @@ object PropSpoofHooks : YukiBaseHooker() {
         loggerD(msg = "$TAG: onHook: loaded.")
 
         /* Spoof critical system props */
+        findClass("android.os.SystemProperties").hook {
+            injectMember {
+                method {
+                    name = "get"
+                    param(String::class.java)
+                    returnType = StringClass
+                }
+                beforeHook {
+                    val key: String = args(0).string()
+
+                    if (key == "ro.config.tima"
+                        || key == "ro.config.timaversion") {
+                        result = ""
+                    }
+                }
+            }
+        }
+
         findClass("android.os.SemSystemProperties").hook {
             injectMember {
                 method {
@@ -39,7 +59,9 @@ object PropSpoofHooks : YukiBaseHooker() {
                 beforeHook {
                     val key: String = args(0).string()
 
-                    if (key == "ro.build.type") {
+                    // Fix legacy Secure Wi-Fi (ICD)
+                    if (key == "ro.build.type" &&
+                            packageName == Constants.SECURE_WIFI_PACKAGE_NAME) {
                         result = "eng"
                     }
                 }
@@ -57,7 +79,8 @@ object PropSpoofHooks : YukiBaseHooker() {
 
                     if (key == "ro.boot.flash.locked"
                         || key == "ro.boot.warranty_bit"
-                        || key == "ro.config.iccc_version") {
+                        || key == "ro.config.iccc_version"
+                        || key == "ro.security.keystore.keytype") {
                         result = def
                     }
                 }

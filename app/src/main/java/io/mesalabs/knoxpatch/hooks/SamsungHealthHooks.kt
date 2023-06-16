@@ -21,7 +21,6 @@ package io.mesalabs.knoxpatch.hooks
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.java.IntType
-import com.highcapable.yukihookapi.hook.type.java.StringClass
 
 object SamsungHealthHooks : YukiBaseHooker() {
     private const val TAG: String = "SamsungHealthHooks"
@@ -38,44 +37,6 @@ object SamsungHealthHooks : YukiBaseHooker() {
                     returnType = IntType
                 }
                 replaceTo(-1)
-            }
-        }
-
-        /* Disable TIMA support */
-        findClass("android.os.SystemProperties").hook {
-            injectMember {
-                method {
-                    name = "get"
-                    param(String::class.java)
-                    returnType = StringClass
-                }
-                beforeHook {
-                    val key: String = args(0).string()
-
-                    if (key == "ro.config.tima"
-                        || key == "ro.config.timaversion") {
-                        result = "0"
-                    }
-                }
-            }
-        }
-
-        /* Disable SAK support */
-        findClass("android.os.SemSystemProperties").hook {
-            injectMember {
-                method {
-                    name = "get"
-                    param(String::class.java, String::class.java)
-                    returnType = StringClass
-                }
-                beforeHook {
-                    val key: String = args(0).string()
-                    val def: String = args(1).string()
-
-                    if (key == "ro.security.keystore.keytype") {
-                        result = def
-                    }
-                }
             }
         }
     }

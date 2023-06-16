@@ -75,6 +75,7 @@ object MainHook : IYukiHookXposedInit {
 
         loadApp(Constants.AUTHFW_PACKAGE_NAME, AuthFwHooks)
 
+        loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, PropSpoofHooks)
 
