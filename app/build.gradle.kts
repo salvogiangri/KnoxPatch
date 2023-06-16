@@ -63,17 +63,23 @@ android {
                     signingConfigs.getByName("release")
                 }
         }
-        getByName("debug") {
+        debug {
             isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
-        getByName("release") {
+        release {
             isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -106,23 +112,22 @@ configurations.all {
 }
 
 dependencies {
-    // Sesl
+    // Sesl: https://github.com/OneUIProject/oneui-core/tree/sesl4
     implementation("io.github.oneuiproject.sesl:appcompat:1.4.0")
     implementation("io.github.oneuiproject.sesl:material:1.5.0") {
         exclude(group = "io.github.oneuiproject.sesl", module = "viewpager2")
     }
-    // AndroidX
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    // AndroidX: https://developer.android.com/jetpack/androidx/versions
     implementation("androidx.viewpager2:viewpager2:1.0.0") {
         exclude(group = "androidx.recyclerview", module = "recyclerview")
     }
-    // Xposed
+    // Xposed: https://github.com/LSPosed
     compileOnly("de.robv.android.xposed:api:82")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
-    // Yuki
+    // Yuki: https://github.com/fankes/YukiHookAPI
     implementation("com.highcapable.yukihookapi:api:1.1.11")
     ksp("com.highcapable.yukihookapi:ksp-xposed:1.1.11")
-    // Rikka
+    // HiddenApiRefinePlugin: https://github.com/RikkaApps/HiddenApiRefinePlugin
     implementation("dev.rikka.tools.refine:runtime:4.3.0")
 
     compileOnly(project(":stub"))
