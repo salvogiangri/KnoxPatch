@@ -51,7 +51,7 @@ jobs:
         done
         zip -r ../app/build/outputs/apk/KnoxPatch-Enhancer.zip * -x *.json -x *.md
         cd ..
-        [ -f key.jks ] && apksigner sign -v --ks key.jks --ks-pass pass:${{ secrets.KEY_PASSWORD }} --min-sdk-version 18 app/build/outputs/apk/KnoxPatch-Enhancer.zip
+        [ -f key.jks ] && apksigner sign -v --ks key.jks --ks-pass pass:${{ secrets.KEY_PASSWORD }} --min-sdk-version 18 app/build/outputs/apk/KnoxPatch-Enhancer.zip || true
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
