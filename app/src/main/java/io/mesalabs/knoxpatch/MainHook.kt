@@ -83,6 +83,7 @@ object MainHook : IYukiHookXposedInit {
             loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_WALLET_PACKAGE_NAME, SamsungKeystoreHooks)
+            loadApp(Constants.SMART_THINGS_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.PRIVATE_SHARE_PACKAGE_NAME, SamsungKeystoreHooks)
         }

@@ -68,7 +68,6 @@ object Constants {
         KNOX_ENTERPRISE_SDK_VERSION_3_7_1("3.7.1"),
         KNOX_ENTERPRISE_SDK_VERSION_3_8("3.8"),
         KNOX_ENTERPRISE_SDK_VERSION_3_9("3.9")
-
     }
 
     const val ENHANCER_SYSTEM_FEATURE: String = "io.mesalabs.knoxpatch_enhancer"
@@ -83,5 +82,6 @@ object Constants {
     const val SAMSUNG_WALLET_PACKAGE_NAME: String = "com.samsung.android.spay"
     const val SECURE_FOLDER_PACKAGE_NAME: String = "com.samsung.knox.securefolder"
     const val SECURE_WIFI_PACKAGE_NAME: String = "com.samsung.android.fast"
+    const val SMART_THINGS_PACKAGE_NAME: String = "com.samsung.android.oneconnect"
 
 }
