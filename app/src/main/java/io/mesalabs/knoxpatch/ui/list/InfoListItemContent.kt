@@ -25,9 +25,9 @@ import io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.getAndroidVersion
 import io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.getBuildNumber
 import io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.getKnoxComponentsVersion
 import io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.getKnoxFeatures
-import io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.getOneUIVersion
 import io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.isKnoxAvailable
 import io.mesalabs.knoxpatch.ui.list.InfoListViewUtils.isSepLiteAvailable
+import io.mesalabs.knoxpatch.utils.BuildUtils.getFormattedOneUIVersion
 
 class InfoListItemContent(context: Context) {
     private val titles: ArrayList<String> = ArrayList()
@@ -39,7 +39,7 @@ class InfoListItemContent(context: Context) {
                 R.string.oneui_version_title_seplite
             else
                 R.string.oneui_version_title))
-        summaries.add(getOneUIVersion())
+        summaries.add(getFormattedOneUIVersion())
         titles.add(context.getString(R.string.android_version_title))
         summaries.add(getAndroidVersion())
         titles.add(context.getString(R.string.build_number_title))

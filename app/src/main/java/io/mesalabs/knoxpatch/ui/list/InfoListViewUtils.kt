@@ -22,7 +22,6 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.SemBuild
 import android.os.SemSystemProperties
 import com.samsung.android.feature.SemFloatingFeature
 import com.samsung.android.knox.SemPersonaManager
@@ -39,7 +38,6 @@ import io.mesalabs.knoxpatch.utils.BuildUtils
 import io.mesalabs.knoxpatch.utils.Constants
 
 object InfoListViewUtils {
-    private const val ONE_UI_VERSION_SEP_VERSION_GAP = 90000
 
     @JvmStatic
     fun getAndroidVersion(): String {
@@ -192,32 +190,6 @@ object InfoListViewUtils {
         } else {
             return context.packageManager
                 .hasSystemFeature("com.samsung.feature.samsung_experience_mobile_lite")
-        }
-    }
-
-    @JvmStatic
-    fun getOneUIVersion(): String {
-        val oneUiOwnVersion: Int = SemSystemProperties.getInt(
-            "ro.build.version.oneui", 0)
-
-        if (oneUiOwnVersion > 0) {
-            val major = oneUiOwnVersion / 10000
-            val minor = oneUiOwnVersion % 10000 / 100
-            val patch = oneUiOwnVersion % 100
-
-            if (patch == 0) {
-                return "$major.$minor"
-            } else {
-                return "$major.$minor.$patch"
-            }
-        } else {
-            try {
-                val sepVersion: Int =
-                    SemBuild.VERSION.SEM_PLATFORM_INT - ONE_UI_VERSION_SEP_VERSION_GAP
-                return (sepVersion / 10000).toString() + "." + sepVersion % 10000 / 100
-            } catch (e: NoSuchFieldError) {
-                return "Unknown"
-            }
         }
     }
 

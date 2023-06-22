@@ -60,9 +60,20 @@ object MainHook : IYukiHookXposedInit {
          * - Android 12/12.1 (One UI 4.x)
          * - Android 13 (One UI 5.x)
          */
-        if (sepVersion < Constants.ONEUI_1_0 || sepVersion > Constants.ONEUI_5_1) {
-            loggerE(msg = "$TAG: onHook: unsupported SEP version: $sepVersion")
-            return@encase
+        when {
+            sepVersion == -1 -> {
+                loggerE(msg = "$TAG: onHook: This module only supports One UI running devices.")
+                return@encase
+            }
+            sepVersion < Constants.ONEUI_1_0 -> {
+                loggerE(msg = "$TAG: onHook: unknown SEP version: $sepVersion")
+                return@encase
+            }
+            sepVersion > Constants.ONEUI_5_1 -> {
+                val oneUiVersion: String = BuildUtils.getFormattedOneUIVersion()
+                loggerE(msg = "$TAG: onHook: One UI $oneUiVersion is not yet supported.")
+                return@encase
+            }
         }
 
         if (sepVersion >= Constants.ONEUI_3_0) {
