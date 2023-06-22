@@ -68,12 +68,10 @@ object Constants {
         KNOX_ENTERPRISE_SDK_VERSION_3_7_1("3.7.1"),
         KNOX_ENTERPRISE_SDK_VERSION_3_8("3.8"),
         KNOX_ENTERPRISE_SDK_VERSION_3_9("3.9")
-
     }
 
     const val ENHANCER_SYSTEM_FEATURE: String = "io.mesalabs.knoxpatch_enhancer"
 
-    const val AUTHFW_PACKAGE_NAME: String = "com.samsung.android.authfw"
     const val FIND_MY_MOBILE_PACKAGE_NAME: String = "com.samsung.android.fmm"
     const val PRIVATE_SHARE_PACKAGE_NAME: String = "com.samsung.android.privateshare"
     const val SAMSUNG_ACCOUNT_PACKAGE_NAME: String = "com.osp.app.signin"

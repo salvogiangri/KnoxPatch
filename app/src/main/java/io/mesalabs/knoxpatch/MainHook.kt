@@ -24,7 +24,6 @@ import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 
-import io.mesalabs.knoxpatch.hooks.AuthFwHooks
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks
 import io.mesalabs.knoxpatch.hooks.PropSpoofHooks
@@ -72,8 +71,6 @@ object MainHook : IYukiHookXposedInit {
             loadSystem(TIMAHooks)
         }
         loadSystem(KnoxGuardHooks)
-
-        loadApp(Constants.AUTHFW_PACKAGE_NAME, AuthFwHooks)
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
