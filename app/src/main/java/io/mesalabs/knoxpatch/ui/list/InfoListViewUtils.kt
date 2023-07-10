@@ -39,32 +39,28 @@ import io.mesalabs.knoxpatch.utils.Constants
 
 object InfoListViewUtils {
 
-    @JvmStatic
-    fun getAndroidVersion(): String {
-        return Build.VERSION.RELEASE
-    }
+    fun getAndroidVersion(): String = Build.VERSION.RELEASE
 
-    @JvmStatic
     fun getBuildNumber(): String {
         var buildDisplay = ""
 
         val buildId: String = SemSystemProperties.get("ro.build.id", "")
-        if (buildId.isNotEmpty()) {
+        if (buildId.isNotBlank()) {
             buildDisplay += buildId + "."
         }
         buildDisplay += Build.VERSION.INCREMENTAL
 
-        return buildDisplay
+        return buildDisplay.ifBlank {
+            Build.DISPLAY
+        }
     }
 
-    @JvmStatic
     fun isKnoxAvailable(): Boolean {
         val currentVersion: KnoxContainerVersion = SemPersonaManager.getKnoxContainerVersion()
         return currentVersion >= KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_2_0
     }
 
     @Suppress("DEPRECATION")
-    @JvmStatic
     fun getKnoxComponentsVersion(context: Context): String {
         var knoxVersion = ""
 
@@ -125,70 +121,65 @@ object InfoListViewUtils {
         return knoxVersion
     }
 
-    @Suppress("UNCHECKED_CAST")
-    @JvmStatic
     fun getKnoxFeatures(): String {
         val features: ArrayList<String> = ArrayList()
 
-        if (BuildUtils.getSEPVersion() >= Constants.ONEUI_5_0) {
+        @Suppress("UNCHECKED_CAST")
+        fun getStaticFields(className: String): List<Field> {
             try {
-                val cls: Class<*>? = Class.forName(
-                    "com.samsung.android.knox.dar.DarRune")
+                val cls: Class<*>? = Class.forName(className)
                 if (cls != null) {
-                    val fields = HiddenApiBypass.getStaticFields(cls) as List<Field>
-
-                    // KNOX_SUPPORT_*
-                    for (field in fields) {
-                        if (field.name.contains("KNOX_SUPPORT_")) {
-                            features.add(field.name + " = " + field.get(null))
-                        }
-                    }
+                    return HiddenApiBypass.getStaticFields(cls) as List<Field>
                 }
             } catch (e: ClassNotFoundException) {
-                throw RuntimeException(e)
+                e.printStackTrace()
             } catch (e: IllegalAccessException) {
-                throw RuntimeException(e)
+                e.printStackTrace()
             }
+
+            return emptyList()
         }
 
-
-        try {
-            val cls: Class<*>? = Class.forName(
-                "com.samsung.android.rune.CoreRune")
-            if (cls != null) {
-                val fields = HiddenApiBypass.getStaticFields(cls) as List<Field>
-
+        if (BuildUtils.getSEPVersion() >= Constants.ONEUI_5_0) {
+            val darRune = getStaticFields("com.samsung.android.knox.dar.DarRune")
+            for (field in darRune) {
                 // KNOX_SUPPORT_*
-                for (field in fields) {
-                    if (field.name.contains("KNOX_SUPPORT_")) {
-                        features.add(field.name + " = " + field.get(null))
-                    }
-                }
-
-                // SUPPORT_KNOX
-                for (field in fields) {
-                    if (field.name.contains("SUPPORT_KNOX")) {
-                        features.add(0, field.name + " = " + field.get(null))
-                    }
+                if (field.name.contains("KNOX_SUPPORT_")) {
+                    features.add(field.name + " = " + field.get(null))
                 }
             }
-        } catch (e: ClassNotFoundException) {
-            throw RuntimeException(e)
-        } catch (e: IllegalAccessException) {
-            throw RuntimeException(e)
         }
 
-        return features.joinToString(separator = "\n")
+        val coreRune = getStaticFields("com.samsung.android.rune.CoreRune")
+
+        for (field in coreRune) {
+            // KNOX_SUPPORT_*
+            if (field.name.contains("KNOX_SUPPORT_")) {
+                features.add(field.name + " = " + field.get(null))
+            }
+        }
+
+        features.sort()
+
+        for (field in coreRune) {
+            // SUPPORT_KNOX
+            if (field.name.contains("SUPPORT_KNOX")) {
+                features.add(0, field.name + " = " + field.get(null))
+            }
+        }
+
+        return features.joinToString(separator = "\n").ifBlank {
+            "Unknown"
+        }
     }
 
-    @JvmStatic
     fun isSepLiteAvailable(context: Context): Boolean {
         val sepCategoryFeature: String = SemFloatingFeature.getInstance()
             .getString("SEC_FLOATING_FEATURE_COMMON_CONFIG_SEP_CATEGORY")
-        if (sepCategoryFeature == "sep_lite" || sepCategoryFeature == "sep_lite_new") {
-            return true
+        return if (sepCategoryFeature == "sep_lite" || sepCategoryFeature == "sep_lite_new") {
+            true
         } else {
-            return context.packageManager
+            context.packageManager
                 .hasSystemFeature("com.samsung.feature.samsung_experience_mobile_lite")
         }
     }
