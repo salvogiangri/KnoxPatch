@@ -35,10 +35,12 @@ class InfoListItemContent(context: Context) {
 
     init {
         titles.add(context.getString(
-            if (isSepLiteAvailable(context))
+            if (isSepLiteAvailable(context)) {
                 R.string.oneui_version_title_seplite
-            else
-                R.string.oneui_version_title))
+            } else {
+                R.string.oneui_version_title
+            }
+        ))
         summaries.add(getFormattedOneUIVersion())
         titles.add(context.getString(R.string.android_version_title))
         summaries.add(getAndroidVersion())
@@ -46,10 +48,12 @@ class InfoListItemContent(context: Context) {
         summaries.add(getBuildNumber())
         titles.add(context.getString(R.string.knox_version_title))
         summaries.add(
-            if (isKnoxAvailable())
+            if (isKnoxAvailable()) {
                 getKnoxComponentsVersion(context)
-            else
-                "Unsupported")
+            } else {
+                "Unsupported"
+            }
+        )
         titles.add(context.getString(R.string.knox_features_title))
         summaries.add(getKnoxFeatures())
     }
