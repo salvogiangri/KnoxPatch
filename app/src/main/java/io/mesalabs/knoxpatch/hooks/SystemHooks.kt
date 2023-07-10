@@ -20,9 +20,9 @@ package io.mesalabs.knoxpatch.hooks
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 
 import java.lang.reflect.Member
+import java.security.cert.Certificate
 
 import de.robv.android.xposed.XposedBridge
 
@@ -31,13 +31,54 @@ import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
-object TIMAHooks : YukiBaseHooker() {
-    private const val TAG: String = "TIMAHooks"
+import io.mesalabs.knoxpatch.utils.BuildUtils
+import io.mesalabs.knoxpatch.utils.Constants
+
+object SystemHooks : YukiBaseHooker()  {
+    private const val TAG: String = "SystemHooks"
 
     override fun onHook() {
         loggerD(msg = "$TAG: onHook: loaded.")
 
-        /* Disable TIMA */
+        /* Fix Secure Folder/Work profile */
+        val sepVersion: Int = BuildUtils.getSEPVersion()
+        if (sepVersion >= Constants.ONEUI_3_0) {
+            applySAKHooks()
+        } else if (sepVersion >= Constants.ONEUI_1_0) {
+            applyTIMAHooks()
+        }
+
+        /* Disable KnoxGuard support */
+        applyKGHooks()
+    }
+
+    private fun applySAKHooks() {
+        if (Build.VERSION.SDK_INT >= 31) {
+            findClass("com.android.server.knox.dar.DarManagerService").hook {
+                injectMember {
+                    method {
+                        name = "checkDeviceIntegrity"
+                        param(Array<Certificate>::class.java)
+                        returnType = BooleanType
+                    }
+                    replaceToTrue()
+                }
+            }
+        } else {
+            findClass("com.android.server.pm.PersonaManagerService").hook {
+                injectMember {
+                    method {
+                        name = "isKnoxKeyInstallable"
+                        emptyParam()
+                        returnType = BooleanType
+                    }
+                    replaceToTrue()
+                }
+            }
+        }
+    }
+
+    private fun applyTIMAHooks() {
         findClass("com.android.server.pm.PersonaServiceHelper").hook {
             injectMember {
                 method {
@@ -49,7 +90,6 @@ object TIMAHooks : YukiBaseHooker() {
             }
         }
 
-        /* Bypass ICCC verification */
         if (Build.VERSION.SDK_INT >= 29) {
             findClass("com.android.server.SdpManagerService\$LocalService").hook {
                 injectMember {
@@ -63,7 +103,6 @@ object TIMAHooks : YukiBaseHooker() {
             }
         }
 
-        /* Enable Knox UKS */
         findClass("com.android.server.locksettings.SyntheticPasswordManager").hook {
             injectMember {
                 method {
@@ -71,14 +110,10 @@ object TIMAHooks : YukiBaseHooker() {
                     emptyParam()
                     returnType = BooleanType
                 }
-                beforeHook {
-                    Log.d("SyntheticPasswordManager", "Unified KeyStore is supported")
-                    resultTrue()
-                }
+                replaceToTrue()
             }
         }
 
-        /* De-optimize inlined methods */
         findAndDeoptimizeMethod("com.android.server.locksettings.LockSettingsService",
             "verifyToken")
         findAndDeoptimizeMethod("com.android.server.locksettings.LockSettingsService\$VirtualLock",
@@ -87,6 +122,32 @@ object TIMAHooks : YukiBaseHooker() {
             "createSyntheticPasswordBlobSpecific")
         findAndDeoptimizeMethod("com.android.server.locksettings.SyntheticPasswordManager",
             "destroySPBlobKey")
+    }
+
+    private fun applyKGHooks() {
+        findClass("com.samsung.android.knoxguard.service.KnoxGuardService").hook {
+            injectMember {
+                constructor {
+                    param(Context::class.java)
+                }
+                beforeHook {
+                    UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
+                }
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= 30) {
+            findClass("com.samsung.android.knoxguard.service.KnoxGuardSeService").hook {
+                injectMember {
+                    constructor {
+                        param(Context::class.java)
+                    }
+                    beforeHook {
+                        UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
+                    }
+                }
+            }
+        }
     }
 
     private fun findAndDeoptimizeMethod(className: String,

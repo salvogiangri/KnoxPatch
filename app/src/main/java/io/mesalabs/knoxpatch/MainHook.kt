@@ -24,13 +24,11 @@ import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 
-import io.mesalabs.knoxpatch.hooks.KnoxDARHooks
-import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks
 import io.mesalabs.knoxpatch.hooks.PropSpoofHooks
 import io.mesalabs.knoxpatch.hooks.RootDetectionHooks
 import io.mesalabs.knoxpatch.hooks.SamsungHealthHooks
 import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks
-import io.mesalabs.knoxpatch.hooks.TIMAHooks
+import io.mesalabs.knoxpatch.hooks.SystemHooks
 import io.mesalabs.knoxpatch.utils.BuildUtils
 import io.mesalabs.knoxpatch.utils.Constants
 
@@ -76,12 +74,7 @@ object MainHook : IYukiHookXposedInit {
             }
         }
 
-        if (sepVersion >= Constants.ONEUI_3_0) {
-            loadSystem(KnoxDARHooks)
-        } else if (sepVersion >= Constants.ONEUI_1_0) {
-            loadSystem(TIMAHooks)
-        }
-        loadSystem(KnoxGuardHooks)
+        loadSystem(SystemHooks)
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
