@@ -1,18 +1,4 @@
 <resources>
-    <!--Non-translatable-->
-    <string name="app_name" translatable="false">KnoxPatch</string>
-    <string name="github" translatable="false">GitHub</string>
-
-    <string name="main_switch_off" translatable="false">@string/sesl_switchbar_off_text</string>
-    <string name="main_switch_on" translatable="false">@string/sesl_switchbar_on_text</string>
-
-    <string name="knox_version_knox" translatable="false">Knox</string>
-    <string name="knox_version_knox_api" translatable="false">Knox API level</string>
-    <string name="knox_version_knox_ml" translatable="false">Knox ML</string>
-    <string name="knox_version_knox_dualdar" translatable="false">DualDAR</string>
-    <string name="knox_version_knox_hdm" translatable="false">HDM</string>
-
-    <!--Translatable-->
     <string name="module_description">Get Knox features working again in your rooted Samsung Galaxy device.</string>
 
     <string name="app_info">App info</string>
