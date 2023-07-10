@@ -1,13 +1,15 @@
 <p align="center">
   <img loading="lazy" src="readme-res/kp-readme-header.png" width="75%"/>
-  <br><br>
-  <img loading="lazy" src="https://img.shields.io/github/v/release/BlackMesa123/KnoxPatch?style=flat-square"/>
+  <br>
+  <a href="https://apt.izzysoft.de/fdroid/index/apk/io.mesalabs.knoxpatch"><img loading="lazy" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" width="170"/></a>
+  <br>
+  <a href="https://github.com/BlackMesa123/KnoxPatch/releases/latest"><img loading="lazy" src="https://img.shields.io/github/v/release/BlackMesa123/KnoxPatch?style=flat-square"/></a>
   <img loading="lazy" src="https://img.shields.io/github/repo-size/BlackMesa123/KnoxPatch?style=flat-square"/>
-  <img loading="lazy" src="https://img.shields.io/github/downloads/BlackMesa123/KnoxPatch/total?style=flat-square"/>
-  <img loading="lazy" src="https://img.shields.io/github/last-commit/BlackMesa123/KnoxPatch/main?style=flat-square"/>
-  <img loading="lazy" src="https://img.shields.io/github/stars/BlackMesa123/KnoxPatch?style=flat-square"/>
-  <img loading="lazy" src="https://img.shields.io/github/contributors/BlackMesa123/KnoxPatch?style=flat-square"/>
-  <img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/BlackMesa123/KnoxPatch/android.yml?style=flat-square"/>
+  <a href="https://tooomm.github.io/github-release-stats/?username=BlackMesa123&repository=KnoxPatch"><img loading="lazy" src="https://img.shields.io/github/downloads/BlackMesa123/KnoxPatch/total?style=flat-square"/></a>
+  <a href="https://github.com/BlackMesa123/KnoxPatch/commits/main"><img loading="lazy" src="https://img.shields.io/github/last-commit/BlackMesa123/KnoxPatch/main?style=flat-square"/></a>
+  <a href="https://github.com/BlackMesa123/KnoxPatch/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/BlackMesa123/KnoxPatch?style=flat-square"/></a>
+  <a href="https://github.com/BlackMesa123/KnoxPatch/graphs/contributors"><img loading="lazy" src="https://img.shields.io/github/contributors/BlackMesa123/KnoxPatch?style=flat-square"/></a>
+  <a href="https://github.com/BlackMesa123/KnoxPatch/actions"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/BlackMesa123/KnoxPatch/android.yml?style=flat-square"/></a>
   <br><br>
   An <a href="https://github.com/LSPosed/LSPosed">LSPosed</a> module to get Samsung apps/features working again in your rooted Galaxy device.
   <br><br>
