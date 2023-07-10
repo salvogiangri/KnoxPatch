@@ -27,7 +27,6 @@ import io.mesalabs.knoxpatch.utils.Constants.EnterpriseKnoxSdkVersion
 object BuildUtils {
     private const val ONE_UI_VERSION_SEP_VERSION_GAP = 90000
 
-    @JvmStatic
     fun getSEPVersion(): Int {
         return try {
             SemBuild.VERSION.SEM_PLATFORM_INT
@@ -36,7 +35,6 @@ object BuildUtils {
         }
     }
 
-    @JvmStatic
     fun getFormattedOneUIVersion(): String {
         val oneUiOwnVersion: Int = SemSystemProperties.getInt(
             "ro.build.version.oneui", 0)
@@ -46,32 +44,32 @@ object BuildUtils {
             val minor = oneUiOwnVersion % 10000 / 100
             val patch = oneUiOwnVersion % 100
 
-            if (patch == 0) {
-                return "$major.$minor"
+            return if (patch == 0) {
+                "$major.$minor"
             } else {
-                return "$major.$minor.$patch"
+                "$major.$minor.$patch"
             }
         } else {
-            try {
+            return try {
                 val sepVersion: Int =
                     SemBuild.VERSION.SEM_PLATFORM_INT - ONE_UI_VERSION_SEP_VERSION_GAP
-                return (sepVersion / 10000).toString() + "." + sepVersion % 10000 / 100
+                (sepVersion / 10000).toString() + "." + sepVersion % 10000 / 100
             } catch (e: NoSuchFieldError) {
-                return "Unknown"
+                "Unknown"
             }
         }
     }
 
-    @JvmStatic
     fun getKnoxAPIVersion(): Int {
         val sepVersion: Int = getSEPVersion()
 
-        return if (sepVersion != -1)
+        return if (sepVersion != -1) {
             EnterpriseDeviceManager.getAPILevel()
-        else -1
+        } else {
+            -1
+        }
     }
 
-    @JvmStatic
     fun getEnterpriseKnoxSdkVersion(): EnterpriseKnoxSdkVersion {
         return when (getKnoxAPIVersion()) {
             13 -> EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_2
