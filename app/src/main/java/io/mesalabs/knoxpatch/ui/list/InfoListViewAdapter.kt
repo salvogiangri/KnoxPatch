@@ -27,20 +27,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 import io.mesalabs.knoxpatch.R
 
-class InfoListViewAdapter(context: Context) : RecyclerView.Adapter<InfoListViewViewHolder>() {
+class InfoListViewAdapter(private val context: Context) : RecyclerView.Adapter<InfoListViewViewHolder>() {
     companion object {
         private const val TITLE: Int = 0
         private const val SUMMARY: Int = 1
     }
 
-    private val context: Context
-    private val listContent: InfoListItemContent
-    private val dummyClickListener: View.OnClickListener = View.OnClickListener {  }
-
-    init {
-        this.context = context
-        listContent = InfoListItemContent(context)
-    }
+    private val listContent: InfoListItemContent = InfoListItemContent(context)
+    private val dummyClickListener: View.OnClickListener = View.OnClickListener { }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfoListViewViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(context)
@@ -57,7 +51,6 @@ class InfoListViewAdapter(context: Context) : RecyclerView.Adapter<InfoListViewV
         holder.summaryTextView.text = itemContent[SUMMARY]
     }
 
-    override fun getItemCount(): Int {
-        return listContent.listSize
-    }
+    override fun getItemCount(): Int = listContent.listSize
+
 }
