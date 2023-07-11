@@ -5,6 +5,7 @@ plugins {
 android {
     namespace = "io.mesalabs.stub"
     compileSdk = 33
+    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         minSdk = 28
