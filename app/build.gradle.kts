@@ -3,11 +3,8 @@ plugins {
     kotlin("android")
     id("com.google.devtools.ksp")
     id("dev.rikka.tools.refine")
+    id("KnoxPatchPlugin")
 }
-
-val versionMajor = 0
-val versionMinor = 5
-val versionPatch = 2
 
 val releaseStoreFile: String? by rootProject
 val releaseStorePassword: String? by rootProject
@@ -22,8 +19,8 @@ android {
         applicationId = "io.mesalabs.knoxpatch"
         minSdk = 28
         targetSdk = 33
-        versionCode = versionMajor * 100000 + versionMinor * 1000 + versionPatch
-        versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+        versionCode = Config.versionCode
+        versionName = Config.versionName
     }
 
     lint {
