@@ -45,7 +45,6 @@ import android.view.WindowManager
 import android.widget.EdgeEffect
 import android.widget.Toast
 
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
@@ -93,9 +92,10 @@ class InfoActivity : AppCompatActivity() {
 
     private fun initToolbar() {
         setSupportActionBar(binding.mainToolbar)
-        val toolBar: ActionBar = supportActionBar!!
-        toolBar.setDisplayHomeAsUpEnabled(true)
-        toolBar.setDisplayShowTitleEnabled(false)
+        with(supportActionBar!!) {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
         binding.mainToolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -112,7 +112,7 @@ class InfoActivity : AppCompatActivity() {
                 "android.settings.APPLICATION_DETAILS_SETTINGS",
                 Uri.fromParts("package", BuildConfig.APPLICATION_ID, null))
             intent.setFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             return true
         }
@@ -161,48 +161,53 @@ class InfoActivity : AppCompatActivity() {
         DrawableCompat.setTintList(
             DrawableCompat.wrap(switchView.root.background).mutate(),
             ColorStateList.valueOf(
-                getColor(if (isModuleEnabled)
+                getColor(if (isModuleEnabled) {
                     R.color.sep_theme_main_switch_on_background_color
-                else
-                    R.color.sep_theme_main_switch_off_background_color))
+                } else {
+                    R.color.sep_theme_main_switch_off_background_color
+                })
+            )
         )
 
         switchView.mainSwitchText.setTextColor(
-            getColor(if (isModuleEnabled)
+            getColor(if (isModuleEnabled) {
                 R.color.sep_theme_main_switch_on_text_color
-            else
-                R.color.sep_theme_main_switch_off_text_color))
+            } else {
+                R.color.sep_theme_main_switch_off_text_color
+            })
+        )
         switchView.mainSwitchText.text =
-            getString(if (isModuleEnabled)
+            getString(if (isModuleEnabled) {
                 R.string.main_switch_on
-            else
-                R.string.main_switch_off)
+            } else {
+                R.string.main_switch_off
+            })
 
         switchView.mainSwitchWidget.isChecked = isModuleEnabled
     }
 
     private fun initListView() {
-        val listView: RecyclerView = binding.mainList
-        if (Build.VERSION.SDK_INT < 31) {
-            listView.edgeEffectFactory = object : EdgeEffectFactory() {
-                @SuppressLint("RestrictedApi")
-                override fun createEdgeEffect(
-                    view: RecyclerView,
-                    direction: Int): EdgeEffect {
-                    val edgeEffect = SeslEdgeEffect(view.context)
-                    edgeEffect.setHostView(view, false)
-                    return edgeEffect
+        with(binding.mainList) {
+            if (Build.VERSION.SDK_INT < 31) {
+                edgeEffectFactory = object: EdgeEffectFactory() {
+                    @SuppressLint("RestrictedApi")
+                    override fun createEdgeEffect(view: RecyclerView,
+                                                  direction: Int): EdgeEffect {
+                        val edgeEffect = SeslEdgeEffect(view.context)
+                        edgeEffect.setHostView(view, false)
+                        return edgeEffect
+                    }
                 }
             }
-        }
 
-        listView.layoutManager = LinearLayoutManager(this)
-        listView.adapter = InfoListViewAdapter(this)
-        listView.addItemDecoration(InfoListRoundedCorners(this))
-        listView.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        listView.seslSetFillBottomEnabled(true)
-        listView.seslSetLastRoundedCorner(true)
+            layoutManager = LinearLayoutManager(this@InfoActivity)
+            adapter = InfoListViewAdapter(this@InfoActivity)
+            addItemDecoration(InfoListRoundedCorners(this@InfoActivity))
+            addItemDecoration(DividerItemDecoration(this@InfoActivity,
+                DividerItemDecoration.VERTICAL))
+            seslSetFillBottomEnabled(true)
+            seslSetLastRoundedCorner(true)
+        }
     }
 
     private fun showCryptoWarningDialog() {
@@ -255,12 +260,9 @@ class InfoActivity : AppCompatActivity() {
     private fun setContentSideMargin(layout: ViewGroup) {
         if (!isDestroyed && !isFinishing) {
             findViewById<View>(android.R.id.content).post {
-                var m: Int = getSideMargin()
-                if (m < 0)
-                    m = 0
-
                 val lp: ViewGroup.MarginLayoutParams =
                     layout.layoutParams as ViewGroup.MarginLayoutParams
+                val m: Int = getSideMargin()
                 lp.setMargins(m, 0, m, 0)
                 layout.layoutParams = lp
             }
@@ -283,7 +285,9 @@ class InfoActivity : AppCompatActivity() {
         }
 
         val density = resources.displayMetrics.density
-        return ((config.screenWidthDp - ratio()) / 2 * density).toInt()
+
+        val m = ((config.screenWidthDp - ratio()) / 2 * density).toInt()
+        return if (m < 0) 0 else m
     }
 
 
