@@ -8,4 +8,8 @@
     <string name="build_number_title">Build szám</string>
     <string name="knox_version_title">Knox verzió</string>
     <string name="knox_features_title">Knox funkciók</string>
+
+    <string name="crypto_warning_dialog_title">Az adatpartíció titkosítva van</string>
+    <string name="crypto_warning_dialog_message">Ez az alkalmazás azt észlelte, hogy az eszköz adatpartíciója titkosítva van, ami azt jelenti, hogy a Biztonságos mappa nem működik megfelelően.</string>
+    <string name="crypto_warning_dialog_btn">Megértettem</string>
 </resources>
