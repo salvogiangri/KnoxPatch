@@ -34,6 +34,7 @@ object Constants {
     const val ONEUI_4_1_1: Int = 130500
     const val ONEUI_5_0: Int = 140000
     const val ONEUI_5_1: Int = 140100
+    const val ONEUI_5_1_1: Int = 140500
 
     enum class EnterpriseKnoxSdkVersion(val internalVersion: String) {
         KNOX_ENTERPRISE_SDK_VERSION_NONE("N/A"),
