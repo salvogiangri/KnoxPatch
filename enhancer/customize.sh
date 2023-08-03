@@ -118,10 +118,14 @@ else
       if grep -q 'Knox protection required' /system/bin/vold; then
         ui_print "I: Applying Secure Folder fix..."
         cp "/system/bin/vold" "/system/bin/vold.bak"
-        hex_patch "/system/bin/vold" 00E4006FEA861A11 00E4006FEABE0451
-        hex_patch "/system/bin/vold" 08FA805200E4006F 0800805200E4006F
-        hex_patch "/system/bin/vold" 08FA80520800AE72 080080520800AE72
-        hex_patch "/system/bin/vold" 09FA80520900AE72 090080520900AE72
+        PATCHED=false
+        $PATCHED || hex_patch "/system/bin/vold" 00E4006FEA861A11 00E4006FEABE0451 && PATCHED=true
+        $PATCHED || hex_patch "/system/bin/vold" 08FA805200E4006F 0800805200E4006F && PATCHED=true
+        $PATCHED || hex_patch "/system/bin/vold" 08FA80520800AE72 080080520800AE72 && PATCHED=true
+        $PATCHED || hex_patch "/system/bin/vold" 09FA80520900AE72 090080520900AE72 && PATCHED=true
+        $PATCHED || abort "E: Failed to apply patch"
+      else
+        ui_print "W: No patches required for this device"
       fi
     elif [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
       if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
@@ -135,6 +139,8 @@ else
         set_perm "/system/bin/vold" 0 2000 0755 "u:object_r:vold_exec:s0"
         set_perm "/system/lib/libepm.so" 0 0 0644
         set_perm "/system/lib64/libepm.so" 0 0 0644
+      else
+        ui_print "W: No patches required for this device"
       fi
     fi
   else
