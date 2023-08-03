@@ -108,9 +108,17 @@ else
 
   mount -o remount,rw /system || abort "E: Could not mount system as rw"
 
-  if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
+  if [ -f "/system/bin/vold.bak" ]; then
+    ui_print "I: Restoring backup files..."
+    mv -f "/system/bin/vold.bak" "/system/bin/vold"
+    [ -f "/system/lib/libepm.so.bak" ] && mv -f "/system/lib/libepm.so.bak" "/system/lib/libepm.so"
+    [ -f "/system/lib64/libepm.so.bak" ] && mv -f "/system/lib64/libepm.so.bak" "/system/lib64/libepm.so"
+  elif [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
     if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
       ui_print "I: Applying Secure Folder fix..."
+      mv "/system/bin/vold" "/system/bin/vold.bak"
+      mv "/system/lib/libepm.so" "/system/lib/libepm.so.bak"
+      mv "/system/lib64/libepm.so" "/system/lib64/libepm.so.bak"
       extract "$ZIPFILE" 'system/bin/vold' "/system/bin" true
       extract "$ZIPFILE" 'system/lib/libepm.so' "/system/lib" true
       extract "$ZIPFILE" 'system/lib64/libepm.so' "/system/lib64" true
