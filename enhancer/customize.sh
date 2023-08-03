@@ -18,23 +18,11 @@
 #
 SKIPUNZIP=1
 
-enforce_install_from_app() {
-  if $BOOTMODE; then
-    ui_print "- Installing from Magisk / KernelSU app"
-  else
-    ui_print "*********************************************************"
-    ui_print "! Install from recovery is NOT supported"
-    ui_print "! Recovery sucks"
-    ui_print "! Please install from Magisk / KernelSU app"
-    abort "*********************************************************"
-  fi
-}
-
 enforce_sem() {
-  ONEUI_VERSION=$(getprop 'ro.build.version.oneui')
+  ONEUI_VERSION=$(grep_prop 'ro.build.version.oneui')
 
   if [ -z "$ONEUI_VERSION" ]; then
-    SEP_VERSION=$(getprop 'ro.build.version.sep')
+    SEP_VERSION=$(grep_prop 'ro.build.version.sep')
 
     if [ -z "$SEP_VERSION" ]; then
       abort "E: This module only supports One UI devices"
@@ -49,7 +37,10 @@ enforce_sem() {
     abort "E: This module only supports One UI 1.x and above"
   fi
 
-  if pm list features | grep -q samsung_experience_mobile_lite; then
+  SEP_LITE=false
+  grep -q 'sep_lite' "/system/etc/floating_feature.xml" && SEP_LITE=true
+  [ -f "/system/etc/permissions/com.samsung.feature.samsung_experience_mobile_lite.xml" ] && SEP_LITE=true
+  if $SEP_LITE; then
     LABEL="One UI Core"
   else
     LABEL="One UI"
@@ -83,40 +74,47 @@ fi
 extract "$ZIPFILE" 'customize.sh' "$TMPDIR"
 extract "$ZIPFILE" 'verify.sh' "$TMPDIR"
 
-enforce_install_from_app
-enforce_sem
+if $BOOTMODE; then
+  ui_print "- Installing from Magisk / KernelSU app"
 
-if pm list packages | grep -q knoxpatch; then
-  KP_VERSION=$(dumpsys package io.mesalabs.knoxpatch | grep versionName | sed 's/versionName=//g' | sed 's/ //g')
-  ui_print "I: KnoxPatch installed: v$KP_VERSION"
-else
-  ui_print "W: KnoxPatch not installed!"
-fi
+  enforce_sem
 
-ui_print "I: Extracting module files..."
-extract "$ZIPFILE" 'module.prop' "$MODPATH"
-extract "$ZIPFILE" 'system.prop' "$MODPATH"
-mkdir -p "$MODPATH/system/etc/permissions"
-extract "$ZIPFILE" 'system/etc/permissions/knoxpatch_enhancer.xml' "$MODPATH/system/etc/permissions" true
-
-if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
-  if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
-    ui_print "I: Applying Secure Folder fix..."
-    mkdir -p "$MODPATH/system/bin"
-    mkdir -p "$MODPATH/system/lib"
-    mkdir -p "$MODPATH/system/lib64"
-    extract "$ZIPFILE" 'system/bin/vold' "$MODPATH/system/bin" true
-    extract "$ZIPFILE" 'system/lib/libepm.so' "$MODPATH/system/lib" true
-    extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64" true
+  if pm list packages | grep -q knoxpatch; then
+    KP_VERSION=$(dumpsys package io.mesalabs.knoxpatch | grep versionName | sed 's/versionName=//g' | sed 's/ //g')
+    ui_print "I: KnoxPatch installed: v$KP_VERSION"
+  else
+    ui_print "W: KnoxPatch not installed!"
   fi
-fi
 
-ui_print "I: Applying WSM fix..."
-mkdir -p "$MODPATH/system/lib"
-touch "$MODPATH/system/lib/libhal.wsm.samsung.so"
-if [ "$IS64BIT" == "true" ]; then
-  mkdir -p "$MODPATH/system/lib64"
-  touch "$MODPATH/system/lib64/libhal.wsm.samsung.so"
-fi
+  ui_print "I: Extracting module files..."
+  extract "$ZIPFILE" 'module.prop' "$MODPATH"
+  extract "$ZIPFILE" 'system.prop' "$MODPATH"
+  mkdir -p "$MODPATH/system/etc/permissions"
+  extract "$ZIPFILE" 'system/etc/permissions/knoxpatch_enhancer.xml' "$MODPATH/system/etc/permissions" true
 
-set_perm_recursive "$MODPATH" 0 0 0755 0644
+  if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
+    if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
+      ui_print "I: Applying Secure Folder fix..."
+      mkdir -p "$MODPATH/system/bin"
+      mkdir -p "$MODPATH/system/lib"
+      mkdir -p "$MODPATH/system/lib64"
+      extract "$ZIPFILE" 'system/bin/vold' "$MODPATH/system/bin" true
+      extract "$ZIPFILE" 'system/lib/libepm.so' "$MODPATH/system/lib" true
+      extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64" true
+    fi
+  fi
+
+  ui_print "I: Applying WSM fix..."
+  mkdir -p "$MODPATH/system/lib"
+  touch "$MODPATH/system/lib/libhal.wsm.samsung.so"
+  if $IS64BIT; then
+    mkdir -p "$MODPATH/system/lib64"
+    touch "$MODPATH/system/lib64/libhal.wsm.samsung.so"
+  fi
+
+  set_perm_recursive "$MODPATH" 0 0 0755 0644
+else
+  ui_print "- Installing from recovery"
+
+  enforce_sem
+fi
