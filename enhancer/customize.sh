@@ -117,7 +117,7 @@ else
     if grep -q 'fileencryption' /vendor/etc/fstab.*; then
       if grep -q 'Knox protection required' /system/bin/vold; then
         ui_print "I: Applying Secure Folder fix..."
-        cp "/system/bin/vold" "/system/bin/vold.bak"
+        cp --preserve=all "/system/bin/vold" "/system/bin/vold.bak"
         PATCHED=false
         $PATCHED || hex_patch "/system/bin/vold" 00E4006FEA861A11 00E4006FEABE0451 && PATCHED=true
         $PATCHED || hex_patch "/system/bin/vold" 08FA805200E4006F 0800805200E4006F && PATCHED=true

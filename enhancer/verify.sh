@@ -54,7 +54,7 @@ hex_check() {
   if $( ( $xxd -p "$1" | tr -d \\n | tr -d " " | grep -q "$2" ) 2>/dev/null ); then true; else false; fi
 }
 
-# hex_check <file> <old_hex> <new_hex>
+# hex_patch <file> <old_hex> <new_hex>
 hex_patch() {
   local xxd
   if xxd --help >/dev/null 2>&1; then
