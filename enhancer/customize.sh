@@ -92,18 +92,6 @@ if $BOOTMODE; then
   mkdir -p "$MODPATH/system/etc/permissions"
   extract "$ZIPFILE" 'system/etc/permissions/knoxpatch_enhancer.xml' "$MODPATH/system/etc/permissions" true
 
-  if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
-    if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
-      ui_print "I: Applying Secure Folder fix..."
-      mkdir -p "$MODPATH/system/bin"
-      mkdir -p "$MODPATH/system/lib"
-      mkdir -p "$MODPATH/system/lib64"
-      extract "$ZIPFILE" 'system/bin/vold' "$MODPATH/system/bin" true
-      extract "$ZIPFILE" 'system/lib/libepm.so' "$MODPATH/system/lib" true
-      extract "$ZIPFILE" 'system/lib64/libepm.so' "$MODPATH/system/lib64" true
-    fi
-  fi
-
   ui_print "I: Applying WSM fix..."
   mkdir -p "$MODPATH/system/lib"
   touch "$MODPATH/system/lib/libhal.wsm.samsung.so"
@@ -117,4 +105,22 @@ else
   ui_print "- Installing from recovery"
 
   enforce_sem
+
+  mount -o remount,rw /system || abort "E: Could not mount system as rw"
+
+  if [ "$API" == "29" ] && [ "$ARCH" == "arm64" ]; then
+    if grep -q 'Device supports FBE!' /system/lib/libepm.so; then
+      ui_print "I: Applying Secure Folder fix..."
+      extract "$ZIPFILE" 'system/bin/vold' "/system/bin" true
+      extract "$ZIPFILE" 'system/lib/libepm.so' "/system/lib" true
+      extract "$ZIPFILE" 'system/lib64/libepm.so' "/system/lib64" true
+      set_perm "/system/bin/vold" 0 2000 0755 "u:object_r:vold_exec:s0"
+      set_perm "/system/lib/libepm.so" 0 0 0644
+      set_perm "/system/lib64/libepm.so" 0 0 0644
+    fi
+  else
+    ui_print "W: Nothing to do here :/"
+  fi
+
+  mount -o remount,ro /system
 fi
