@@ -15,5 +15,5 @@
 -->
 
 <permissions>
-    <feature name="io.mesalabs.knoxpatch_enhancer" version="3"/>
+    <feature name="io.mesalabs.knoxpatch_enhancer" version="4"/>
 </permissions>
