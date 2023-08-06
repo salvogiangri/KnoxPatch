@@ -38,7 +38,8 @@ enforce_sem() {
   fi
 
   SEP_LITE=false
-  grep -q 'sep_lite' "/system/etc/floating_feature.xml" && SEP_LITE=true
+  [ -f "/system/etc/floating_feature.xml" ] && FEATURE_PATH="/system/etc" || FEATURE_PATH="/vendor/etc"
+  grep -q 'sep_lite' "$FEATURE_PATH/floating_feature.xml" && SEP_LITE=true
   [ -f "/system/etc/permissions/com.samsung.feature.samsung_experience_mobile_lite.xml" ] && SEP_LITE=true
   if $SEP_LITE; then
     LABEL="One UI Core"
@@ -119,10 +120,10 @@ else
         ui_print "I: Applying Secure Folder fix..."
         cp --preserve=all "/system/bin/vold" "/system/bin/vold.bak"
         PATCHED=false
-        $PATCHED || hex_patch "/system/bin/vold" 00E4006FEA861A11 00E4006FEABE0451 && PATCHED=true
-        $PATCHED || hex_patch "/system/bin/vold" 08FA805200E4006F 0800805200E4006F && PATCHED=true
-        $PATCHED || hex_patch "/system/bin/vold" 08FA80520800AE72 080080520800AE72 && PATCHED=true
-        $PATCHED || hex_patch "/system/bin/vold" 09FA80520900AE72 090080520900AE72 && PATCHED=true
+        $PATCHED || hex_patch "/system/bin/vold" 00e4006fea861a11 00e4006feabe0451 && PATCHED=true
+        $PATCHED || hex_patch "/system/bin/vold" 08fa805200e4006f 0800805200e4006f && PATCHED=true
+        $PATCHED || hex_patch "/system/bin/vold" 08fa80520800ae72 080080520800ae72 && PATCHED=true
+        $PATCHED || hex_patch "/system/bin/vold" 09fa80520900ae72 090080520900ae72 && PATCHED=true
         $PATCHED || abort "E: Failed to apply patch"
       else
         ui_print "W: No patches required for this device"
