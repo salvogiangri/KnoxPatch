@@ -51,7 +51,7 @@ KnoxPatch Enhancer is a flashable zip that will take care of the (currently) non
 
 - Via a custom recovery (fix Secure Folder on legacy devices):
 
-  Download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it via a custom recovery, this will modify your system partition to apply the necessary patches to fix Secure Folder. The zip will create a backup of your original system files, flashing it again will restore them.
+  Legacy devices running One UI 2.x or 3.x with [FBE](https://source.android.com/docs/security/features/encryption/file-based) require additional patches in the system partition to fix Secure Folder. Download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it via a custom recovery, this will apply the necessary patches to fix Secure Folder. The zip will also create a backup of your original system files, flashing it again will restore them.
 
 ## Credits
 - Samsung
