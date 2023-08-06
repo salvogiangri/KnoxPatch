@@ -30,22 +30,28 @@
 - ✅ [Samsung Flow](https://www.samsung.com/uk/apps/samsung-flow/)
 - ✅ [Samsung Health](https://www.samsung.com/uk/apps/samsung-health/)
 - ✅ [Samsung Health Monitor](https://www.samsung.com/uk/apps/samsung-health-monitor/)
-- ✅ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) *
+- ✅ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) ([Enhancer](#knoxpatch-enhancer) might be required)
 - ✅ [Secure Wi-Fi](https://www.samsung.com/uk/support/mobile-devices/what-is-the-secure-wifi-feature-and-how-do-i-enable-or-use-it/)
 - ➖ [Smart View](https://www.samsung.com/uk/tvs/tv-buying-guide/what-is-samsung-smart-view/) ([Enhancer](#knoxpatch-enhancer) required)
 - ✅ [Private Share](https://www.samsung.com/uk/support/mobile-devices/how-to-keep-your-personal-data-safe-using-private-share/)
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
 - ❌ [Samsung Wallet (Pay)](https://www.samsung.com/uk/apps/samsung-wallet/)
 
-\* Secure Folder might not work properly on legacy devices (One UI 3.x and lower) with [FBE](https://source.android.com/docs/security/features/encryption/file-based) enabled.
-
 ## KnoxPatch Enhancer
 
-KnoxPatch Enhancer is a [Magisk](https://github.com/topjohnwu/Magisk) module that will take care of the (currently) non-fixable apps/features via the Xposed API's, such as the Galaxy Wearable apps. To install it, download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it from the "Modules" tab inside the Magisk Manager app. The app will then show an "Enhanced" badge if the module is installed and active:
+KnoxPatch Enhancer is a flashable zip that will take care of the (currently) non-fixable apps/features via the Xposed API's. There are two different install modes:
+
+- Via the [Magisk](https://github.com/topjohnwu/Magisk)/[KernelSU](https://github.com/tiann/KernelSU) app (fix Galaxy Wearable apps/Smart View):
+
+  Download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it from the "Modules" tab inside the Magisk/KernelSU app. The app will then show an "Enhanced" badge if the module is installed and active:
 
 <p align="center">
-  <img loading="lazy" src="readme-res/kp-enhancer.jpg" width="40%" />
+  <img loading="lazy" src="readme-res/kp-enhancer.jpg" width="35%" />
 </p>
+
+- Via a custom recovery (fix Secure Folder on legacy devices):
+
+  Download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it via a custom recovery, this will modify your system partition to apply the necessary patches to fix Secure Folder. The zip will create a backup of your original system files, flashing it again will restore them.
 
 ## Credits
 - Samsung
