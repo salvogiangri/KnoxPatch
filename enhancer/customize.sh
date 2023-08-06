@@ -125,6 +125,7 @@ else
         $PATCHED || hex_patch "/system/bin/vold" 08fa80520800ae72 080080520800ae72 && PATCHED=true
         $PATCHED || hex_patch "/system/bin/vold" 09fa80520900ae72 090080520900ae72 && PATCHED=true
         $PATCHED || abort "E: Failed to apply patch"
+        set_perm "/system/bin/vold" 0 2000 0755 "u:object_r:vold_exec:s0"
       else
         ui_print "W: No patches required for this device"
       fi
