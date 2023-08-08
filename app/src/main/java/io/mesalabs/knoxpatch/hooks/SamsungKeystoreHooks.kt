@@ -20,6 +20,7 @@ package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 object SamsungKeystoreHooks : YukiBaseHooker() {
@@ -38,6 +39,10 @@ object SamsungKeystoreHooks : YukiBaseHooker() {
                 }
                 replaceToTrue()
             }
+        }.onHookClassNotFoundFailure {
+            loggerE(msg = "$TAG: couldn't access class " +
+                    "com.samsung.android.security.keystore.AttestParameterSpec " +
+                    "(${it.javaClass.simpleName})")
         }
     }
 
