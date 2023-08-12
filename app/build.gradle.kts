@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId = "io.mesalabs.knoxpatch"
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
         versionCode = Config.versionCode
         versionName = Config.versionName
     }
