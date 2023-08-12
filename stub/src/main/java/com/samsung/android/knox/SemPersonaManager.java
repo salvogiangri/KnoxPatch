@@ -50,7 +50,9 @@ public class SemPersonaManager {
         KNOX_CONTAINER_VERSION_3_6_0,
         KNOX_CONTAINER_VERSION_3_7_0,
         KNOX_CONTAINER_VERSION_3_7_1,
-        KNOX_CONTAINER_VERSION_3_8_0;
+        KNOX_CONTAINER_VERSION_3_8_0,
+        KNOX_CONTAINER_VERSION_3_9_0,
+        KNOX_CONTAINER_VERSION_3_10_0
     }
 
     public static KnoxContainerVersion getKnoxContainerVersion() {

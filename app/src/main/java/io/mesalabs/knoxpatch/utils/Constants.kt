@@ -35,6 +35,7 @@ object Constants {
     const val ONEUI_5_0: Int = 140000
     const val ONEUI_5_1: Int = 140100
     const val ONEUI_5_1_1: Int = 140500
+    const val ONEUI_6_0: Int = 150000
 
     enum class EnterpriseKnoxSdkVersion(val internalVersion: String) {
         KNOX_ENTERPRISE_SDK_VERSION_NONE("N/A"),
@@ -68,7 +69,8 @@ object Constants {
         KNOX_ENTERPRISE_SDK_VERSION_3_7("3.7"),
         KNOX_ENTERPRISE_SDK_VERSION_3_7_1("3.7.1"),
         KNOX_ENTERPRISE_SDK_VERSION_3_8("3.8"),
-        KNOX_ENTERPRISE_SDK_VERSION_3_9("3.9")
+        KNOX_ENTERPRISE_SDK_VERSION_3_9("3.9"),
+        KNOX_ENTERPRISE_SDK_VERSION_3_10("3.10")
     }
 
     const val ENHANCER_SYSTEM_FEATURE: String = "io.mesalabs.knoxpatch_enhancer"
