@@ -66,16 +66,7 @@ object InfoListViewUtils {
 
         // Knox version
         knoxVersion += context.getString(R.string.knox_version_knox) + " "
-
-        val knoxVersionName: String = BuildUtils.getEnterpriseKnoxSdkVersion().internalVersion
-        val lastInt = knoxVersionName[knoxVersionName.length - 1].toString().toInt()
-
-        knoxVersion += if (lastInt > 0) {
-            knoxVersionName
-        } else {
-            val index = knoxVersionName.lastIndexOf('.')
-            knoxVersionName.substring(0, index)
-        }
+        knoxVersion += BuildUtils.getEnterpriseKnoxSdkVersion().internalVersion
 
         // Knox API level
         knoxVersion += "\n" + context.getString(R.string.knox_version_knox_api) + " "
@@ -168,7 +159,7 @@ object InfoListViewUtils {
             }
         }
 
-        return features.joinToString(separator = "\n").ifBlank {
+        return features.distinct().joinToString(separator = "\n").ifBlank {
             "Unknown"
         }
     }
