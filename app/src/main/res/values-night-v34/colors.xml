@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sep_theme_round_and_bg_color">#ff010102</color>
+    <color name="sep_theme_background_color">#ff17171a</color>
+    <color name="sep_theme_functional_green_color">#ff58db9c</color>
+
+    <color name="sep_theme_main_switch_off_background_color">#ff17171a</color>
+    <color name="sep_theme_main_switch_on_background_color">#ff2d2d30</color>
+    <color name="sep_theme_main_switch_off_text_color">#fffafaff</color>
+
+    <color name="info_app_name_color">#fffafaff</color>
+</resources>

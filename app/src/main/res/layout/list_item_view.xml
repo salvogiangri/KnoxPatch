@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/list_item_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -25,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItem"
+            app:fontFamily="@string/sec_font_family"
             android:textAlignment="viewStart"
             android:maxLines="5"
             android:ellipsize="end" />
@@ -36,6 +38,7 @@
             android:layout_below="@id/list_item_title"
             android:layout_alignStart="@id/list_item_title"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            app:fontFamily="@string/sec_font_family"
             android:textAlignment="viewStart" />
 
     </RelativeLayout>

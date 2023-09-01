@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="sep_theme_background_color">@color/sesl_round_and_bgcolor_dark</color>
-    <color name="sep_theme_functional_green_color">@color/sesl_functional_green_dark</color>
+    <color name="sep_theme_round_and_bg_color">#ff010101</color>
+    <color name="sep_theme_background_color">#ff171717</color>
+    <color name="sep_theme_functional_green_color">#ff5ad69e</color>
 
     <color name="sep_theme_main_switch_off_background_color">#ff171717</color>
     <color name="sep_theme_main_switch_on_background_color">#ff2d2d2d</color>
