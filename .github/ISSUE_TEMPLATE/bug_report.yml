@@ -29,10 +29,12 @@ body:
     attributes:
       label: "Software info:"
       placeholder: |
-        Bootloader: S918BXXU3AWGJ
-        Build number: S918BXXU3AWGJ
-        Baseband: S918BXXU3AWHH
+        BL: S918BXXU3AWGJ
+        AP: S918BXXU3AWGJ
+        CP: S918BXXU3AWHH
         CSC: S918BOXM3AWHH, EUX/-/EUX/EUX
+
+        If using a custom ROM and/or kernel, please specify which.
     validations:
       required: true
   - type: input
