@@ -1,0 +1,84 @@
+name: Bug report
+description: Create a report to help us improve
+labels: ""
+title: "[ISSUE] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks you for your interest in the project. To make it easier for me to help you please fill any required information below.
+        Following the placeholders is not necessary as long as the required information is provided.
+  - type: input
+    attributes:
+      label: Device name:
+      placeholder: Galaxy S23 Ultra
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Device model number:
+      placeholder: SM-S918B
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: OS version:
+      placeholder: Android 13 (One UI 5.1)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Software info:
+      placeholder: |
+        Bootloader: S918BXXU3AWGJ
+        Build number: S918BXXU3AWGJ
+        Baseband: S918BXXU3AWHH
+        CSC: S918BOXM3AWHH, EUX/-/EUX/EUX
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Magisk/KernelSU version:
+      placeholder: v26.1 (26100)
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Hook framework app:
+      placeholder: LSPosed v1.9.1 (6990)
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: KnoxPatch version:
+      placeholder: v0.6.1 (Enhancer v0.4)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce:
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behaviour:
+      placeholder: Describe what should happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual behaviour:
+      placeholder: Describe what happens instead.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs:
+      description: Please provide logs either via [logcat](https://developer.android.com/tools/logcat) or via your hook app manager logs feature.
+      placeholder: Upload logs by clicking the bar on the bottom. Please avoid uploading logs to other websites or using external links.
+    validations:
+      required: true
