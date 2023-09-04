@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -51,8 +58,8 @@
             </intent-filter>
 
             <intent-filter>
-                <action android:name="com.sec.android.intent.action.SEC_APPLICATION_SETTINGS"/>
-                <category android:name="com.sec.android.intent.category.SEC_APPLICATION_SETTINGS"/>
+                <action android:name="com.sec.android.intent.action.SEC_APPLICATION_SETTINGS" />
+                <category android:name="com.sec.android.intent.category.SEC_APPLICATION_SETTINGS" />
             </intent-filter>
 
         </activity>

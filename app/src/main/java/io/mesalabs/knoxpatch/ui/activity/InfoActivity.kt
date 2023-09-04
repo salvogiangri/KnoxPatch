@@ -96,13 +96,15 @@ class InfoActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
-        binding.mainToolbar.setNavigationOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_info, menu)
+        return true
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
         return true
     }
 
@@ -117,7 +119,7 @@ class InfoActivity : AppCompatActivity() {
             return true
         }
 
-        return false
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initAppBanner() {
@@ -299,14 +301,12 @@ class InfoActivity : AppCompatActivity() {
 
             if (uptimeMillis - lastClickTime > 600L) {
                 val url = "https://github.com/BlackMesa123/KnoxPatch"
-
-                try {
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.setData(Uri.parse(url))
+                val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))
+                if (intent.resolveActivity(packageManager) != null) {
                     startActivity(intent)
-                } catch (e: ActivityNotFoundException) {
+                } else {
                     Toast.makeText(this@InfoActivity,
-                        "No suitable activity found", Toast.LENGTH_SHORT).show()
+                        getString(R.string.activity_not_found), Toast.LENGTH_SHORT).show()
                 }
             }
 
