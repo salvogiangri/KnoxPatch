@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Reliz raqami</string>
+    <string name="app_info">Ilova ma’lumoti</string>
     <string name="oneui_version_title">One UI versiyasi</string>
     <string name="oneui_version_title_seplite">One UI Core versiyasi</string>
     <string name="android_version_title">Android versiya</string>
-    <string name="app_info">Ilova ma’lumoti</string>
+    <string name="build_number_title">Reliz raqami</string>
     <string name="knox_version_title">Knox versiyasi</string>
+
+    <string name="activity_not_found">Ushbu amalni yakunlash uchun ilovalar mavjud emas.</string>
 </resources>

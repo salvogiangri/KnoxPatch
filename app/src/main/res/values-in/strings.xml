@@ -12,4 +12,6 @@
     <string name="crypto_warning_dialog_title">Partisi data Anda dienkripsi</string>
     <string name="crypto_warning_dialog_message">Aplikasi ini telah mendeteksi bahwa partisi data perangkat Anda dienkripsi, ini berarti Folder Aman mungkin tidak berfungsi dengan benar.</string>
     <string name="crypto_warning_dialog_btn">Saya mengerti</string>
+
+    <string name="activity_not_found">Tidak ada aplikasi yang tersedia untuk menyelesaikan aksi ini.</string>
 </resources>

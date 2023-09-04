@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">တည်ဆောက်နံပါတ်</string>
+    <string name="app_info">အက်ပ် အချက်အလက်</string>
     <string name="oneui_version_title">One UI ဗားရှင်း</string>
     <string name="oneui_version_title_seplite">One UI Core ဗားရှင်း</string>
     <string name="android_version_title">အန်ဒရွိုက် စနစ်</string>
-    <string name="app_info">အက်ပ် အချက်အလက်</string>
+    <string name="build_number_title">တည်ဆောက်နံပါတ်</string>
     <string name="knox_version_title">Knox ဗားရှင်း</string>
+
+    <string name="activity_not_found">ဤလှုပ်ရှားမှု ပြည့်စုံစေရန် အပ်များ မရနိုင်ပါ။</string>
 </resources>

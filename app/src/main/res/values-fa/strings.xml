@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">شماره ساخت</string>
+    <string name="app_info">اطلاعات برنامه</string>
     <string name="oneui_version_title">نسخه One UI</string>
     <string name="oneui_version_title_seplite">نسخه One UI Core</string>
     <string name="android_version_title">نسخه Android</string>
-    <string name="app_info">اطلاعات برنامه</string>
+    <string name="build_number_title">شماره ساخت</string>
     <string name="knox_version_title">نسخه Knox</string>
+
+    <string name="activity_not_found">خیچ برنامه‌ای برای تکمیل این کار وجود ندارد.</string>
 </resources>

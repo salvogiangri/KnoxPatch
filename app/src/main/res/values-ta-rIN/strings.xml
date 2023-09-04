@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">பில்ட் எண்</string>
+    <string name="app_info">பயன்பாட்டு விவரம்</string>
     <string name="oneui_version_title">One UI பதிப்பு</string>
     <string name="oneui_version_title_seplite">One UI Core பதிப்பு</string>
     <string name="android_version_title">ஆண்ட்ராய்டு பதிப்பு</string>
-    <string name="app_info">பயன்பாட்டு விவரம்</string>
+    <string name="build_number_title">பில்ட் எண்</string>
     <string name="knox_version_title">Knox பதிப்பு</string>
+
+    <string name="activity_not_found">இந்த செயலை முடிப்பதற்கு பயன்பாடுகள் எதுவும் இல்லை.</string>
 </resources>

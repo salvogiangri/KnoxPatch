@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">ගොඩනැගුම් අංකය</string>
+    <string name="app_info">යෙදුම් තතු</string>
     <string name="oneui_version_title">One UI අනුවාදය</string>
     <string name="oneui_version_title_seplite">One UI මධ්‍ය අනුවාදය</string>
     <string name="android_version_title">ඇන්ඩ්‍රොයිඩ් අනුවාදය</string>
-    <string name="app_info">යෙදුම් තතු</string>
+    <string name="build_number_title">ගොඩනැගුම් අංකය</string>
     <string name="knox_version_title">Knox අනුවාදය</string>
+
+    <string name="activity_not_found">මෙම ක්‍රියාව සම්පුර්ණ කිරීමට යෙදුම් නැත.</string>
 </resources>

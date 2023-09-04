@@ -12,4 +12,6 @@
     <string name="crypto_warning_dialog_title">Partiția ta de date este encriptată</string>
     <string name="crypto_warning_dialog_message">Această aplicație a detectat că partiția ta de date este encriptată, asta însemnând că funcția Secure Folder nu va funcționa.</string>
     <string name="crypto_warning_dialog_btn">Am înțeles</string>
+
+    <string name="activity_not_found">Nicio aplicație disponibilă pentru a finaliza această acțiune</string>
 </resources>

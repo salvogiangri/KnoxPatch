@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Загварын дугаар</string>
+    <string name="app_info">Хэрэглүүрийн мэдээлэл</string>
     <string name="oneui_version_title">One UI хувилбар</string>
     <string name="oneui_version_title_seplite">One UI Core хувилбар</string>
     <string name="android_version_title">Android хувилбар</string>
-    <string name="app_info">Хэрэглүүрийн мэдээлэл</string>
+    <string name="build_number_title">Загварын дугаар</string>
     <string name="knox_version_title">Knox хувилбар</string>
+
+    <string name="activity_not_found">Энэ үйлдлийг гүйцэтгэх програм байхгүй</string>
 </resources>

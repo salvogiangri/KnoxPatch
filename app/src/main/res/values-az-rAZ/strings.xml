@@ -1,8 +1,11 @@
 <resources>
-    <string name="build_number_title">Buraxılış nömrəsi</string>
+    <string name="app_info">Proqram məlumatı</string>
     <string name="oneui_version_title">One UI versiyası</string>
     <string name="oneui_version_title_seplite">One UI Core versiyası</string>
     <string name="android_version_title">Android versiyası</string>
-    <string name="app_info">Proqram məlumatı</string>
+    <string name="build_number_title">Buraxılış nömrəsi</string>
     <string name="knox_version_title">Knox versiyası</string>
+
+    <string name="activity_not_found">Bu əməliyyatı tamamlamaq üçün proqram yoxdur.</string>
+
 </resources>

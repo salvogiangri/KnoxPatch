@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">বিল্ড নম্বর</string>
+    <string name="app_info">অ্যাপের তথ্য</string>
     <string name="oneui_version_title">One UI সংস্করণ</string>
     <string name="oneui_version_title_seplite">One UI কোর সংস্করণ</string>
     <string name="android_version_title">অ্যান্ড্রয়েড সংস্করণ</string>
-    <string name="app_info">অ্যাপের তথ্য</string>
+    <string name="build_number_title">বিল্ড নম্বর</string>
     <string name="knox_version_title">Knox সংস্করণ</string>
+
+    <string name="activity_not_found">এই ক্রিয়াকলাপটি সম্পূর্ণ করার জন্য কোনও অ্যাপ সুলভ নেই।</string>
 </resources>

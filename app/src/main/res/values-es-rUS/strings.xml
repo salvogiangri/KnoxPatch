@@ -12,4 +12,6 @@
     <string name="crypto_warning_dialog_title">Tu partición "data" está encriptada</string>
     <string name="crypto_warning_dialog_message">Esta app ha detectado que dicha partición en tu dispositivo está encriptada, por lo que Carpeta Segura podría no funcionar correctamente.</string>
     <string name="crypto_warning_dialog_btn">Entiendo</string>
+
+    <string name="activity_not_found">No hay aplicaciones disponibles para completar esta acción.</string>
 </resources>

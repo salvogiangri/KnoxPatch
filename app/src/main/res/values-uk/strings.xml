@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Номер версії</string>
+    <string name="app_info">Інформація про програму</string>
     <string name="oneui_version_title">Версія One UI</string>
     <string name="oneui_version_title_seplite">Версія One UI Core</string>
     <string name="android_version_title">Версія Android</string>
-    <string name="app_info">Інформація про програму</string>
+    <string name="build_number_title">Номер версії</string>
     <string name="knox_version_title">Версія Knox</string>
+
+    <string name="activity_not_found">Немає доступних програм для виконання цієї дії.</string>
 </resources>

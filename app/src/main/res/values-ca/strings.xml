@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Número de revisió</string>
+    <string name="app_info">"Informació de l'aplicació"</string>
     <string name="oneui_version_title">Versió de One UI</string>
     <string name="oneui_version_title_seplite">Versió One UI Core</string>
     <string name="android_version_title">"Versió d'Android"</string>
-    <string name="app_info">"Informació de l'aplicació"</string>
+    <string name="build_number_title">Número de revisió</string>
     <string name="knox_version_title">Versió de Knox</string>
+
+    <string name="activity_not_found">No hi ha aplicacions disponibles per completar aquesta acció</string>
 </resources>

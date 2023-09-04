@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Broj podverzije</string>
+    <string name="app_info">Informacije o aplikaciji</string>
     <string name="oneui_version_title">One UI verzija</string>
     <string name="oneui_version_title_seplite">Verzija sistema One UI Core</string>
     <string name="android_version_title">Android verzija</string>
-    <string name="app_info">Informacije o aplikaciji</string>
+    <string name="build_number_title">Broj podverzije</string>
     <string name="knox_version_title">Verzija Knox-a</string>
+
+    <string name="activity_not_found">Nema dostupnih aplikacija za završetak ove radnje.</string>
 </resources>

@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">ବିଲ୍ଡ ନମ୍ଵର୍</string>
+    <string name="app_info">ଆପ୍ଲିକେସନ୍‌ ସୂଚନା</string>
     <string name="oneui_version_title">One UI ଭର୍ସନ୍</string>
     <string name="oneui_version_title_seplite">One UI କୋର ଭର୍ସନ୍</string>
     <string name="android_version_title">ଆଣ୍ଡ୍ରୋଏଡ୍ ଭର୍ସନ୍</string>
-    <string name="app_info">ଆପ୍ଲିକେସନ୍‌ ସୂଚନା</string>
+    <string name="build_number_title">ବିଲ୍ଡ ନମ୍ଵର୍</string>
     <string name="knox_version_title">Knox ଭର୍ସନ୍</string>
+
+    <string name="activity_not_found">କୌଣସି ଆପ୍ଲିକେସନ୍ ଏହି କ୍ରିୟାକୁ ସମାପ୍ତ କରିବା ପାଇଁ ଉପଲବ୍ଧ ନାହିଁ।</string>
 </resources>

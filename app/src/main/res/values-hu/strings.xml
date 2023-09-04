@@ -12,4 +12,6 @@
     <string name="crypto_warning_dialog_title">Az adatpartíció titkosítva van</string>
     <string name="crypto_warning_dialog_message">Ez az alkalmazás azt észlelte, hogy az eszköz adatpartíciója titkosítva van, ami azt jelenti, hogy a Biztonságos mappa nem működik megfelelően.</string>
     <string name="crypto_warning_dialog_btn">Megértettem</string>
+
+    <string name="activity_not_found">Nincs elérhető alkalmazás a művelet befejezéséhez.</string>
 </resources>

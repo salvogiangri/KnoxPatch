@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">版本號碼</string>
+    <string name="app_info">應用程式資訊</string>
     <string name="oneui_version_title">One UI 版本</string>
     <string name="oneui_version_title_seplite">One UI Core 版本</string>
     <string name="android_version_title">Android版本</string>
-    <string name="app_info">應用程式資訊</string>
+    <string name="build_number_title">版本號碼</string>
     <string name="knox_version_title">Knox 版本</string>
+
+    <string name="activity_not_found">沒有可用的應用程式來完成此動作。</string>
 </resources>

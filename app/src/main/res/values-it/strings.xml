@@ -12,4 +12,6 @@
     <string name="crypto_warning_dialog_title">Partizione dati criptata</string>
     <string name="crypto_warning_dialog_message">L\'app ha rilevato che la partizione dati del tuo dispositivo è criptata, l\'app Area Personale potrebbe non funzionare correttamente.</string>
     <string name="crypto_warning_dialog_btn">Ho capito</string>
+
+    <string name="activity_not_found">"Nessuna applicazione disponibile per completare l'azione."</string>
 </resources>

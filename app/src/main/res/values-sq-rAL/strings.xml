@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Numri i versionit</string>
+    <string name="app_info">Info për app-et</string>
     <string name="oneui_version_title">Versioni i One UI</string>
     <string name="oneui_version_title_seplite">Versioni i One UI Core</string>
     <string name="android_version_title">Versioni i Android</string>
-    <string name="app_info">Info për app-et</string>
+    <string name="build_number_title">Numri i versionit</string>
     <string name="knox_version_title">Versioni Knox</string>
+
+    <string name="activity_not_found">Nuk disponohen aplikacione për ta kryer këtë veprim.</string>
 </resources>

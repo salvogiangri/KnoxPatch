@@ -12,4 +12,6 @@
     <string name="crypto_warning_dialog_title">Your data partition is encrypted</string>
     <string name="crypto_warning_dialog_message">This app has detected that your device data partition is encrypted, this means Secure Folder might not work properly.</string>
     <string name="crypto_warning_dialog_btn">I understand</string>
+
+    <string name="activity_not_found">No apps available to complete this action.</string>
 </resources>

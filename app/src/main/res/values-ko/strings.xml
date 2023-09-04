@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">빌드번호</string>
+    <string name="app_info">애플리케이션 정보</string>
     <string name="oneui_version_title">One UI 버전</string>
     <string name="oneui_version_title_seplite">One UI Core 버전</string>
     <string name="android_version_title">안드로이드 버전</string>
-    <string name="app_info">애플리케이션 정보</string>
+    <string name="build_number_title">빌드번호</string>
     <string name="knox_version_title">Knox 버전</string>
+
+    <string name="activity_not_found">이 동작을 완료하는 데 사용 가능한 앱이 없습니다.</string>
 </resources>

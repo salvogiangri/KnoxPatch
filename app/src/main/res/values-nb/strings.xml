@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Build-nummer</string>
+    <string name="app_info">Appinformasjon</string>
     <string name="oneui_version_title">One UI-versjon</string>
     <string name="oneui_version_title_seplite">One UI Core-versjon</string>
     <string name="android_version_title">Android-versjon</string>
-    <string name="app_info">Appinformasjon</string>
+    <string name="build_number_title">Build-nummer</string>
     <string name="knox_version_title">Knox-versjon</string>
+
+    <string name="activity_not_found">Ingen apper tilgjengelige for å fullføre denne handlingen.</string>
 </resources>

@@ -1,8 +1,10 @@
 <resources>
-    <string name="build_number_title">Uimhir thógála</string>
+    <string name="app_info">Faisnéis feidhmchláir</string>
     <string name="oneui_version_title">Leagan One UI</string>
     <string name="oneui_version_title_seplite">Leagan One UI Core</string>
     <string name="android_version_title">Leagan Android</string>
-    <string name="app_info">Faisnéis feidhmchláir</string>
+    <string name="build_number_title">Uimhir thógála</string>
     <string name="knox_version_title">Leagan Knox</string>
+
+    <string name="activity_not_found">Níl feidhmchláir ar fáil leis an ngníomh seo a chur i gcrích.</string>
 </resources>
