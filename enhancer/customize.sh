@@ -101,6 +101,20 @@ if $BOOTMODE; then
     touch "$MODPATH/system/lib64/libhal.wsm.samsung.so"
   fi
 
+  if [ -f "/vendor/lib/hw/camera.qcom.so" ]; then
+    if grep -q 'ro.boot.flash.locked' /vendor/lib/hw/camera.qcom.so; then
+      ui_print "I: Applying camera fix..."
+      mkdir -p "$MODPATH/system/vendor/lib/hw"
+      sed 's/ro.boot.flash.locked/ro.camera.notify_nfc/g' "/vendor/lib/hw/camera.qcom.so" > "$MODPATH/system/vendor/lib/hw/camera.qcom.so"
+      [ -f "/vendor/lib/hw/com.qti.chi.override.so" ] && sed 's/ro.boot.flash.locked/ro.camera.notify_nfc/g' "/vendor/lib/hw/com.qti.chi.override.so" > "$MODPATH/system/vendor/lib/hw/com.qti.chi.override.so"
+      if $IS64BIT; then
+        mkdir -p "$MODPATH/system/vendor/lib64/hw"
+        sed 's/ro.boot.flash.locked/ro.camera.notify_nfc/g' "/vendor/lib64/hw/camera.qcom.so" > "$MODPATH/system/vendor/lib64/hw/camera.qcom.so"
+        [ -f "/vendor/lib64/hw/com.qti.chi.override.so" ] && sed 's/ro.boot.flash.locked/ro.camera.notify_nfc/g' "/vendor/lib64/hw/com.qti.chi.override.so" > "$MODPATH/system/vendor/lib64/hw/com.qti.chi.override.so"
+      fi
+    fi
+  fi
+
   set_perm_recursive "$MODPATH" 0 0 0755 0644
 else
   ui_print "- Installing from recovery"
