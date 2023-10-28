@@ -6,6 +6,7 @@
         <item>com.samsung.android.galaxycontinuity</item>
         <item>com.samsung.android.shealthmonitor</item>
         <item>com.samsung.knox.securefolder</item>
+        <item>com.sec.android.app.billing</item>
         <item>com.sec.android.app.shealth</item>
     </string-array>
 </resources>

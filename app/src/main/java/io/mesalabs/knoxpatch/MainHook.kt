@@ -92,6 +92,7 @@ object MainHook : IYukiHookXposedInit {
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, SamsungHealthHooks)
 
+        loadApp(Constants.SAMSUNG_CHECKOUT_PACKAGE_NAME, RootDetectionHooks)
         loadApp(Constants.SAMSUNG_FLOW_PACKAGE_NAME, RootDetectionHooks)
         loadApp(Constants.SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME, RootDetectionHooks)
     }

@@ -78,6 +78,7 @@ object Constants {
     const val FIND_MY_MOBILE_PACKAGE_NAME: String = "com.samsung.android.fmm"
     const val PRIVATE_SHARE_PACKAGE_NAME: String = "com.samsung.android.privateshare"
     const val SAMSUNG_ACCOUNT_PACKAGE_NAME: String = "com.osp.app.signin"
+    const val SAMSUNG_CHECKOUT_PACKAGE_NAME: String = "com.sec.android.app.billing"
     const val SAMSUNG_CLOUD_PACKAGE_NAME: String = "com.samsung.android.scloud"
     const val SAMSUNG_FLOW_PACKAGE_NAME: String = "com.samsung.android.galaxycontinuity"
     const val SAMSUNG_HEALTH_PACKAGE_NAME: String = "com.sec.android.app.shealth"
