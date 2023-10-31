@@ -59,10 +59,12 @@ object PropSpoofHooks : YukiBaseHooker() {
                 beforeHook {
                     val key: String = args(0).string()
 
-                    // Fix legacy Secure Wi-Fi (ICD)
-                    if (key == "ro.build.type" &&
-                            packageName == Constants.SECURE_WIFI_PACKAGE_NAME) {
-                        result = "eng"
+                    // Fixes:
+                    // - Legacy Secure Wi-Fi (ICD)
+                    // - SPCMAgent (SAK)
+                    when (key) {
+                        "ro.build.type" -> result = "eng"
+                        "ro.security.keystore.keytype" -> result = ""
                     }
                 }
             }
