@@ -87,7 +87,11 @@ object MainHook : IYukiHookXposedInit {
             loadApp(Constants.SAMSUNG_CLOUD_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_WALLET_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, SamsungKeystoreHooks)
-            loadApp(Constants.PRIVATE_SHARE_PACKAGE_NAME, SamsungKeystoreHooks)
+            if (sepVersion >= Constants.ONEUI_5_1_1) {
+                loadApp(Constants.QUICK_SHARE_PACKAGE_NAME, SamsungKeystoreHooks)
+            } else {
+                loadApp(Constants.PRIVATE_SHARE_PACKAGE_NAME, SamsungKeystoreHooks)
+            }
         }
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, SamsungHealthHooks)
