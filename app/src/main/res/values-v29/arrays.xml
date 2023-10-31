@@ -10,6 +10,7 @@
         <item>com.samsung.android.scloud</item>
         <item>com.samsung.android.shealthmonitor</item>
         <item>com.samsung.android.spay</item>
+        <item>com.samsung.android.scpm</item>
         <item>com.sec.android.app.billing</item>
         <item>com.sec.android.app.shealth</item>
     </string-array>
