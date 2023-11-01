@@ -22,8 +22,6 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.java.StringClass
 
-import io.mesalabs.knoxpatch.utils.Constants
-
 object PropSpoofHooks : YukiBaseHooker() {
     private const val TAG: String = "PropSpoofHooks"
 
@@ -31,6 +29,27 @@ object PropSpoofHooks : YukiBaseHooker() {
         loggerD(msg = "$TAG: onHook: loaded.")
 
         /* Spoof critical system props */
+        findClass("java.lang.ProcessBuilder").hook {
+            injectMember {
+                constructor {
+                    param(Array<String>::class.java)
+                }
+                beforeHook {
+                    val cmdarray: Array<String> = args(0).array()
+
+                    // Fix SPCMAgent (SAK)
+                    if (cmdarray.size == 2 && cmdarray[0] == "/system/bin/getprop") {
+                        when (cmdarray[1]) {
+                            "ro.build.type" -> args(0).set(
+                                arrayOf("/system/bin/echo", "eng"))
+                            "ro.security.keystore.keytype" -> args(0).set(
+                                arrayOf("/system/bin/echo", ""))
+                        }
+                    }
+                }
+            }
+        }
+
         findClass("android.os.SystemProperties").hook {
             injectMember {
                 method {
