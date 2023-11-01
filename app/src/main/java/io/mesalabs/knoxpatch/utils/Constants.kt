@@ -77,6 +77,7 @@ object Constants {
 
     const val FIND_MY_MOBILE_PACKAGE_NAME: String = "com.samsung.android.fmm"
     const val PRIVATE_SHARE_PACKAGE_NAME: String = "com.samsung.android.privateshare"
+    const val QUICK_SHARE_PACKAGE_NAME: String = "com.samsung.android.app.sharelive"
     const val SAMSUNG_ACCOUNT_PACKAGE_NAME: String = "com.osp.app.signin"
     const val SAMSUNG_CHECKOUT_PACKAGE_NAME: String = "com.sec.android.app.billing"
     const val SAMSUNG_CLOUD_PACKAGE_NAME: String = "com.samsung.android.scloud"
@@ -85,7 +86,6 @@ object Constants {
     const val SAMSUNG_HEALTH_PACKAGE_NAME: String = "com.sec.android.app.shealth"
     const val SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME: String = "com.samsung.android.shealthmonitor"
     const val SAMSUNG_WALLET_PACKAGE_NAME: String = "com.samsung.android.spay"
-    const val QUICK_SHARE_PACKAGE_NAME: String = "com.samsung.android.app.sharelive"
     const val SECURE_FOLDER_PACKAGE_NAME: String = "com.samsung.knox.securefolder"
     const val SECURE_WIFI_PACKAGE_NAME: String = "com.samsung.android.fast"
 

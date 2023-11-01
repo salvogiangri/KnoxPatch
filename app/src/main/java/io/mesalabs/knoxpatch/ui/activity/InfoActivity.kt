@@ -21,7 +21,6 @@ package io.mesalabs.knoxpatch.ui.activity
 import android.view.SemWindowManager.LayoutParams.SEM_EXTENSION_FLAG_RESIZE_FULLSCREEN_WINDOW_ON_SOFT_INPUT
 
 import android.annotation.SuppressLint
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.FeatureInfo
 import android.content.res.ColorStateList
