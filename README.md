@@ -27,7 +27,9 @@
 - Android 14 (One UI 6.x)
 
 ## Supported apps
+- ✅ [Auto Blocker](https://www.samsung.com/uk/support/mobile-devices/protect-your-galaxy-device-with-the-new-auto-blocker-feature/)
 - ➖ [Galaxy Wearable (Gear Manager)](https://www.samsung.com/us/support/owners/app/galaxy-wearable-watch) ([Enhancer](#knoxpatch-enhancer) required)
+- ✅ Samsung Cloud ([FMM](https://www.samsung.com/uk/support/mobile-devices/what-is-find-my-mobile-and-how-can-i-use-it-to-locate-lock-or-wipe-my-device/), [Enhanced data protection](https://www.samsung.com/ae/support/mobile-devices/what-is-the-enhanced-data-protection-function-and-when-can-i-use-it/)*)
 - ✅ [Samsung Flow](https://www.samsung.com/uk/apps/samsung-flow/)
 - ✅ [Samsung Health](https://www.samsung.com/uk/apps/samsung-health/)
 - ✅ [Samsung Health Monitor](https://www.samsung.com/uk/apps/samsung-health-monitor/)
@@ -37,6 +39,8 @@
 - ✅ [Private Share](https://www.samsung.com/uk/support/mobile-devices/how-to-keep-your-personal-data-safe-using-private-share/)
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
 - ❌ [Samsung Wallet (Pay)](https://www.samsung.com/uk/apps/samsung-wallet/)
+
+\* Devices running One UI 5.1 or lower might need USNF or similar for this feature to work correctly.
 
 ## KnoxPatch Enhancer
 
