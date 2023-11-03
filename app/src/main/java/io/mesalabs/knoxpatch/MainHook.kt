@@ -77,6 +77,7 @@ object MainHook : IYukiHookXposedInit {
 
         loadSystem(SystemHooks)
 
+        loadApp(Constants.AUTO_BLOCKER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SAMSUNG_CLOUD_ASSISTANT_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, PropSpoofHooks)

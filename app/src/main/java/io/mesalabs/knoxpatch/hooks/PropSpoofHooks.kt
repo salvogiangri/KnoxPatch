@@ -81,6 +81,7 @@ object PropSpoofHooks : YukiBaseHooker() {
                     val def: String = args(1).string()
 
                     if (key == "ro.boot.flash.locked"
+                        || key == "ro.boot.verifiedbootstate"
                         || key == "ro.boot.warranty_bit"
                         || key == "ro.config.iccc_version") {
                         result = def
