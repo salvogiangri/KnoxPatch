@@ -40,7 +40,7 @@
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
 - ❌ [Samsung Wallet (Pay)](https://www.samsung.com/uk/apps/samsung-wallet/)
 
-\* Devices running One UI 5.1 or lower might need USNF or similar for this feature to work correctly.
+\* Devices running One UI 5.1 or lower might need [USNF](https://github.com/Displax/safetynet-fix/releases/latest) or similar for this feature to work correctly.
 
 ## KnoxPatch Enhancer
 
