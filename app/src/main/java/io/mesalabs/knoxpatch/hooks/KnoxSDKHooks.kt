@@ -22,8 +22,8 @@ import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.loggerD
 import com.highcapable.yukihookapi.hook.type.java.IntType
 
-object SamsungHealthHooks : YukiBaseHooker() {
-    private const val TAG: String = "SamsungHealthHooks"
+object KnoxSDKHooks : YukiBaseHooker() {
+    private const val TAG: String = "KnoxSDKHooks"
 
     override fun onHook() {
         loggerD(msg = "$TAG: onHook: loaded.")

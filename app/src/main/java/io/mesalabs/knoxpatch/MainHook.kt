@@ -24,9 +24,9 @@ import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.log.loggerE
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 
+import io.mesalabs.knoxpatch.hooks.KnoxSDKHooks
 import io.mesalabs.knoxpatch.hooks.PropSpoofHooks
 import io.mesalabs.knoxpatch.hooks.RootDetectionHooks
-import io.mesalabs.knoxpatch.hooks.SamsungHealthHooks
 import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks
 import io.mesalabs.knoxpatch.hooks.SystemHooks
 import io.mesalabs.knoxpatch.utils.BuildUtils
@@ -96,7 +96,7 @@ object MainHook : IYukiHookXposedInit {
             }
         }
 
-        loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, SamsungHealthHooks)
+        loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, KnoxSDKHooks)
 
         loadApp(Constants.SAMSUNG_CHECKOUT_PACKAGE_NAME, RootDetectionHooks)
         loadApp(Constants.SAMSUNG_FLOW_PACKAGE_NAME, RootDetectionHooks)
