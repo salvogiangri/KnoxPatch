@@ -50,24 +50,6 @@ object PropSpoofHooks : YukiBaseHooker() {
             }
         }
 
-        findClass("android.os.SystemProperties").hook {
-            injectMember {
-                method {
-                    name = "get"
-                    param(String::class.java)
-                    returnType = StringClass
-                }
-                beforeHook {
-                    val key: String = args(0).string()
-
-                    if (key == "ro.config.tima"
-                        || key == "ro.config.timaversion") {
-                        result = ""
-                    }
-                }
-            }
-        }
-
         findClass("android.os.SemSystemProperties").hook {
             injectMember {
                 method {
@@ -100,8 +82,7 @@ object PropSpoofHooks : YukiBaseHooker() {
 
                     if (key == "ro.boot.flash.locked"
                         || key == "ro.boot.warranty_bit"
-                        || key == "ro.config.iccc_version"
-                        || key == "ro.security.keystore.keytype") {
+                        || key == "ro.config.iccc_version") {
                         result = def
                     }
                 }
