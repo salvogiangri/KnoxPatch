@@ -126,7 +126,7 @@ dependencies {
     implementation("com.highcapable.yukihookapi:api:1.1.11")
     ksp("com.highcapable.yukihookapi:ksp-xposed:1.1.11")
     // HiddenApiRefinePlugin: https://github.com/RikkaApps/HiddenApiRefinePlugin
-    implementation("dev.rikka.tools.refine:runtime:4.3.0")
+    implementation("dev.rikka.tools.refine:runtime:4.4.0")
 
     compileOnly(project(":stub"))
 }
