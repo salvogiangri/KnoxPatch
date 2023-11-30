@@ -23,8 +23,10 @@ import android.os.Build
 import java.io.IOException
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.factory.constructor
 import com.highcapable.yukihookapi.hook.factory.field
-import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.factory.method
+import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 import com.highcapable.yukihookapi.hook.type.java.IntType
 import com.highcapable.yukihookapi.hook.type.java.StringClass
@@ -57,7 +59,7 @@ object RootDetectionHooks : YukiBaseHooker() {
     )
 
     override fun onHook() {
-        loggerD(msg = "$TAG: onHook: loaded.")
+        YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Spoof root checks */
         if (Build.TAGS.contains("test-keys")) {
@@ -67,12 +69,11 @@ object RootDetectionHooks : YukiBaseHooker() {
             }.get(null).set("release-keys")
         }
 
-        findClass("java.io.File").hook {
-            injectMember {
-                constructor {
-                    param(String::class.java)
-                }
-                beforeHook {
+        "java.io.File".toClass()
+            .constructor {
+                param(String::class.java)
+            }.hook {
+                before {
                     val pathname: String = args(0).string()
 
                     if (pathname.endsWith("su") || pathname.contains("Superuser.apk")) {
@@ -80,12 +81,11 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-
-            injectMember {
-                constructor {
-                    param(String::class.java, String::class.java)
-                }
-                beforeHook {
+        "java.io.File".toClass()
+            .constructor {
+                param(String::class.java, String::class.java)
+            }.hook {
+                before {
                     val child: String = args(1).string()
 
                     if (child == "su" || child == "busybox") {
@@ -93,24 +93,21 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-
-            injectMember {
-                method {
-                    name = "canWrite"
-                    emptyParam()
-                    returnType = BooleanType
-                }
+        "java.io.File".toClass()
+            .method {
+                name = "canWrite"
+                emptyParam()
+                returnType = BooleanType
+            }.hook {
                 replaceToFalse()
             }
-        }
 
-        findClass("java.lang.Runtime").hook {
-            injectMember {
-                method {
-                    name = "exec"
-                    param(String::class.java)
-                }
-                beforeHook {
+        "java.lang.Runtime".toClass()
+            .method {
+                name = "exec"
+                param(String::class.java)
+            }.hook {
+                before {
                     val command: String = args(0).string()
 
                     if (command == "su") {
@@ -118,13 +115,12 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-
-            injectMember {
-                method {
-                    name = "exec"
-                    param(Array<String>::class.java)
-                }
-                beforeHook {
+        "java.lang.Runtime".toClass()
+            .method {
+                name = "exec"
+                param(Array<String>::class.java)
+            }.hook {
+                before {
                     val cmdarray: Array<String> = args(0).array()
 
                     for (cmd in cmdarray) {
@@ -134,15 +130,13 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-        }
 
-        findClass("android.app.ApplicationPackageManager").hook {
-            injectMember {
-                method {
-                    name = "getPackageInfo"
-                    param(String::class.java, IntType)
-                }
-                beforeHook {
+        "android.app.ApplicationPackageManager".toClass()
+            .method {
+                name = "getPackageInfo"
+                param(String::class.java, IntType)
+            }.hook {
+                before {
                     val packageName: String = args(0).string()
 
                     for (cmd in rootPackages) {
@@ -153,7 +147,6 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-        }
     }
 
 }

@@ -19,22 +19,23 @@
 package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.factory.constructor
+import com.highcapable.yukihookapi.hook.factory.method
+import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.type.java.StringClass
 
 object PropSpoofHooks : YukiBaseHooker() {
     private const val TAG: String = "PropSpoofHooks"
 
     override fun onHook() {
-        loggerD(msg = "$TAG: onHook: loaded.")
+        YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Spoof critical system props */
-        findClass("java.lang.ProcessBuilder").hook {
-            injectMember {
-                constructor {
-                    param(Array<String>::class.java)
-                }
-                beforeHook {
+        "java.lang.ProcessBuilder".toClass()
+            .constructor {
+                param(Array<String>::class.java)
+            }.hook {
+                before {
                     val cmdarray: Array<String> = args(0).array()
 
                     // Fix SPCMAgent (SAK)
@@ -48,16 +49,14 @@ object PropSpoofHooks : YukiBaseHooker() {
                     }
                 }
             }
-        }
 
-        findClass("android.os.SemSystemProperties").hook {
-            injectMember {
-                method {
-                    name = "get"
-                    param(String::class.java)
-                    returnType = StringClass
-                }
-                beforeHook {
+        "android.os.SemSystemProperties".toClass()
+            .method {
+                name = "get"
+                param(String::class.java)
+                returnType = StringClass
+            }.hook {
+                before {
                     val key: String = args(0).string()
 
                     // Fixes:
@@ -70,13 +69,13 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-            injectMember {
-                method {
-                    name = "get"
-                    param(String::class.java, String::class.java)
-                    returnType = StringClass
-                }
-                beforeHook {
+        "android.os.SemSystemProperties".toClass()
+            .method {
+                name = "get"
+                param(String::class.java, String::class.java)
+                returnType = StringClass
+            }.hook {
+                before {
                     val key: String = args(0).string()
                     val def: String = args(1).string()
 
@@ -88,7 +87,6 @@ object PropSpoofHooks : YukiBaseHooker() {
                     }
                 }
             }
-        }
     }
 
 }

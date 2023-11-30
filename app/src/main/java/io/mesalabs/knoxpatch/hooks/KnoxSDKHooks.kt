@@ -19,26 +19,25 @@
 package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
+import com.highcapable.yukihookapi.hook.factory.method
+import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.type.java.IntType
 
 object KnoxSDKHooks : YukiBaseHooker() {
     private const val TAG: String = "KnoxSDKHooks"
 
     override fun onHook() {
-        loggerD(msg = "$TAG: onHook: loaded.")
+        YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Disable Knox support */
-        findClass("com.samsung.android.knox.EnterpriseDeviceManager").hook {
-            injectMember {
-                method {
-                    name = "getAPILevel"
-                    emptyParam()
-                    returnType = IntType
-                }
+        "com.samsung.android.knox.EnterpriseDeviceManager".toClass()
+            .method {
+                name = "getAPILevel"
+                emptyParam()
+                returnType = IntType
+            }.hook {
                 replaceTo(-1)
             }
-        }
     }
 
 }

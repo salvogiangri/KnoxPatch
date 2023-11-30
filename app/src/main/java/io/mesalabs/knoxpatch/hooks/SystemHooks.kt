@@ -27,8 +27,9 @@ import java.security.cert.Certificate
 import de.robv.android.xposed.XposedBridge
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
-import com.highcapable.yukihookapi.hook.log.loggerE
+import com.highcapable.yukihookapi.hook.factory.constructor
+import com.highcapable.yukihookapi.hook.factory.method
+import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 import io.mesalabs.knoxpatch.utils.BuildUtils
@@ -38,7 +39,7 @@ object SystemHooks : YukiBaseHooker()  {
     private const val TAG: String = "SystemHooks"
 
     override fun onHook() {
-        loggerD(msg = "$TAG: onHook: loaded.")
+        YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Fix Secure Folder/Work profile */
         val sepVersion: Int = BuildUtils.getSEPVersion()
@@ -54,65 +55,55 @@ object SystemHooks : YukiBaseHooker()  {
 
     private fun applySAKHooks() {
         if (Build.VERSION.SDK_INT >= 31) {
-            findClass("com.android.server.knox.dar.DarManagerService").hook {
-                injectMember {
-                    method {
-                        name = "checkDeviceIntegrity"
-                        param(Array<Certificate>::class.java)
-                        returnType = BooleanType
-                    }
+            "com.android.server.knox.dar.DarManagerService".toClass()
+                .method {
+                    name = "checkDeviceIntegrity"
+                    param(Array<Certificate>::class.java)
+                    returnType = BooleanType
+                }.hook {
                     replaceToTrue()
                 }
-            }
         } else {
-            findClass("com.android.server.pm.PersonaManagerService").hook {
-                injectMember {
-                    method {
-                        name = "isKnoxKeyInstallable"
-                        emptyParam()
-                        returnType = BooleanType
-                    }
+            "com.android.server.pm.PersonaManagerService".toClass()
+                .method {
+                    name = "isKnoxKeyInstallable"
+                    emptyParam()
+                    returnType = BooleanType
+                }.hook {
                     replaceToTrue()
                 }
-            }
         }
     }
 
     private fun applyTIMAHooks() {
-        findClass("com.android.server.pm.PersonaServiceHelper").hook {
-            injectMember {
-                method {
-                    name = "isTimaAvailable"
-                    param(Context::class.java)
-                    returnType = BooleanType
-                }
+        "com.android.server.pm.PersonaServiceHelper".toClass()
+            .method {
+                name = "isTimaAvailable"
+                param(Context::class.java)
+                returnType = BooleanType
+            }.hook {
                 replaceToTrue()
             }
-        }
 
         if (Build.VERSION.SDK_INT >= 29) {
-            findClass("com.android.server.SdpManagerService\$LocalService").hook {
-                injectMember {
-                    method {
-                        name = "isKnoxKeyInstallable"
-                        emptyParam()
-                        returnType = BooleanType
-                    }
-                    replaceToTrue()
-                }
-            }
-        }
-
-        findClass("com.android.server.locksettings.SyntheticPasswordManager").hook {
-            injectMember {
-                method {
-                    name = "isUnifiedKeyStoreSupported"
+            "com.android.server.SdpManagerService\$LocalService".toClass()
+                .method {
+                    name = "isKnoxKeyInstallable"
                     emptyParam()
                     returnType = BooleanType
+                }.hook {
+                    replaceToTrue()
                 }
+        }
+
+        "com.android.server.locksettings.SyntheticPasswordManager".toClass()
+            .method {
+                name = "isUnifiedKeyStoreSupported"
+                emptyParam()
+                returnType = BooleanType
+            }.hook {
                 replaceToTrue()
             }
-        }
 
         findAndDeoptimizeMethod("com.android.server.locksettings.LockSettingsService",
             "verifyToken")
@@ -125,28 +116,24 @@ object SystemHooks : YukiBaseHooker()  {
     }
 
     private fun applyKGHooks() {
-        findClass("com.samsung.android.knoxguard.service.KnoxGuardService").hook {
-            injectMember {
-                constructor {
-                    param(Context::class.java)
-                }
-                beforeHook {
+        "com.samsung.android.knoxguard.service.KnoxGuardService".toClass()
+            .constructor {
+                param(Context::class.java)
+            }.hook {
+                before {
                     UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
                 }
             }
-        }
 
         if (Build.VERSION.SDK_INT >= 30) {
-            findClass("com.samsung.android.knoxguard.service.KnoxGuardSeService").hook {
-                injectMember {
-                    constructor {
-                        param(Context::class.java)
-                    }
-                    beforeHook {
+            "com.samsung.android.knoxguard.service.KnoxGuardSeService".toClass()
+                .constructor {
+                    param(Context::class.java)
+                }.hook {
+                    before {
                         UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
                     }
                 }
-            }
         }
     }
 
@@ -156,13 +143,13 @@ object SystemHooks : YukiBaseHooker()  {
             val clz: Class<*> = Class.forName(className, false, appClassLoader)
             for (m in clz.declaredMethods) {
                 if (methodName == m.name) {
-                    loggerD(msg = "$TAG: findAndDeoptimizeMethod: $m")
+                    YLog.debug(msg = "$TAG: findAndDeoptimizeMethod: $m")
                     XposedBridge::class.java.getDeclaredMethod("deoptimizeMethod", Member::class.java)
                         .invoke(null, m)
                 }
             }
         } catch (e: Throwable) {
-            loggerE(msg = "$TAG: findAndDeoptimizeMethod: $e")
+            YLog.error(msg = "$TAG: findAndDeoptimizeMethod: $e")
         }
     }
 

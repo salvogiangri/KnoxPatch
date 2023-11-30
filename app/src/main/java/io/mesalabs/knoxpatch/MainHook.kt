@@ -21,7 +21,7 @@ package io.mesalabs.knoxpatch
 import com.highcapable.yukihookapi.YukiHookAPI.encase
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
-import com.highcapable.yukihookapi.hook.log.loggerE
+import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 
 import io.mesalabs.knoxpatch.hooks.KnoxSDKHooks
@@ -61,16 +61,16 @@ object MainHook : IYukiHookXposedInit {
          */
         when {
             sepVersion == -1 -> {
-                loggerE(msg = "$TAG: onHook: This module only supports One UI running devices.")
+                YLog.error(msg = "$TAG: onHook: This module only supports One UI running devices.")
                 return@encase
             }
             sepVersion < Constants.ONEUI_1_0 -> {
-                loggerE(msg = "$TAG: onHook: unknown SEP version: $sepVersion")
+                YLog.error(msg = "$TAG: onHook: unknown SEP version: $sepVersion")
                 return@encase
             }
             sepVersion > Constants.ONEUI_6_0 -> {
                 val oneUiVersion: String = BuildUtils.getFormattedOneUIVersion()
-                loggerE(msg = "$TAG: onHook: One UI $oneUiVersion is not yet supported.")
+                YLog.error(msg = "$TAG: onHook: One UI $oneUiVersion is not yet supported.")
                 return@encase
             }
         }

@@ -19,31 +19,29 @@
 package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.log.loggerD
-import com.highcapable.yukihookapi.hook.log.loggerE
+import com.highcapable.yukihookapi.hook.factory.method
+import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
 
 object SamsungKeystoreHooks : YukiBaseHooker() {
     private const val TAG: String = "SamsungKeystoreHooks"
 
     override fun onHook() {
-        loggerD(msg = "$TAG: onHook: loaded.")
+        YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Bypass SAK integrity check */
-        findClass("com.samsung.android.security.keystore.AttestParameterSpec").hook {
-            injectMember {
-                method {
-                    name = "isVerifiableIntegrity"
-                    emptyParam()
-                    returnType = BooleanType
-                }
+        "com.samsung.android.security.keystore.AttestParameterSpec".toClass()
+            .method {
+                name = "isVerifiableIntegrity"
+                emptyParam()
+                returnType = BooleanType
+            }.hook {
                 replaceToTrue()
+            }.onAllFailure {
+                YLog.error(msg = "$TAG: couldn't access class " +
+                        "com.samsung.android.security.keystore.AttestParameterSpec " +
+                        "(${it.javaClass.simpleName})")
             }
-        }.onHookClassNotFoundFailure {
-            loggerE(msg = "$TAG: couldn't access class " +
-                    "com.samsung.android.security.keystore.AttestParameterSpec " +
-                    "(${it.javaClass.simpleName})")
-        }
     }
 
 }
