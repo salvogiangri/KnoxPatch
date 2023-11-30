@@ -123,8 +123,12 @@ dependencies {
     compileOnly("de.robv.android.xposed:api:82")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
     // Yuki: https://github.com/fankes/YukiHookAPI
-    implementation("com.highcapable.yukihookapi:api:1.1.11")
-    ksp("com.highcapable.yukihookapi:ksp-xposed:1.1.11")
+    implementation("com.highcapable.yukihookapi:api:1.2.0") {
+        exclude(group = "androidx.coordinatorlayout", module = "coordinatorlayout")
+        exclude(group = "androidx.drawerlayout", module = "drawerlayout")
+        exclude(group = "androidx.recyclerview", module = "recyclerview")
+    }
+    ksp("com.highcapable.yukihookapi:ksp-xposed:1.2.0")
     // HiddenApiRefinePlugin: https://github.com/RikkaApps/HiddenApiRefinePlugin
     implementation("dev.rikka.tools.refine:runtime:4.4.0")
 
