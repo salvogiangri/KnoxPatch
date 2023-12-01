@@ -50,8 +50,8 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-        "android.os.SemSystemProperties".toClass()
-            .method {
+        "android.os.SemSystemProperties".toClass().apply {
+            method {
                 name = "get"
                 param(String::class.java)
                 returnType = StringClass
@@ -69,8 +69,7 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-        "android.os.SemSystemProperties".toClass()
-            .method {
+            method {
                 name = "get"
                 param(String::class.java, String::class.java)
                 returnType = StringClass
@@ -87,6 +86,8 @@ object PropSpoofHooks : YukiBaseHooker() {
                     }
                 }
             }
+        }
+
     }
 
 }

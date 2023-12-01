@@ -30,18 +30,16 @@ object SamsungKeystoreHooks : YukiBaseHooker() {
         YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Bypass SAK integrity check */
-        "com.samsung.android.security.keystore.AttestParameterSpec".toClass()
-            .method {
+        "com.samsung.android.security.keystore.AttestParameterSpec".toClassOrNull()?.apply {
+            method {
                 name = "isVerifiableIntegrity"
                 emptyParam()
                 returnType = BooleanType
             }.hook {
                 replaceToTrue()
-            }.onAllFailure {
-                YLog.error(msg = "$TAG: couldn't access class " +
-                        "com.samsung.android.security.keystore.AttestParameterSpec " +
-                        "(${it.javaClass.simpleName})")
             }
+        } ?: YLog.error(msg = "$TAG: couldn't access class " +
+                "com.samsung.android.security.keystore.AttestParameterSpec")
     }
 
 }
