@@ -82,7 +82,7 @@ object Constants {
     const val SAMSUNG_ACCOUNT_PACKAGE_NAME: String = "com.osp.app.signin"
     const val SAMSUNG_CHECKOUT_PACKAGE_NAME: String = "com.sec.android.app.billing"
     const val SAMSUNG_CLOUD_PACKAGE_NAME: String = "com.samsung.android.scloud"
-    const val SAMSUNG_CLOUD_ASSISTANT_PACKAGE_NAME: String = "com.samsung.android.scpm"
+    const val SAMSUNG_CLOUD_PLATFORM_MANAGER_PACKAGE_NAME: String = "com.samsung.android.scpm"
     const val SAMSUNG_FLOW_PACKAGE_NAME: String = "com.samsung.android.galaxycontinuity"
     const val SAMSUNG_HEALTH_PACKAGE_NAME: String = "com.sec.android.app.shealth"
     const val SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME: String = "com.samsung.android.shealthmonitor"

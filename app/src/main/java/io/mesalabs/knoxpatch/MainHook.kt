@@ -78,7 +78,7 @@ object MainHook : IYukiHookXposedInit {
         loadSystem(SystemHooks)
 
         loadApp(Constants.AUTO_BLOCKER_PACKAGE_NAME, PropSpoofHooks)
-        loadApp(Constants.SAMSUNG_CLOUD_ASSISTANT_PACKAGE_NAME, PropSpoofHooks)
+        loadApp(Constants.SAMSUNG_CLOUD_PLATFORM_MANAGER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, PropSpoofHooks)
 
@@ -86,7 +86,7 @@ object MainHook : IYukiHookXposedInit {
             loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_CLOUD_PACKAGE_NAME, SamsungKeystoreHooks)
-            loadApp(Constants.SAMSUNG_CLOUD_ASSISTANT_PACKAGE_NAME, SamsungKeystoreHooks)
+            loadApp(Constants.SAMSUNG_CLOUD_PLATFORM_MANAGER_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_WALLET_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, SamsungKeystoreHooks)
             if (sepVersion >= Constants.ONEUI_5_1_1) {
