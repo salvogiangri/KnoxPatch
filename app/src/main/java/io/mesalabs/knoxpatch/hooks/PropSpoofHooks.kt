@@ -43,9 +43,23 @@ object PropSpoofHooks : YukiBaseHooker() {
                         when (cmdarray[1]) {
                             "ro.build.type" -> args(0).set(
                                 arrayOf("/system/bin/echo", "eng"))
-                            "ro.security.keystore.keytype" -> args(0).set(
-                                arrayOf("/system/bin/echo", ""))
                         }
+                    }
+                }
+            }
+
+        "android.os.SystemProperties".toClass()
+            .method {
+                name = "get"
+                param(String::class.java, String::class.java)
+                returnType = StringClass
+            }.hook {
+                before {
+                    val key: String = args(0).string()
+
+                    // Fix SPCMAgent (SAK)
+                    if (key == "ro.build.type") {
+                        result = "eng"
                     }
                 }
             }
@@ -87,7 +101,6 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
         }
-
     }
 
 }
