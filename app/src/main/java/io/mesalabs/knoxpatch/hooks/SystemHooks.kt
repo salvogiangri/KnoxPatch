@@ -31,6 +31,7 @@ import com.highcapable.yukihookapi.hook.factory.constructor
 import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.type.java.BooleanType
+import com.highcapable.yukihookapi.hook.type.java.StringClass
 
 import io.mesalabs.knoxpatch.utils.BuildUtils
 import io.mesalabs.knoxpatch.utils.Constants
@@ -51,6 +52,9 @@ object SystemHooks : YukiBaseHooker()  {
 
         /* Disable KnoxGuard support */
         applyKGHooks()
+
+        /* Disable ASKS */
+        applySPHooks()
     }
 
     private fun applySAKHooks() {
@@ -134,6 +138,39 @@ object SystemHooks : YukiBaseHooker()  {
                         UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
                     }
                 }
+        }
+    }
+
+    private fun applySPHooks() {
+        "android.os.SystemProperties".toClass().apply {
+            method {
+                name = "get"
+                param(String::class.java)
+                returnType = StringClass
+            }.hook {
+                before {
+                    val key: String = args(0).string()
+
+                    if (key == "ro.build.official.release") {
+                        result = "false"
+                    }
+                }
+            }
+
+            method {
+                name = "get"
+                param(String::class.java, String::class.java)
+                returnType = StringClass
+            }.hook {
+                before {
+                    val key: String = args(0).string()
+                    val def: String = args(1).string()
+
+                    if (key == "ro.build.official.release") {
+                        result = def
+                    }
+                }
+            }
         }
     }
 
