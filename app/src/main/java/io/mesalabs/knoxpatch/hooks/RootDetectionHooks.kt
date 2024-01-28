@@ -69,8 +69,8 @@ object RootDetectionHooks : YukiBaseHooker() {
             }.get(null).set("release-keys")
         }
 
-        "java.io.File".toClass()
-            .constructor {
+        "java.io.File".toClass().apply {
+            constructor {
                 param(String::class.java)
             }.hook {
                 before {
@@ -81,8 +81,8 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-        "java.io.File".toClass()
-            .constructor {
+
+            constructor {
                 param(String::class.java, String::class.java)
             }.hook {
                 before {
@@ -93,17 +93,18 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-        "java.io.File".toClass()
-            .method {
+
+            method {
                 name = "canWrite"
                 emptyParam()
                 returnType = BooleanType
             }.hook {
                 replaceToFalse()
             }
+        }
 
-        "java.lang.Runtime".toClass()
-            .method {
+        "java.lang.Runtime".toClass().apply {
+            method {
                 name = "exec"
                 param(String::class.java)
             }.hook {
@@ -115,8 +116,8 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
-        "java.lang.Runtime".toClass()
-            .method {
+
+            method {
                 name = "exec"
                 param(Array<String>::class.java)
             }.hook {
@@ -130,6 +131,7 @@ object RootDetectionHooks : YukiBaseHooker() {
                     }
                 }
             }
+        }
 
         "android.app.ApplicationPackageManager".toClass()
             .method {
