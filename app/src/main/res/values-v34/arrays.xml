@@ -7,11 +7,12 @@
         <item>com.samsung.android.fast</item>
         <item>com.samsung.android.fmm</item>
         <item>com.samsung.android.galaxycontinuity</item>
+        <item>com.samsung.android.kmxservice</item>
         <item>com.samsung.android.rampart</item>
         <item>com.samsung.android.scloud</item>
+        <item>com.samsung.android.scpm</item>
         <item>com.samsung.android.shealthmonitor</item>
         <item>com.samsung.android.spay</item>
-        <item>com.samsung.android.scpm</item>
         <item>com.sec.android.app.billing</item>
         <item>com.sec.android.app.shealth</item>
     </string-array>

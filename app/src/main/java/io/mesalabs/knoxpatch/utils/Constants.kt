@@ -78,6 +78,7 @@ object Constants {
 
     const val AUTO_BLOCKER_PACKAGE_NAME: String = "com.samsung.android.rampart"
     const val FIND_MY_MOBILE_PACKAGE_NAME: String = "com.samsung.android.fmm"
+    const val KNOX_MATRIX_SERVICE_PACKAGE_NAME: String = "com.samsung.android.kmxservice"
     const val PRIVATE_SHARE_PACKAGE_NAME: String = "com.samsung.android.privateshare"
     const val QUICK_SHARE_PACKAGE_NAME: String = "com.samsung.android.app.sharelive"
     const val SAMSUNG_ACCOUNT_PACKAGE_NAME: String = "com.osp.app.signin"

@@ -24,6 +24,7 @@ import com.highcapable.yukihookapi.hook.factory.configs
 import com.highcapable.yukihookapi.hook.log.YLog
 import com.highcapable.yukihookapi.hook.xposed.proxy.IYukiHookXposedInit
 
+import io.mesalabs.knoxpatch.hooks.KnoxMatrixHooks
 import io.mesalabs.knoxpatch.hooks.KnoxSDKHooks
 import io.mesalabs.knoxpatch.hooks.PropSpoofHooks
 import io.mesalabs.knoxpatch.hooks.RootDetectionHooks
@@ -84,6 +85,7 @@ object MainHook : IYukiHookXposedInit {
 
         if (sepVersion >= Constants.ONEUI_1_5) {
             loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SamsungKeystoreHooks)
+            loadApp(Constants.KNOX_MATRIX_SERVICE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_CLOUD_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_CLOUD_PLATFORM_MANAGER_PACKAGE_NAME, SamsungKeystoreHooks)
@@ -97,6 +99,8 @@ object MainHook : IYukiHookXposedInit {
         }
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, KnoxSDKHooks)
+
+        loadApp(Constants.KNOX_MATRIX_SERVICE_PACKAGE_NAME, KnoxMatrixHooks)
 
         loadApp(Constants.SAMSUNG_CHECKOUT_PACKAGE_NAME, RootDetectionHooks)
         loadApp(Constants.SAMSUNG_FLOW_PACKAGE_NAME, RootDetectionHooks)
