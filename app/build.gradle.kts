@@ -106,8 +106,8 @@ android {
 configurations.all {
     exclude(group = "androidx.appcompat", module = "appcompat")
     exclude(group = "androidx.core", module = "core")
-    exclude(group = "androidx.customview", module = "customview")
     exclude(group = "androidx.fragment", module = "fragment")
+    exclude(group = "androidx.recyclerview", module = "recyclerview")
 }
 
 dependencies {
@@ -117,19 +117,15 @@ dependencies {
         exclude(group = "io.github.oneuiproject.sesl", module = "viewpager2")
     }
     // AndroidX: https://developer.android.com/jetpack/androidx/versions
-    implementation("androidx.viewpager2:viewpager2:1.0.0") {
-        exclude(group = "androidx.recyclerview", module = "recyclerview")
-    }
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
     // Xposed: https://github.com/LSPosed
     compileOnly("de.robv.android.xposed:api:82")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
     // Yuki: https://github.com/fankes/YukiHookAPI
-    implementation("com.highcapable.yukihookapi:api:1.2.0") {
-        exclude(group = "androidx.coordinatorlayout", module = "coordinatorlayout")
-        exclude(group = "androidx.drawerlayout", module = "drawerlayout")
-        exclude(group = "androidx.recyclerview", module = "recyclerview")
+    implementation("com.highcapable.yukihookapi:api:1.2.1") {
+        exclude(group = "androidx.preference", module = "preference")
     }
-    ksp("com.highcapable.yukihookapi:ksp-xposed:1.2.0")
+    ksp("com.highcapable.yukihookapi:ksp-xposed:1.2.1")
     // HiddenApiRefinePlugin: https://github.com/RikkaApps/HiddenApiRefinePlugin
     implementation("dev.rikka.tools.refine:runtime:4.4.0")
 
