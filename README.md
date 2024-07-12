@@ -3,13 +3,13 @@
   <br>
   <a href="https://apt.izzysoft.de/fdroid/index/apk/io.mesalabs.knoxpatch"><img loading="lazy" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" width="170"/></a>
   <br>
-  <a href="https://github.com/BlackMesa123/KnoxPatch/releases/latest"><img loading="lazy" src="https://img.shields.io/github/v/release/BlackMesa123/KnoxPatch?style=flat-square"/></a>
-  <img loading="lazy" src="https://img.shields.io/github/repo-size/BlackMesa123/KnoxPatch?style=flat-square"/>
-  <a href="https://tooomm.github.io/github-release-stats/?username=BlackMesa123&repository=KnoxPatch"><img loading="lazy" src="https://img.shields.io/github/downloads/BlackMesa123/KnoxPatch/total?style=flat-square"/></a>
-  <a href="https://github.com/BlackMesa123/KnoxPatch/commits/main"><img loading="lazy" src="https://img.shields.io/github/last-commit/BlackMesa123/KnoxPatch/main?style=flat-square"/></a>
-  <a href="https://github.com/BlackMesa123/KnoxPatch/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/BlackMesa123/KnoxPatch?style=flat-square"/></a>
-  <a href="https://github.com/BlackMesa123/KnoxPatch/graphs/contributors"><img loading="lazy" src="https://img.shields.io/github/contributors/BlackMesa123/KnoxPatch?style=flat-square"/></a>
-  <a href="https://github.com/BlackMesa123/KnoxPatch/actions"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/BlackMesa123/KnoxPatch/android.yml?style=flat-square"/></a>
+  <a href="https://github.com/salvogiangri/KnoxPatch/releases/latest"><img loading="lazy" src="https://img.shields.io/github/v/release/salvogiangri/KnoxPatch?style=flat-square"/></a>
+  <img loading="lazy" src="https://img.shields.io/github/repo-size/salvogiangri/KnoxPatch?style=flat-square"/>
+  <a href="https://tooomm.github.io/github-release-stats/?username=salvogiangri&repository=KnoxPatch"><img loading="lazy" src="https://img.shields.io/github/downloads/salvogiangri/KnoxPatch/total?style=flat-square"/></a>
+  <a href="https://github.com/salvogiangri/KnoxPatch/commits/main"><img loading="lazy" src="https://img.shields.io/github/last-commit/salvogiangri/KnoxPatch/main?style=flat-square"/></a>
+  <a href="https://github.com/salvogiangri/KnoxPatch/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/salvogiangri/KnoxPatch?style=flat-square"/></a>
+  <a href="https://github.com/salvogiangri/KnoxPatch/graphs/contributors"><img loading="lazy" src="https://img.shields.io/github/contributors/salvogiangri/KnoxPatch?style=flat-square"/></a>
+  <a href="https://github.com/salvogiangri/KnoxPatch/actions"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/salvogiangri/KnoxPatch/android.yml?style=flat-square"/></a>
   <br><br>
   An <a href="https://github.com/LSPosed/LSPosed">LSPosed</a> module to get Samsung apps/features working again in your rooted Galaxy device.
   <br><br>
@@ -48,7 +48,7 @@ KnoxPatch Enhancer is a flashable zip that will take care of the (currently) non
 
 - Via the [Magisk](https://github.com/topjohnwu/Magisk)/[KernelSU](https://github.com/tiann/KernelSU) app (fix Galaxy Wearable apps/Smart View):
 
-  Download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it from the "Modules" tab inside the Magisk/KernelSU app. The app will then show an "Enhanced" badge if the module is installed and active:
+  Download the module zip from the [latest release](https://github.com/salvogiangri/KnoxPatch/releases/latest) and install it from the "Modules" tab inside the Magisk/KernelSU app. The app will then show an "Enhanced" badge if the module is installed and active:
 
 <p align="center">
   <img loading="lazy" src="readme-res/kp-enhancer.jpg" width="35%" />
@@ -56,7 +56,7 @@ KnoxPatch Enhancer is a flashable zip that will take care of the (currently) non
 
 - Via a custom recovery (fix Secure Folder on legacy devices):
 
-  Legacy devices running One UI 2.x or 3.x with [FBE](https://source.android.com/docs/security/features/encryption/file-based) require additional patches in the system partition to fix Secure Folder. Download the module zip from the [latest release](https://github.com/BlackMesa123/KnoxPatch/releases/latest) and install it via a custom recovery, this will apply the necessary patches to fix Secure Folder. The zip will also create a backup of your original system files, flashing it again will restore them.
+  Legacy devices running One UI 2.x or 3.x with [FBE](https://source.android.com/docs/security/features/encryption/file-based) require additional patches in the system partition to fix Secure Folder. Download the module zip from the [latest release](https://github.com/salvogiangri/KnoxPatch/releases/latest) and install it via a custom recovery, this will apply the necessary patches to fix Secure Folder. The zip will also create a backup of your original system files, flashing it again will restore them.
 
 ## Credits
 - Samsung
@@ -85,4 +85,4 @@ KnoxPatch Enhancer is a flashable zip that will take care of the (currently) non
 ```
 
 ## Stargazers over time
-[![Stargazers over time](https://starchart.cc/BlackMesa123/KnoxPatch.svg)](https://starchart.cc/BlackMesa123/KnoxPatch)
+[![Stargazers over time](https://starchart.cc/salvogiangri/KnoxPatch.svg)](https://starchart.cc/salvogiangri/KnoxPatch)

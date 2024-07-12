@@ -299,7 +299,7 @@ class InfoActivity : AppCompatActivity() {
             val uptimeMillis: Long = SystemClock.uptimeMillis()
 
             if (uptimeMillis - lastClickTime > 600L) {
-                val url = "https://github.com/BlackMesa123/KnoxPatch"
+                val url = "https://github.com/salvogiangri/KnoxPatch"
                 val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))
                 if (intent.resolveActivity(packageManager) != null) {
                     startActivity(intent)
