@@ -1,8 +1,6 @@
 <p align="center">
   <img loading="lazy" src="readme-res/kp-readme-header.png" width="75%"/>
   <br>
-  <a href="https://apt.izzysoft.de/fdroid/index/apk/io.mesalabs.knoxpatch"><img loading="lazy" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" width="170"/></a>
-  <br>
   <a href="https://github.com/salvogiangri/KnoxPatch/releases/latest"><img loading="lazy" src="https://img.shields.io/github/v/release/salvogiangri/KnoxPatch?style=flat-square"/></a>
   <img loading="lazy" src="https://img.shields.io/github/repo-size/salvogiangri/KnoxPatch?style=flat-square"/>
   <a href="https://tooomm.github.io/github-release-stats/?username=salvogiangri&repository=KnoxPatch"><img loading="lazy" src="https://img.shields.io/github/downloads/salvogiangri/KnoxPatch/total?style=flat-square"/></a>
