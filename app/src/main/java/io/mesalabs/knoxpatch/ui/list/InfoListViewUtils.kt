@@ -84,10 +84,10 @@ object InfoListViewUtils {
             }
 
             if (knoxMLApp != null) {
-                knoxVersion += "\n" + context.getString(R.string.knox_version_knox_ml) + " "
-
-                val knoxMLVersion: String = knoxMLApp.versionName
-                knoxVersion += knoxMLVersion.substring(0, knoxMLVersion.length - 3)
+                knoxMLApp.versionName?.let {
+                    knoxVersion += "\n" + context.getString(R.string.knox_version_knox_ml) + " "
+                    knoxVersion += it.substring(0, it.length - 3)
+                }
             }
         } catch (e: PackageManager.NameNotFoundException) {
             // no-op

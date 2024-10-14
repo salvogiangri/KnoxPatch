@@ -125,6 +125,7 @@ class InfoActivity : AppCompatActivity() {
         binding.mainAppIcon.setImageDrawable(
             packageManager.getApplicationIcon(applicationInfo))
         binding.mainAppVersion.text = getModuleVersion()
+        binding.mainAppGithub.tooltipText = getString(R.string.github)
         binding.mainAppGithub.setOnClickListener(GitHubIconListener())
     }
 

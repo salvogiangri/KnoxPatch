@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    id("com.google.devtools.ksp")
-    id("dev.rikka.tools.refine")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.rikka.refine)
     id("KnoxPatchPlugin")
 }
 
@@ -13,13 +13,13 @@ val releaseKeyPassword: String? by rootProject
 
 android {
     namespace = "io.mesalabs.knoxpatch"
-    compileSdk = 34
-    buildToolsVersion = "34.0.0"
+    compileSdk = 35
+    buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "io.mesalabs.knoxpatch"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = Config.versionCode
         versionName = Config.versionName
     }
@@ -31,15 +31,6 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     signingConfigs {
@@ -103,31 +94,25 @@ android {
     }
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 configurations.all {
-    exclude(group = "androidx.appcompat", module = "appcompat")
     exclude(group = "androidx.core", module = "core")
-    exclude(group = "androidx.fragment", module = "fragment")
-    exclude(group = "androidx.recyclerview", module = "recyclerview")
+    exclude(group = "androidx.core", module = "core-ktx")
 }
 
 dependencies {
-    // Sesl: https://github.com/OneUIProject/oneui-core/tree/sesl4
-    implementation("io.github.oneuiproject.sesl:appcompat:1.4.0")
-    implementation("io.github.oneuiproject.sesl:material:1.5.0") {
-        exclude(group = "io.github.oneuiproject.sesl", module = "viewpager2")
+    implementation(libs.sesl.appcompat)
+    implementation(libs.sesl.material)
+    compileOnly(libs.xposed.api)
+    implementation(libs.yukihookapi.api) {
+        exclude(group = "androidx.appcompat", module = "appcompat")
+        exclude(group = "androidx.preference", module = "preference-ktx")
     }
-    // AndroidX: https://developer.android.com/jetpack/androidx/versions
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
-    // Xposed: https://github.com/LSPosed
-    compileOnly("de.robv.android.xposed:api:82")
-    implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
-    // Yuki: https://github.com/fankes/YukiHookAPI
-    implementation("com.highcapable.yukihookapi:api:1.2.1") {
-        exclude(group = "androidx.preference", module = "preference")
-    }
-    ksp("com.highcapable.yukihookapi:ksp-xposed:1.2.1")
-    // HiddenApiRefinePlugin: https://github.com/RikkaApps/HiddenApiRefinePlugin
-    implementation("dev.rikka.tools.refine:runtime:4.4.0")
-
-    compileOnly(project(":stub"))
+    ksp(libs.yukihookapi.ksp)
+    implementation(libs.lsposed.hiddenapibypass)
+    implementation(libs.rikka.refine.runtime)
+    compileOnly(projects.stub)
 }

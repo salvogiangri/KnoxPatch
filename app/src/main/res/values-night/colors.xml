@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="sep_theme_round_and_bg_color">#ff010101</color>
-    <color name="sep_theme_background_color">#ff171717</color>
-    <color name="sep_theme_functional_green_color">#ff5ad69e</color>
+    <color name="sep_theme_round_and_bg_color">#ff010102</color>
+    <color name="sep_theme_background_color">#ff17171a</color>
+    <color name="sep_theme_functional_green_color">#ff58db9c</color>
 
-    <color name="sep_theme_main_switch_off_background_color">#ff171717</color>
-    <color name="sep_theme_main_switch_on_background_color">#ff2d2d2d</color>
-    <color name="sep_theme_main_switch_off_text_color">#fffafafa</color>
+    <color name="sep_theme_main_switch_off_background_color">#ff17171a</color>
+    <color name="sep_theme_main_switch_on_background_color">#ff2d2d30</color>
+    <color name="sep_theme_main_switch_off_text_color">#fffafaff</color>
 
-    <color name="info_app_name_color">#fffafafa</color>
-    <color name="info_app_version_color">#ff999999</color>
-    <color name="info_github_icon_color">#ff999999</color>
+    <color name="info_app_name_color">#fffafaff</color>
+    <color name="info_app_version_color">#ffa3a3a7</color>
+    <color name="info_github_icon_color">#ffa3a3a7</color>
 </resources>

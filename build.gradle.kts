@@ -1,27 +1,15 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.5.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0")
-        classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.0-1.0.24")
-        classpath("dev.rikka.tools.refine:gradle-plugin:4.4.0")
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://jitpack.io")
-        maven(url = "https://api.xposed.info")
+subprojects {
+    afterEvaluate {
+        extensions.findByType<KotlinProjectExtension>()?.apply {
+            jvmToolchain(17)
+        }
     }
-}
-
-tasks.register("clean", Delete::class.java) {
-    delete(rootProject.layout.buildDirectory)
 }

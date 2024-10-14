@@ -2,6 +2,6 @@
 <resources>
 
     <dimen name="sep_main_switch_padding_horizontal">12.0dp</dimen>
-    <dimen name="sep_main_switch_text_size">20.0sp</dimen>
+    <dimen name="sep_main_switch_text_size">18.0sp</dimen>
 
 </resources>

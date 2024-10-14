@@ -1,0 +1,36 @@
+[versions]
+agp = "8.6.0"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.25"
+# Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
+appcompat = "1.7.0+1.0.34-sesl6+rev4"
+material = "1.12.0+1.0.23-sesl6+rev1"
+# AndroidX: https://developer.android.com/jetpack/androidx/versions
+annotation = "1.8.2"
+# Xposed: https://github.com/rovo89/XposedBridge
+xposed = "82"
+# YukiHookAPI: https://github.com/HighCapable/YukiHookAPI
+yukihookapi = "1.2.1"
+# AndroidHiddenApiBypass: https://github.com/LSPosed/AndroidHiddenApiBypass
+hiddenapibypass = "4.3"
+# HiddenApiRefinePlugin: https://github.com/RikkaApps/HiddenApiRefinePlugin
+refine = "4.4.0"
+
+[libraries]
+sesl-appcompat = { group = "sesl.androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+sesl-material = { group = "sesl.com.google.android.material", name = "material", version.ref = "material" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+xposed-api = { group = "de.robv.android.xposed", name = "api", version.ref = "xposed" }
+yukihookapi-api = { group = "com.highcapable.yukihookapi", name = "api", version.ref = "yukihookapi" }
+yukihookapi-ksp = { group = "com.highcapable.yukihookapi", name = "ksp-xposed", version.ref = "yukihookapi" }
+lsposed-hiddenapibypass = { group = "org.lsposed.hiddenapibypass", name = "hiddenapibypass", version.ref = "hiddenapibypass" }
+rikka-refine-annotationprocessor = { group = "dev.rikka.tools.refine", name = "annotation-processor", version.ref = "refine" }
+rikka-refine-annotation = { group = "dev.rikka.tools.refine", name = "annotation", version.ref = "refine" }
+rikka-refine-runtime = { group = "dev.rikka.tools.refine", name = "runtime", version.ref = "refine" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+rikka-refine = { id = "dev.rikka.tools.refine", version.ref = "refine" }
