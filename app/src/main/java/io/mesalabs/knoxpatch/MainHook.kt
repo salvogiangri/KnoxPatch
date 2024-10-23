@@ -82,6 +82,7 @@ object MainHook : IYukiHookXposedInit {
         loadApp(Constants.SAMSUNG_CLOUD_PLATFORM_MANAGER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_FOLDER_PACKAGE_NAME, PropSpoofHooks)
         loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, PropSpoofHooks)
+        loadApp(Constants.SMART_THINGS_PACKAGE_NAME, PropSpoofHooks)
 
         if (sepVersion >= Constants.ONEUI_1_5) {
             loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SamsungKeystoreHooks)
@@ -91,6 +92,7 @@ object MainHook : IYukiHookXposedInit {
             loadApp(Constants.SAMSUNG_CLOUD_PLATFORM_MANAGER_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_WALLET_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SECURE_WIFI_PACKAGE_NAME, SamsungKeystoreHooks)
+            loadApp(Constants.SMART_THINGS_PACKAGE_NAME, SamsungKeystoreHooks)
             if (sepVersion >= Constants.ONEUI_5_1_1) {
                 loadApp(Constants.QUICK_SHARE_PACKAGE_NAME, SamsungKeystoreHooks)
             } else {
@@ -105,6 +107,7 @@ object MainHook : IYukiHookXposedInit {
         loadApp(Constants.SAMSUNG_CHECKOUT_PACKAGE_NAME, RootDetectionHooks)
         loadApp(Constants.SAMSUNG_FLOW_PACKAGE_NAME, RootDetectionHooks)
         loadApp(Constants.SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME, RootDetectionHooks)
+        loadApp(Constants.SMART_THINGS_PACKAGE_NAME, RootDetectionHooks)
     }
 
 }

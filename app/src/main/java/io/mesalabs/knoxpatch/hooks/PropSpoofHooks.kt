@@ -48,6 +48,22 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
+        "java.lang.Properties".toClass()
+            .method {
+                name = "getProperty"
+                param(String::class.java, String::class.java)
+                returnType = StringClass
+            }.hook {
+                before {
+                    val key: String = args(0).string()
+
+                    // Fix SmartThings
+                    if (key == "ro.boot.flash.locked") {
+                        result = "1"
+                    }
+                }
+            }
+
         "android.os.SystemProperties".toClass()
             .method {
                 name = "get"
