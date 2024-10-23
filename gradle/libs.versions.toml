@@ -1,12 +1,12 @@
 [versions]
-agp = "8.6.0"
+agp = "8.6.1"
 kotlin = "2.0.21"
 ksp = "2.0.21-1.0.25"
 # Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
-appcompat = "1.7.0+1.0.34-sesl6+rev4"
+appcompat = "1.7.0+1.0.34-sesl6+rev5"
 material = "1.12.0+1.0.23-sesl6+rev1"
 # AndroidX: https://developer.android.com/jetpack/androidx/versions
-annotation = "1.8.2"
+annotation = "1.9.0"
 # Xposed: https://github.com/rovo89/XposedBridge
 xposed = "82"
 # YukiHookAPI: https://github.com/HighCapable/YukiHookAPI
