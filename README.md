@@ -33,6 +33,7 @@
 - ✅ [Samsung Health Monitor](https://www.samsung.com/uk/apps/samsung-health-monitor/)
 - ✅ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) ([Enhancer](#knoxpatch-enhancer) might be required)
 - ✅ [Secure Wi-Fi](https://www.samsung.com/uk/support/mobile-devices/what-is-the-secure-wifi-feature-and-how-do-i-enable-or-use-it/)
+- ✅ [SmartThings](https://www.samsung.com/uk/smartthings/app/)
 - ➖ [Smart View](https://www.samsung.com/uk/tvs/tv-buying-guide/what-is-samsung-smart-view/) ([Enhancer](#knoxpatch-enhancer) required)
 - ✅ [Private Share](https://www.samsung.com/uk/support/mobile-devices/how-to-keep-your-personal-data-safe-using-private-share/)*
 - ❌ [Samsung Pass](https://www.samsung.com/uk/apps/samsung-pass/)
