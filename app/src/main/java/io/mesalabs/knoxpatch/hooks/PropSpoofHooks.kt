@@ -48,7 +48,7 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-        "java.lang.Properties".toClass()
+        "java.util.Properties".toClass()
             .method {
                 name = "getProperty"
                 param(String::class.java, String::class.java)
