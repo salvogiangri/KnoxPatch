@@ -1,10 +1,10 @@
 [versions]
-agp = "8.7.2"
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.28"
+agp = "8.7.3"
+kotlin = "2.1.0"
+ksp = "2.1.0-1.0.29"
 # Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
 appcompat = "1.7.0+1.0.34-sesl6+rev6"
-material = "1.12.0+1.0.23-sesl6+rev1"
+material = "1.12.0+1.0.23-sesl6+rev2"
 # AndroidX: https://developer.android.com/jetpack/androidx/versions
 annotation = "1.9.1"
 # Xposed: https://github.com/rovo89/XposedBridge
