@@ -56,8 +56,12 @@ object InfoListViewUtils {
     }
 
     fun isKnoxAvailable(): Boolean {
-        val currentVersion: KnoxContainerVersion = SemPersonaManager.getKnoxContainerVersion()
-        return currentVersion >= KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_2_0
+        return if (Build.VERSION.SDK_INT < 35) {
+            val currentVersion: KnoxContainerVersion = SemPersonaManager.getKnoxContainerVersion()
+            currentVersion >= KnoxContainerVersion.KNOX_CONTAINER_VERSION_2_2_0
+        } else {
+            true
+        }
     }
 
     @Suppress("DEPRECATION")
@@ -74,20 +78,11 @@ object InfoListViewUtils {
 
         // Knox ML version
         try {
-            val knoxMLApp: PackageInfo? = if (Build.VERSION.SDK_INT >= 33) {
-                context.packageManager.getPackageInfo(
-                    "com.samsung.android.app.kfa",
-                    PackageManager.PackageInfoFlags.of(PackageManager.GET_META_DATA.toLong()))
-            } else {
-                context.packageManager.getPackageInfo(
-                    "com.samsung.android.app.kfa", PackageManager.GET_META_DATA)
-            }
-
-            if (knoxMLApp != null) {
-                knoxMLApp.versionName?.let {
-                    knoxVersion += "\n" + context.getString(R.string.knox_version_knox_ml) + " "
-                    knoxVersion += it.substring(0, it.length - 3)
-                }
+            val knoxMLApp: PackageInfo = context.packageManager.getPackageInfo(
+                "com.samsung.android.app.kfa", PackageManager.GET_META_DATA)
+            knoxMLApp.versionName?.let {
+                knoxVersion += "\n" + context.getString(R.string.knox_version_knox_ml) + " "
+                knoxVersion += it.substring(0, it.length - 3)
             }
         } catch (e: PackageManager.NameNotFoundException) {
             // no-op
@@ -106,6 +101,20 @@ object InfoListViewUtils {
             if (hdmVersion != null) {
                 knoxVersion += "\n" + context.getString(R.string.knox_version_knox_hdm) + " "
                 knoxVersion += hdmVersion
+            }
+        }
+
+        // Knox POS SDK version
+        if (Build.VERSION.SDK_INT >= 35) {
+            try {
+                val knoxMposApp: PackageInfo = context.packageManager.getPackageInfo(
+                    "com.samsung.android.knox.mpos", PackageManager.GET_META_DATA)
+                val knoxMposVer: String? = knoxMposApp.applicationInfo?.metaData?.getString("KNOX_MPOS_VERSION")
+                if (!knoxMposVer.isNullOrBlank()) {
+                    knoxVersion += "\n" + knoxMposVer
+                }
+            } catch (e: PackageManager.NameNotFoundException) {
+                // no-op
             }
         }
 

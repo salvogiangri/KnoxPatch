@@ -120,14 +120,16 @@ object SystemHooks : YukiBaseHooker()  {
     }
 
     private fun applyKGHooks() {
-        "com.samsung.android.knoxguard.service.KnoxGuardService".toClass()
-            .constructor {
-                param(Context::class.java)
-            }.hook {
-                before {
-                    UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
+        if (Build.VERSION.SDK_INT < 35) {
+            "com.samsung.android.knoxguard.service.KnoxGuardService".toClass()
+                .constructor {
+                    param(Context::class.java)
+                }.hook {
+                    before {
+                        UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
+                    }
                 }
-            }
+        }
 
         if (Build.VERSION.SDK_INT >= 30) {
             "com.samsung.android.knoxguard.service.KnoxGuardSeService".toClass()
