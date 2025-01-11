@@ -21,22 +21,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y apksigner
 
-    - name: Set up JDK 17
+    - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
-        java-version: 17
+        java-version: 21
         distribution: 'temurin'
         cache: 'gradle'
-
-    - name: Write GitHub Packages token
-      run: |
-        if [ ! -z "${{ secrets.GPR_KEY }}" ]; then
-        echo gpr.user='${{ secrets.GPR_USER }}' >> gradle.properties
-        echo gpr.key='${{ secrets.GPR_KEY }}' >> gradle.properties
-        else
-        echo "Please set GPR_USER and GPR_KEY secrets in your repository."
-        exit 1
-        fi
 
     - name: Write key
       if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

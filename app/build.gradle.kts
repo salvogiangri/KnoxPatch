@@ -95,7 +95,7 @@ android {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 configurations.all {
@@ -104,8 +104,18 @@ configurations.all {
 }
 
 dependencies {
-    implementation(libs.sesl.appcompat)
-    implementation(libs.sesl.material)
+    // Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl7-androidx-main
+    implementation(fileTree("src/main/libs") { include("*.aar") })
+
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.appcompat.resources)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.collection)
+    implementation(libs.androidx.constraintlayout) {
+        exclude(group = "androidx.appcompat", module = "appcompat")
+    }
+    implementation(libs.androidx.customview.poolingcontainer)
+    implementation(libs.androidx.emoji2.viewshelper)
     compileOnly(libs.xposed.api)
     implementation(libs.yukihookapi.api) {
         exclude(group = "androidx.appcompat", module = "appcompat")

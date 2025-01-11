@@ -9,7 +9,7 @@ plugins {
 subprojects {
     afterEvaluate {
         extensions.findByType<KotlinProjectExtension>()?.apply {
-            jvmToolchain(17)
+            jvmToolchain(21)
         }
     }
 }
