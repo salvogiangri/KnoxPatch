@@ -11,6 +11,7 @@ collection = "1.4.5"
 constraintlayout = "2.2.0"
 customview-poolingcontainer = "1.0.0"
 emoji2 = "1.5.0"
+window = "1.3.0"
 # Xposed: https://github.com/rovo89/XposedBridge
 xposed = "82"
 # YukiHookAPI: https://github.com/HighCapable/YukiHookAPI
@@ -29,6 +30,7 @@ androidx-collection = { group = "androidx.collection", name = "collection", vers
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-customview-poolingcontainer = { group = "androidx.customview", name = "customview-poolingcontainer", version.ref = "customview-poolingcontainer" }
 androidx-emoji2-viewshelper = { group = "androidx.emoji2", name = "emoji2-views-helper", version.ref = "emoji2" }
+androidx-window = { group = "androidx.window", name = "window", version.ref = "window" }
 xposed-api = { group = "de.robv.android.xposed", name = "api", version.ref = "xposed" }
 yukihookapi-api = { group = "com.highcapable.yukihookapi", name = "api", version.ref = "yukihookapi" }
 yukihookapi-ksp = { group = "com.highcapable.yukihookapi", name = "ksp-xposed", version.ref = "yukihookapi" }

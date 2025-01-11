@@ -67,7 +67,8 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:background="?attr/actionBarItemBackground"
-                app:srcCompat="@drawable/info_page_github" />
+                app:srcCompat="@drawable/info_page_github"
+                android:scaleType="centerInside" />
 
         </RelativeLayout>
         

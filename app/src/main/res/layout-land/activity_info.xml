@@ -71,7 +71,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="?attr/actionBarItemBackground"
                 app:srcCompat="@drawable/info_page_github"
-                android:tooltipText="@string/github" />
+                android:scaleType="centerInside" />
 
         </RelativeLayout>
 

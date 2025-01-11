@@ -116,6 +116,7 @@ dependencies {
     }
     implementation(libs.androidx.customview.poolingcontainer)
     implementation(libs.androidx.emoji2.viewshelper)
+    implementation(libs.androidx.window)
     compileOnly(libs.xposed.api)
     implementation(libs.yukihookapi.api) {
         exclude(group = "androidx.appcompat", module = "appcompat")

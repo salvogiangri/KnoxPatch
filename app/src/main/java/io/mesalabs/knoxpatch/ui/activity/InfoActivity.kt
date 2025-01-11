@@ -25,6 +25,7 @@ import android.content.Intent
 import android.content.pm.FeatureInfo
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -33,6 +34,7 @@ import android.os.SystemClock
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.SemWindowManager
@@ -52,6 +54,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory
+import androidx.window.layout.WindowMetricsCalculator
 
 import com.highcapable.yukihookapi.YukiHookAPI
 
@@ -160,6 +163,9 @@ class InfoActivity : AppCompatActivity() {
         val switchView: MainSwitchViewBinding = binding.mainSwitchView
         val isModuleEnabled: Boolean = YukiHookAPI.Status.isModuleActive
 
+        val mlp: ViewGroup.MarginLayoutParams = switchView.root.layoutParams as ViewGroup.MarginLayoutParams
+        mlp.setMargins(getListHorizontalPadding(), 0, getListHorizontalPadding(), 0)
+
         DrawableCompat.setTintList(
             DrawableCompat.wrap(switchView.root.background).mutate(),
             ColorStateList.valueOf(
@@ -204,9 +210,15 @@ class InfoActivity : AppCompatActivity() {
 
             layoutManager = LinearLayoutManager(this@InfoActivity)
             adapter = InfoListViewAdapter(this@InfoActivity)
+
+            setPadding(getListHorizontalPadding(), 0, getListHorizontalPadding(), 0)
+            scrollBarStyle = View.SCROLLBARS_OUTSIDE_OVERLAY
+            seslSetFillHorizontalPaddingEnabled(true)
+
             addItemDecoration(InfoListRoundedCorners(this@InfoActivity))
             addItemDecoration(DividerItemDecoration(this@InfoActivity,
                 DividerItemDecoration.VERTICAL))
+
             seslSetFillBottomEnabled(true)
             seslSetLastRoundedCorner(true)
         }
@@ -290,6 +302,29 @@ class InfoActivity : AppCompatActivity() {
 
         val m = ((config.screenWidthDp - ratio()) / 2 * density).toInt()
         return if (m < 0) 0 else m
+    }
+
+    private fun getListHorizontalPadding(): Int {
+        val bounds = Rect(WindowMetricsCalculator.getOrCreate()
+                            .computeCurrentWindowMetrics(this).bounds)
+        val width = bounds.width() / resources.displayMetrics.density
+        val height = bounds.height() / resources.displayMetrics.density
+
+        val margin: Float = if (width < 589.0f || width > 959.0f || height < 411.0f) {
+            if (width >= 960.0f) {
+                (width - 840.0f) / 2.0f
+            } else {
+                10.0f
+            }
+        } else {
+            0.07f
+        }
+
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            margin,
+            resources.displayMetrics
+        ).toInt()
     }
 
 

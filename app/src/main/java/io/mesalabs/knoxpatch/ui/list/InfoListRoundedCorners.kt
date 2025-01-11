@@ -22,6 +22,7 @@ import android.content.Context
 import android.graphics.Canvas
 
 import androidx.appcompat.util.SeslRoundedCorner
+import androidx.core.graphics.Insets
 import androidx.recyclerview.widget.RecyclerView
 
 class InfoListRoundedCorners(context: Context) : RecyclerView.ItemDecoration() {
@@ -33,6 +34,6 @@ class InfoListRoundedCorners(context: Context) : RecyclerView.ItemDecoration() {
     }
 
     override fun seslOnDispatchDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        roundedCorner.drawRoundedCorner(c)
+        roundedCorner.drawRoundedCorner(c, Insets.of(parent.paddingLeft, 0, parent.paddingRight, 0))
     }
 }
