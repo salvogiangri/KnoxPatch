@@ -1,7 +1,7 @@
 [versions]
-agp = "8.8.0"
-kotlin = "2.1.0"
-ksp = "2.1.0-1.0.29"
+agp = "8.8.1"
+kotlin = "2.1.10"
+ksp = "2.1.10-1.0.29"
 # AndroidX: https://developer.android.com/jetpack/androidx/versions
 activity = "1.10.0"
 annotation = "1.9.1"
@@ -19,7 +19,7 @@ xposed = "82"
 # YukiHookAPI: https://github.com/HighCapable/YukiHookAPI
 yukihookapi = "1.2.1"
 # AndroidHiddenApiBypass: https://github.com/LSPosed/AndroidHiddenApiBypass
-hiddenapibypass = "4.3"
+hiddenapibypass = "6.1"
 # HiddenApiRefinePlugin: https://github.com/RikkaApps/HiddenApiRefinePlugin
 refine = "4.4.0"
 
