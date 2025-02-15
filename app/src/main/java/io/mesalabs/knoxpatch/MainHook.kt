@@ -86,6 +86,7 @@ object MainHook : IYukiHookXposedInit {
         loadApp(Constants.SMART_THINGS_PACKAGE_NAME, PropSpoofHooks)
 
         if (sepVersion >= Constants.ONEUI_1_5) {
+            loadApp(Constants.ACTIVATION_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.KNOX_MATRIX_SERVICE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME, SamsungKeystoreHooks)
