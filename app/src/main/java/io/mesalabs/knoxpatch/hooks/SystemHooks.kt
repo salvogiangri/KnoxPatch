@@ -58,6 +58,19 @@ object SystemHooks : YukiBaseHooker()  {
     }
 
     private fun applySAKHooks() {
+        if (Build.VERSION.SDK_INT >= 35) {
+            "com.samsung.android.security.keystore.AttestParameterSpec".toClassOrNull()?.apply {
+                constructor {
+                    paramCount = 5
+                }.hook {
+                    before {
+                        args(2).set(true)
+                    }
+                }
+            } ?: YLog.error(msg = "$TAG: couldn't access class " +
+                    "com.samsung.android.security.keystore.AttestParameterSpec")
+        }
+
         if (Build.VERSION.SDK_INT >= 31) {
             "com.android.server.knox.dar.DarManagerService".toClass()
                 .method {
