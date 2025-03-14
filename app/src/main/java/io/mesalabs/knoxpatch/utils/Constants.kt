@@ -91,6 +91,7 @@ object Constants {
     const val SAMSUNG_FLOW_PACKAGE_NAME: String = "com.samsung.android.galaxycontinuity"
     const val SAMSUNG_HEALTH_PACKAGE_NAME: String = "com.sec.android.app.shealth"
     const val SAMSUNG_HEALTH_MONITOR_PACKAGE_NAME: String = "com.samsung.android.shealthmonitor"
+    const val SAMSUNG_TV_PLUS_PACKAGE_NAME: String = "com.samsung.android.tvplus"
     const val SAMSUNG_WALLET_PACKAGE_NAME: String = "com.samsung.android.spay"
     const val SMART_THINGS_PACKAGE_NAME: String = "com.samsung.android.oneconnect"
     const val SECURE_FOLDER_PACKAGE_NAME: String = "com.samsung.knox.securefolder"

@@ -28,6 +28,7 @@ import io.mesalabs.knoxpatch.hooks.KnoxMatrixHooks
 import io.mesalabs.knoxpatch.hooks.KnoxSDKHooks
 import io.mesalabs.knoxpatch.hooks.PropSpoofHooks
 import io.mesalabs.knoxpatch.hooks.RootDetectionHooks
+import io.mesalabs.knoxpatch.hooks.SAKDisableHooks
 import io.mesalabs.knoxpatch.hooks.SamsungKeystoreHooks
 import io.mesalabs.knoxpatch.hooks.SystemHooks
 import io.mesalabs.knoxpatch.utils.BuildUtils
@@ -86,7 +87,6 @@ object MainHook : IYukiHookXposedInit {
         loadApp(Constants.SMART_THINGS_PACKAGE_NAME, PropSpoofHooks)
 
         if (sepVersion >= Constants.ONEUI_1_5) {
-            loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.KNOX_MATRIX_SERVICE_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_ACCOUNT_PACKAGE_NAME, SamsungKeystoreHooks)
             loadApp(Constants.SAMSUNG_CLOUD_PACKAGE_NAME, SamsungKeystoreHooks)
@@ -99,6 +99,9 @@ object MainHook : IYukiHookXposedInit {
             } else {
                 loadApp(Constants.PRIVATE_SHARE_PACKAGE_NAME, SamsungKeystoreHooks)
             }
+
+            loadApp(Constants.FIND_MY_MOBILE_PACKAGE_NAME, SAKDisableHooks)
+            loadApp(Constants.SAMSUNG_TV_PLUS_PACKAGE_NAME, SAKDisableHooks)
         }
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, KnoxSDKHooks)
