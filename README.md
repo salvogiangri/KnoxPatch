@@ -32,6 +32,7 @@
 - ✅ [Samsung Flow](https://www.samsung.com/uk/apps/samsung-flow/)
 - ✅ [Samsung Health](https://www.samsung.com/uk/apps/samsung-health/)
 - ✅ [Samsung Health Monitor](https://www.samsung.com/uk/apps/samsung-health-monitor/)
+- ➖ [Samsung TV Plus](https://www.samsungtvplus.com/) ([TrickyStore](https://github.com/5ec1cff/TrickyStore/releases/latest) required)
 - ✅ [Secure Folder](https://www.samsungknox.com/en/solutions/personal-apps/secure-folder) ([Enhancer](#knoxpatch-enhancer) might be required)
 - ✅ [Secure Wi-Fi](https://www.samsung.com/uk/support/mobile-devices/what-is-the-secure-wifi-feature-and-how-do-i-enable-or-use-it/)
 - ✅ [SmartThings](https://www.samsung.com/uk/smartthings/app/)
