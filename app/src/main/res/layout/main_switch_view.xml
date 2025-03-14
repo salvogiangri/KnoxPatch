@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="58.0dp"
-    android:paddingHorizontal="@dimen/sep_main_switch_padding_horizontal"
+    android:layout_height="56.0dp"
+    android:paddingStart="@dimen/sep_main_switch_padding_start"
+    android:paddingEnd="@dimen/sep_main_switch_padding_end"
     android:background="@drawable/main_switch_background"
     android:orientation="horizontal"
     android:gravity="center_vertical">

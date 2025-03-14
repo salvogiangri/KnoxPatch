@@ -1,5 +1,6 @@
 <resources>
 
-    <dimen name="sep_main_switch_padding_horizontal">24.0dp</dimen>
+    <dimen name="sep_main_switch_padding_start">18.0dp</dimen>
+    <dimen name="sep_main_switch_padding_end">22.0dp</dimen>
 
 </resources>

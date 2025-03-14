@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="sep_main_switch_padding_horizontal">12.0dp</dimen>
+    <dimen name="sep_main_switch_padding_start">12.0dp</dimen>
+    <dimen name="sep_main_switch_padding_end">12.0dp</dimen>
     <dimen name="sep_main_switch_text_size">18.0sp</dimen>
 
 </resources>
