@@ -50,7 +50,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.widget.SeslEdgeEffect
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.EdgeEffectFactory
@@ -64,7 +63,7 @@ import io.mesalabs.knoxpatch.BuildConfig
 import io.mesalabs.knoxpatch.R
 import io.mesalabs.knoxpatch.databinding.ActivityInfoBinding
 import io.mesalabs.knoxpatch.databinding.MainSwitchViewBinding
-import io.mesalabs.knoxpatch.ui.list.InfoListRoundedCorners
+import io.mesalabs.knoxpatch.ui.list.InfoListItemDecoration
 import io.mesalabs.knoxpatch.ui.list.InfoListViewAdapter
 import io.mesalabs.knoxpatch.utils.Constants
 
@@ -215,9 +214,7 @@ class InfoActivity : AppCompatActivity() {
             scrollBarStyle = View.SCROLLBARS_OUTSIDE_OVERLAY
             seslSetFillHorizontalPaddingEnabled(true)
 
-            addItemDecoration(InfoListRoundedCorners(this@InfoActivity))
-            addItemDecoration(DividerItemDecoration(this@InfoActivity,
-                DividerItemDecoration.VERTICAL))
+            addItemDecoration(InfoListItemDecoration(this@InfoActivity))
 
             seslSetFillBottomEnabled(true)
             seslSetLastRoundedCorner(true)
