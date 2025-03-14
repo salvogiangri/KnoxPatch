@@ -67,7 +67,7 @@ KnoxPatch Enhancer is a flashable zip that will take care of the (currently) non
 ## Copyright
 ```
 /*
- * Copyright (C) 2022 BlackMesa123
+ * Copyright (C) 2022 Salvo Giangreco
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
