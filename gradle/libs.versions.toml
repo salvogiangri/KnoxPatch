@@ -2,18 +2,12 @@
 agp = "8.8.2"
 kotlin = "2.1.10"
 ksp = "2.1.10-1.0.30"
+# Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
+appcompat = "1.7.0+1.0.43000-sesl7+rev0"
+material = "1.12.0+1.0.38-sesl7+rev0"
 # AndroidX: https://developer.android.com/jetpack/androidx/versions
-activity = "1.10.1"
 annotation = "1.9.1"
-appcompat-resources = "1.7.0"
-cardview = "1.0.0"
-collection = "1.4.5"
-constraintlayout = "2.2.1"
-customview-poolingcontainer = "1.0.0"
-emoji2 = "1.5.0"
 window = "1.3.0"
-# Error Prone: https://github.com/google/error-prone
-errorprone = "2.36.0"
 # Xposed: https://github.com/rovo89/XposedBridge
 xposed = "82"
 # YukiHookAPI: https://github.com/HighCapable/YukiHookAPI
@@ -24,16 +18,10 @@ hiddenapibypass = "6.1"
 refine = "4.4.0"
 
 [libraries]
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+sesl-appcompat = { group = "sesl.androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+sesl-material = { group = "sesl.com.google.android.material", name = "material", version.ref = "material" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
-androidx-appcompat-resources = { group = "androidx.appcompat", name = "appcompat-resources", version.ref = "appcompat-resources" }
-androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
-androidx-collection = { group = "androidx.collection", name = "collection", version.ref = "collection" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-androidx-customview-poolingcontainer = { group = "androidx.customview", name = "customview-poolingcontainer", version.ref = "customview-poolingcontainer" }
-androidx-emoji2-viewshelper = { group = "androidx.emoji2", name = "emoji2-views-helper", version.ref = "emoji2" }
 androidx-window = { group = "androidx.window", name = "window", version.ref = "window" }
-google-errorprone-annotations = { group = "com.google.errorprone", name = "error_prone_annotations", version.ref = "errorprone" }
 xposed-api = { group = "de.robv.android.xposed", name = "api", version.ref = "xposed" }
 yukihookapi-api = { group = "com.highcapable.yukihookapi", name = "api", version.ref = "yukihookapi" }
 yukihookapi-ksp = { group = "com.highcapable.yukihookapi", name = "ksp-xposed", version.ref = "yukihookapi" }
