@@ -28,7 +28,7 @@ private var commitHash: String? = ""
 object Config {
     private const val VERSION_MAJOR = 0
     private const val VERSION_MINOR = 7
-    private const val VERSION_PATCH = 6
+    private const val VERSION_PATCH = 7
 
     val versionName: String
         get() {
