@@ -92,9 +92,8 @@ object PropSpoofHooks : YukiBaseHooker() {
                     // Fixes:
                     // - Legacy Secure Wi-Fi (ICD)
                     // - SPCMAgent (SAK)
-                    when (key) {
-                        "ro.build.type" -> result = "eng"
-                        "ro.security.keystore.keytype" -> result = ""
+                    if (key == "ro.build.type") {
+                        result = "eng"
                     }
                 }
             }
