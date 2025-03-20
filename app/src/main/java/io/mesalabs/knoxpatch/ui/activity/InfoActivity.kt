@@ -67,6 +67,8 @@ import io.mesalabs.knoxpatch.ui.list.InfoListItemDecoration
 import io.mesalabs.knoxpatch.ui.list.InfoListViewAdapter
 import io.mesalabs.knoxpatch.utils.Constants
 
+import kotlin.math.max
+
 class InfoActivity : AppCompatActivity() {
     companion object {
         private const val DOT_SEPARATOR: String = "  •  "
@@ -281,45 +283,46 @@ class InfoActivity : AppCompatActivity() {
     }
 
     private fun getSideMargin(): Int {
-        val config: Configuration = resources.configuration
+        val bounds = Rect(WindowMetricsCalculator.getOrCreate()
+            .computeCurrentWindowMetrics(this).bounds)
+        val density = resources.displayMetrics.density
+        val screenWidthDp = bounds.width() / density
+        val screenHeightDp = bounds.height() / density
 
         val ratio = {
-            val screenWidthDp: Int = config.screenWidthDp
-            val screenHeightDp: Int = config.screenHeightDp
-            if (screenWidthDp in 589..959) {
-                (screenWidthDp * if (screenHeightDp < 411) 1.0f else 0.86f).toInt()
-            } else if (screenWidthDp >= 960) {
-                840
+            if (screenWidthDp in 589.0f..959.0f) {
+                screenWidthDp * if (screenHeightDp < 411.0f) 1.0f else 0.86f
+            } else if (screenWidthDp >= 960.0f) {
+                840.0f
             } else {
                 screenWidthDp
             }
         }
 
-        val density = resources.displayMetrics.density
-
-        val m = ((config.screenWidthDp - ratio()) / 2 * density).toInt()
-        return if (m < 0) 0 else m
+        return max(0, ((screenWidthDp - ratio()) / 2 * density).toInt())
     }
 
     private fun getListHorizontalPadding(): Int {
         val bounds = Rect(WindowMetricsCalculator.getOrCreate()
-                            .computeCurrentWindowMetrics(this).bounds)
-        val width = bounds.width() / resources.displayMetrics.density
-        val height = bounds.height() / resources.displayMetrics.density
+            .computeCurrentWindowMetrics(this).bounds)
+        val density = resources.displayMetrics.density
+        val screenWidthDp = bounds.width() / density
+        val screenHeightDp = bounds.height() / density
 
-        val margin: Float = if (width < 589.0f || width > 959.0f || height < 411.0f) {
-            if (width >= 960.0f) {
-                (width - 840.0f) / 2.0f
+        val padding = {
+            if (
+                (screenWidthDp in 589.0f..959.0f && screenHeightDp >= 411.0f)
+                || screenWidthDp >= 960.0f
+            ) {
+                0.0f
             } else {
                 10.0f
             }
-        } else {
-            0.07f
         }
 
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
-            margin,
+            padding(),
             resources.displayMetrics
         ).toInt()
     }
