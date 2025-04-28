@@ -1,10 +1,10 @@
 [versions]
-agp = "8.9.1"
+agp = "8.9.2"
 kotlin = "2.1.20"
-ksp = "2.1.20-1.0.32"
+ksp = "2.1.20-2.0.0"
 # Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
-appcompat = "1.7.0+1.0.47000-sesl7+rev0"
-material = "1.12.0+1.0.39-sesl7+rev0"
+appcompat = "1.7.0+1.0.47000-sesl7+rev1"
+material = "1.12.0+1.0.39-sesl7+rev3"
 # AndroidX: https://developer.android.com/jetpack/androidx/versions
 annotation = "1.9.1"
 window = "1.3.0"
