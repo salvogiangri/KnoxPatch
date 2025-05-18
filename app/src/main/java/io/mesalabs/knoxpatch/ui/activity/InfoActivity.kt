@@ -49,6 +49,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.SeslEdgeEffect
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -81,6 +83,15 @@ class InfoActivity : AppCompatActivity() {
 
         binding = ActivityInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= 35) {
+            ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+                val i = insets.getInsets(WindowInsetsCompat.Type.systemBars()
+                        or WindowInsetsCompat.Type.displayCutout())
+                v.setPadding(i.left, i.top, i.right, i.bottom)
+                WindowInsetsCompat.CONSUMED
+            }
+        }
 
         applyLandscapeFullScreen()
         setContentSideMargin(binding.mainContent)
