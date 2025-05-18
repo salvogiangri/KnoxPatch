@@ -13,13 +13,13 @@ val releaseKeyPassword: String? by rootProject
 
 android {
     namespace = "io.mesalabs.knoxpatch"
-    compileSdk = 35
-    buildToolsVersion = "35.0.1"
+    compileSdk = 36
+    buildToolsVersion = "36.0.0"
 
     defaultConfig {
         applicationId = "io.mesalabs.knoxpatch"
         minSdk = 28
-        targetSdk = 35
+        targetSdk = 36
         versionCode = Config.versionCode
         versionName = Config.versionName
     }
