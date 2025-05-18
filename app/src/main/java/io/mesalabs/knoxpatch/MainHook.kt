@@ -61,6 +61,7 @@ object MainHook : IYukiHookXposedInit {
          * - Android 13 (One UI 5.x)
          * - Android 14 (One UI 6.x)
          * - Android 15 (One UI 7.x)
+         * - Android 16 (One UI 8.x)
          */
         when {
             sepVersion == -1 -> {
@@ -71,7 +72,7 @@ object MainHook : IYukiHookXposedInit {
                 YLog.error(msg = "$TAG: onHook: unknown SEP version: $sepVersion")
                 return@encase
             }
-            sepVersion > Constants.ONEUI_7_0 -> {
+            sepVersion > Constants.ONEUI_8_0 -> {
                 val oneUiVersion: String = BuildUtils.getFormattedOneUIVersion()
                 YLog.error(msg = "$TAG: onHook: One UI $oneUiVersion is not yet supported.")
                 return@encase
