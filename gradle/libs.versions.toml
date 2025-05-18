@@ -1,7 +1,7 @@
 [versions]
-agp = "8.9.2"
-kotlin = "2.1.20"
-ksp = "2.1.20-2.0.0"
+agp = "8.10.0"
+kotlin = "2.1.21"
+ksp = "2.1.21-2.0.1"
 # Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
 appcompat = "1.7.0+1.0.47000-sesl7+rev1"
 material = "1.12.0+1.0.39-sesl7+rev3"
