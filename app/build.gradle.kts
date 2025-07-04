@@ -110,7 +110,9 @@ dependencies {
     compileOnly(libs.xposed.api)
     implementation(libs.yukihookapi.api) {
         exclude(group = "androidx.appcompat", module = "appcompat")
+        exclude(group = "androidx.fragment", module = "fragment")
         exclude(group = "androidx.preference", module = "preference-ktx")
+        exclude(group = "com.google.android.material", module = "material")
     }
     ksp(libs.yukihookapi.ksp)
     implementation(libs.lsposed.hiddenapibypass)
