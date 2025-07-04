@@ -7,6 +7,9 @@
 
 -keep class io.mesalabs.knoxpatch.MainHook
 
+# Caused by KavaRef dependency (com.highcapable.kavaref:kavaref-core)
+-dontwarn java.lang.reflect.AnnotatedType
+
 -repackageclasses
 -allowaccessmodification
 -overloadaggressively
