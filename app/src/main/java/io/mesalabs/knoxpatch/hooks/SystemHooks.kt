@@ -27,11 +27,11 @@ import java.security.cert.Certificate
 import de.robv.android.xposed.XposedBridge
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.factory.constructor
-import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
-import com.highcapable.yukihookapi.hook.type.java.StringClass
+
+import com.highcapable.kavaref.KavaRef.Companion.resolve
+
+import com.highcapable.kavaref.extension.ArrayClass
 
 import io.mesalabs.knoxpatch.utils.BuildUtils
 import io.mesalabs.knoxpatch.utils.Constants
@@ -59,9 +59,9 @@ object SystemHooks : YukiBaseHooker()  {
 
     private fun applySAKHooks() {
         if (Build.VERSION.SDK_INT >= 35) {
-            "com.samsung.android.security.keystore.AttestParameterSpec".toClass()
-                .constructor {
-                    paramCount = 5
+            "com.samsung.android.security.keystore.AttestParameterSpec".toClass().resolve()
+                .firstConstructor {
+                    parameterCount = 5
                 }.hook {
                     before {
                         args(2).set(true)
@@ -70,29 +70,29 @@ object SystemHooks : YukiBaseHooker()  {
         }
 
         if (Build.VERSION.SDK_INT >= 31) {
-            "com.android.server.knox.dar.DarManagerService".toClass().apply {
-                method {
+            "com.android.server.knox.dar.DarManagerService".toClass().resolve().apply {
+                firstMethod {
                     name = "checkDeviceIntegrity"
-                    param(Array<Certificate>::class.java)
-                    returnType = BooleanType
+                    parameters(ArrayClass(Certificate::class))
+                    returnType = Boolean::class
                 }.hook {
                     replaceToTrue()
                 }
 
-                method {
+                firstMethod {
                     name = "isDeviceRootKeyInstalled"
-                    emptyParam()
-                    returnType = BooleanType
+                    emptyParameters()
+                    returnType = Boolean::class
                 }.hook {
                     replaceToTrue()
                 }
             }
         } else {
-            "com.android.server.pm.PersonaManagerService".toClass()
-                .method {
+            "com.android.server.pm.PersonaManagerService".toClass().resolve()
+                .firstMethod {
                     name = "isKnoxKeyInstallable"
-                    emptyParam()
-                    returnType = BooleanType
+                    emptyParameters()
+                    returnType = Boolean::class
                 }.hook {
                     replaceToTrue()
                 }
@@ -100,31 +100,31 @@ object SystemHooks : YukiBaseHooker()  {
     }
 
     private fun applyTIMAHooks() {
-        "com.android.server.pm.PersonaServiceHelper".toClass()
-            .method {
+        "com.android.server.pm.PersonaServiceHelper".toClass().resolve()
+            .firstMethod {
                 name = "isTimaAvailable"
-                param(Context::class.java)
-                returnType = BooleanType
+                parameters(Context::class)
+                returnType = Boolean::class
             }.hook {
                 replaceToTrue()
             }
 
         if (Build.VERSION.SDK_INT >= 29) {
-            "com.android.server.SdpManagerService\$LocalService".toClass()
-                .method {
+            "com.android.server.SdpManagerService\$LocalService".toClass().resolve()
+                .firstMethod {
                     name = "isKnoxKeyInstallable"
-                    emptyParam()
-                    returnType = BooleanType
+                    emptyParameters()
+                    returnType = Boolean::class
                 }.hook {
                     replaceToTrue()
                 }
         }
 
-        "com.android.server.locksettings.SyntheticPasswordManager".toClass()
-            .method {
+        "com.android.server.locksettings.SyntheticPasswordManager".toClass().resolve()
+            .firstMethod {
                 name = "isUnifiedKeyStoreSupported"
-                emptyParam()
-                returnType = BooleanType
+                emptyParameters()
+                returnType = Boolean::class
             }.hook {
                 replaceToTrue()
             }
@@ -141,9 +141,9 @@ object SystemHooks : YukiBaseHooker()  {
 
     private fun applyKGHooks() {
         if (Build.VERSION.SDK_INT < 35) {
-            "com.samsung.android.knoxguard.service.KnoxGuardService".toClass()
-                .constructor {
-                    param(Context::class.java)
+            "com.samsung.android.knoxguard.service.KnoxGuardService".toClass().resolve()
+                .firstConstructor {
+                    parameters(Context::class)
                 }.hook {
                     before {
                         UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
@@ -152,9 +152,9 @@ object SystemHooks : YukiBaseHooker()  {
         }
 
         if (Build.VERSION.SDK_INT >= 30) {
-            "com.samsung.android.knoxguard.service.KnoxGuardSeService".toClass()
-                .constructor {
-                    param(Context::class.java)
+            "com.samsung.android.knoxguard.service.KnoxGuardSeService".toClass().resolve()
+                .firstConstructor {
+                    parameters(Context::class)
                 }.hook {
                     before {
                         UnsupportedOperationException("KnoxGuard is unsupported").throwToApp()
@@ -164,11 +164,11 @@ object SystemHooks : YukiBaseHooker()  {
     }
 
     private fun applySPHooks() {
-        "android.os.SystemProperties".toClass().apply {
-            method {
+        "android.os.SystemProperties".toClass().resolve().apply {
+            firstMethod {
                 name = "get"
-                param(String::class.java)
-                returnType = StringClass
+                parameters(String::class)
+                returnType = String::class
             }.hook {
                 before {
                     val key: String = args(0).string()
@@ -179,10 +179,10 @@ object SystemHooks : YukiBaseHooker()  {
                 }
             }
 
-            method {
+            firstMethod {
                 name = "get"
-                param(String::class.java, String::class.java)
-                returnType = StringClass
+                parameters(String::class, String::class)
+                returnType = String::class
             }.hook {
                 before {
                     val key: String = args(0).string()
@@ -203,8 +203,11 @@ object SystemHooks : YukiBaseHooker()  {
             for (m in clz.declaredMethods) {
                 if (methodName == m.name) {
                     YLog.debug(msg = "$TAG: findAndDeoptimizeMethod: $m")
-                    XposedBridge::class.java.getDeclaredMethod("deoptimizeMethod", Member::class.java)
-                        .invoke(null, m)
+                    XposedBridge::class.resolve()
+                        .firstMethod {
+                            name = "deoptimizeMethod"
+                            parameters(Member::class)
+                        }.of(null).invoke(m)
                 }
             }
         } catch (e: Throwable) {

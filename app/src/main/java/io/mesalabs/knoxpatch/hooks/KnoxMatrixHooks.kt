@@ -19,8 +19,9 @@
 package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
+
+import com.highcapable.kavaref.KavaRef.Companion.resolve
 
 object KnoxMatrixHooks : YukiBaseHooker() {
     private const val TAG: String = "KnoxMatrixHooks"
@@ -29,17 +30,17 @@ object KnoxMatrixHooks : YukiBaseHooker() {
         YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Bypass ROT/Knox integrity status check */
-        "com.samsung.android.kmxservice.fabrickeystore.keystore.cert.FabricCertUtil".toClass().apply {
-            method {
+        "com.samsung.android.kmxservice.fabrickeystore.keystore.cert.FabricCertUtil".toClass().resolve().apply {
+            firstMethod {
                 name = "checkIntegrityStatus"
-                paramCount = 1
+                parameterCount = 1
             }.hook {
                 replaceToTrue()
             }
 
-            method {
+            firstMethod {
                 name = "checkRootOfTrust"
-                paramCount = 1
+                parameterCount = 1
             }.hook {
                 replaceToTrue()
             }

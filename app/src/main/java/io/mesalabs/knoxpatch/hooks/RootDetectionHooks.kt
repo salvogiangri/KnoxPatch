@@ -20,16 +20,15 @@ package io.mesalabs.knoxpatch.hooks
 
 import android.os.Build
 
+import java.io.File
 import java.io.IOException
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.factory.constructor
-import com.highcapable.yukihookapi.hook.factory.field
-import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
-import com.highcapable.yukihookapi.hook.type.java.IntType
-import com.highcapable.yukihookapi.hook.type.java.StringClass
+
+import com.highcapable.kavaref.KavaRef.Companion.resolve
+
+import com.highcapable.kavaref.extension.ArrayClass
 
 object RootDetectionHooks : YukiBaseHooker() {
     private const val TAG: String = "RootDetectionHooks"
@@ -64,15 +63,16 @@ object RootDetectionHooks : YukiBaseHooker() {
 
         /* Spoof root checks */
         if (Build.TAGS.contains("test-keys")) {
-            Build::class.java.field {
-                name = "TAGS"
-                type = StringClass
-            }.get(null).set("release-keys")
+            Build::class.resolve()
+                .firstField {
+                    name = "TAGS"
+                    type = String::class
+                }.of(null).set("release-keys")
         }
 
-        "java.io.File".toClass().apply {
-            constructor {
-                param(String::class.java)
+        File::class.resolve().apply {
+            firstConstructor {
+                parameters(String::class)
             }.hook {
                 before {
                     val pathname: String = args(0).string()
@@ -83,8 +83,8 @@ object RootDetectionHooks : YukiBaseHooker() {
                 }
             }
 
-            constructor {
-                param(String::class.java, String::class.java)
+            firstConstructor {
+                parameters(String::class, String::class)
             }.hook {
                 before {
                     val child: String = args(1).string()
@@ -95,19 +95,19 @@ object RootDetectionHooks : YukiBaseHooker() {
                 }
             }
 
-            method {
+            firstMethod {
                 name = "canWrite"
-                emptyParam()
-                returnType = BooleanType
+                emptyParameters()
+                returnType = Boolean::class
             }.hook {
                 replaceToFalse()
             }
         }
 
-        "java.lang.Runtime".toClass().apply {
-            method {
+        Runtime::class.resolve().apply {
+            firstMethod {
                 name = "exec"
-                param(String::class.java)
+                parameters(String::class)
             }.hook {
                 before {
                     val command: String = args(0).string()
@@ -118,9 +118,9 @@ object RootDetectionHooks : YukiBaseHooker() {
                 }
             }
 
-            method {
+            firstMethod {
                 name = "exec"
-                param(Array<String>::class.java)
+                parameters(ArrayClass(String::class))
             }.hook {
                 before {
                     val cmdarray: Array<String> = args(0).array()
@@ -134,10 +134,10 @@ object RootDetectionHooks : YukiBaseHooker() {
             }
         }
 
-        "android.app.ApplicationPackageManager".toClass()
-            .method {
+        "android.app.ApplicationPackageManager".toClass().resolve()
+            .firstMethod {
                 name = "getPackageInfo"
-                param(String::class.java, IntType)
+                parameters(String::class, Int::class)
             }.hook {
                 before {
                     val packageName: String = args(0).string()

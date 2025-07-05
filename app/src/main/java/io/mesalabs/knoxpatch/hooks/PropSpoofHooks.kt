@@ -18,11 +18,14 @@
 
 package io.mesalabs.knoxpatch.hooks
 
+import java.util.Properties
+
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.factory.constructor
-import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
-import com.highcapable.yukihookapi.hook.type.java.StringClass
+
+import com.highcapable.kavaref.KavaRef.Companion.resolve
+
+import com.highcapable.kavaref.extension.ArrayClass
 
 object PropSpoofHooks : YukiBaseHooker() {
     private const val TAG: String = "PropSpoofHooks"
@@ -31,9 +34,9 @@ object PropSpoofHooks : YukiBaseHooker() {
         YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Spoof critical system props */
-        "java.lang.ProcessBuilder".toClass()
-            .constructor {
-                param(Array<String>::class.java)
+        ProcessBuilder::class.resolve()
+            .firstConstructor {
+                parameters(ArrayClass(String::class))
             }.hook {
                 before {
                     val cmdarray: Array<String> = args(0).array()
@@ -48,11 +51,11 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-        "java.util.Properties".toClass()
-            .method {
+        Properties::class.resolve()
+            .firstMethod {
                 name = "getProperty"
-                param(String::class.java, String::class.java)
-                returnType = StringClass
+                parameters(String::class, String::class)
+                returnType = String::class
             }.hook {
                 before {
                     val key: String = args(0).string()
@@ -64,11 +67,11 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-        "android.os.SystemProperties".toClass()
-            .method {
+        "android.os.SystemProperties".toClass().resolve()
+            .firstMethod {
                 name = "get"
-                param(String::class.java, String::class.java)
-                returnType = StringClass
+                parameters(String::class, String::class)
+                returnType = String::class
             }.hook {
                 before {
                     val key: String = args(0).string()
@@ -80,11 +83,11 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-        "android.os.SemSystemProperties".toClass().apply {
-            method {
+        "android.os.SemSystemProperties".toClass().resolve().apply {
+            firstMethod {
                 name = "get"
-                param(String::class.java)
-                returnType = StringClass
+                parameters(String::class)
+                returnType = String::class
             }.hook {
                 before {
                     val key: String = args(0).string()
@@ -98,10 +101,10 @@ object PropSpoofHooks : YukiBaseHooker() {
                 }
             }
 
-            method {
+            firstMethod {
                 name = "get"
-                param(String::class.java, String::class.java)
-                returnType = StringClass
+                parameters(String::class, String::class)
+                returnType = String::class
             }.hook {
                 before {
                     val key: String = args(0).string()

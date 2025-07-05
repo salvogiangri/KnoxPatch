@@ -19,9 +19,9 @@
 package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
-import com.highcapable.yukihookapi.hook.type.java.BooleanType
+
+import com.highcapable.kavaref.KavaRef.Companion.resolve
 
 object SamsungKeystoreHooks : YukiBaseHooker() {
     private const val TAG: String = "SamsungKeystoreHooks"
@@ -30,11 +30,11 @@ object SamsungKeystoreHooks : YukiBaseHooker() {
         YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Bypass SAK integrity check */
-        "com.samsung.android.security.keystore.AttestParameterSpec".toClassOrNull()?.apply {
-            method {
+        "com.samsung.android.security.keystore.AttestParameterSpec".toClassOrNull()?.resolve()?.apply {
+            firstMethod {
                 name = "isVerifiableIntegrity"
-                emptyParam()
-                returnType = BooleanType
+                emptyParameters()
+                returnType = Boolean::class
             }.hook {
                 replaceToTrue()
             }

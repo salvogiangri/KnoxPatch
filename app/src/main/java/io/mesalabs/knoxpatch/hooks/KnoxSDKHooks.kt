@@ -19,9 +19,9 @@
 package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
-import com.highcapable.yukihookapi.hook.type.java.IntType
+
+import com.highcapable.kavaref.KavaRef.Companion.resolve
 
 object KnoxSDKHooks : YukiBaseHooker() {
     private const val TAG: String = "KnoxSDKHooks"
@@ -30,11 +30,11 @@ object KnoxSDKHooks : YukiBaseHooker() {
         YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Disable Knox support */
-        "com.samsung.android.knox.EnterpriseDeviceManager".toClass()
-            .method {
+        "com.samsung.android.knox.EnterpriseDeviceManager".toClass().resolve()
+            .firstMethod {
                 name = "getAPILevel"
-                emptyParam()
-                returnType = IntType
+                emptyParameters()
+                returnType = Int::class
             }.hook {
                 replaceTo(-1)
             }

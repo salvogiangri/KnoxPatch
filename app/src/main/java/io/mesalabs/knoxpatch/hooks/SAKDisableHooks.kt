@@ -19,9 +19,9 @@
 package io.mesalabs.knoxpatch.hooks
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
-import com.highcapable.yukihookapi.hook.factory.method
 import com.highcapable.yukihookapi.hook.log.YLog
-import com.highcapable.yukihookapi.hook.type.java.StringClass
+
+import com.highcapable.kavaref.KavaRef.Companion.resolve
 
 object SAKDisableHooks : YukiBaseHooker() {
     private const val TAG: String = "DisableSAKHooks"
@@ -30,11 +30,11 @@ object SAKDisableHooks : YukiBaseHooker() {
         YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Disable SAK support */
-        "android.os.SemSystemProperties".toClass()
-            .method {
+        "android.os.SemSystemProperties".toClass().resolve()
+            .firstMethod {
                 name = "get"
-                param(String::class.java, String::class.java)
-                returnType = StringClass
+                parameters(String::class, String::class)
+                returnType = String::class
             }.hook {
                 before {
                     val key: String = args(0).string()

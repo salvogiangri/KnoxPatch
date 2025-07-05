@@ -115,6 +115,8 @@ dependencies {
         exclude(group = "com.google.android.material", module = "material")
     }
     ksp(libs.yukihookapi.ksp)
+    implementation(libs.kavaref.core)
+    implementation(libs.kavaref.extension)
     implementation(libs.lsposed.hiddenapibypass)
     implementation(libs.rikka.refine.runtime)
     compileOnly(projects.stub)
