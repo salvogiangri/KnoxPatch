@@ -59,14 +59,13 @@ object SystemHooks : YukiBaseHooker()  {
 
     private fun applySAKHooks() {
         if (Build.VERSION.SDK_INT >= 35) {
-            "com.samsung.android.security.keystore.AttestParameterSpec".toClass().resolve()
-                .firstConstructor {
-                    parameterCount = 5
-                }.hook {
-                    before {
-                        args(2).set(true)
-                    }
-                }
+          "com.samsung.android.security.keystore.AttestParameterSpec".toClass().resolve()
+            .constructor {
+            }.hookAll {
+              after {
+                instance.resolve().firstField { name = "mVerifiableIntegrity" }.set(true)
+              }
+            }
         }
 
         if (Build.VERSION.SDK_INT >= 31) {
