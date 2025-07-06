@@ -62,12 +62,12 @@ object RootDetectionHooks : YukiBaseHooker() {
         YLog.debug(msg = "$TAG: onHook: loaded.")
 
         /* Spoof root checks */
-        if (Build.TAGS.contains("test-keys")) {
+        if (Build.TAGS != "release-keys") {
             Build::class.resolve()
                 .firstField {
                     name = "TAGS"
                     type = String::class
-                }.of(null).set("release-keys")
+                }.set("release-keys")
         }
 
         File::class.resolve().apply {
