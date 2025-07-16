@@ -24,6 +24,7 @@
 - Android 13 (One UI 5.x)
 - Android 14 (One UI 6.x)
 - Android 15 (One UI 7.x)
+- Android 16 (One UI 8.x)
 
 ## Supported apps
 - ✅ [Auto Blocker](https://www.samsung.com/uk/support/mobile-devices/protect-your-galaxy-device-with-the-new-auto-blocker-feature/)
