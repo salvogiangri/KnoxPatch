@@ -29,6 +29,7 @@ import de.robv.android.xposed.XposedBridge
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.YLog
 
+import com.highcapable.kavaref.KavaRef.Companion.asResolver
 import com.highcapable.kavaref.KavaRef.Companion.resolve
 
 import com.highcapable.kavaref.extension.ArrayClass
@@ -63,7 +64,7 @@ object SystemHooks : YukiBaseHooker()  {
                 .constructor {  }
                 .hookAll {
                     after {
-                        instance.resolve()
+                        instance.asResolver()
                             .firstField {
                                 name = "mVerifiableIntegrity"
                                 type = Boolean::class
