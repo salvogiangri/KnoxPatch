@@ -1,0 +1,5 @@
+- Added Spanish translations (@naxitoo)
+- Added support for Samsung Health Monitor
+- Added support for Samsung Flow
+- Rework Samsung Health patch
+- Minor code adjustments

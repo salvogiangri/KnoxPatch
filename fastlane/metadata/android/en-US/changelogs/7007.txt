@@ -1,0 +1,3 @@
+- Samsung TV Plus support
+- Additional hooks for One UI 7.0
+- Fix Secure Wi-Fi issues

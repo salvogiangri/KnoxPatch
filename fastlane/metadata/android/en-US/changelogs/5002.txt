@@ -1,0 +1,6 @@
+- Enhancer v0.3
+  - Rework install script
+  - Secure Folder fix for Android 10 (@ananjaser1211)
+- Additional hooks for One UI 2.x
+- Show Secure Folder warning on legacy devices with FBE
+- Added Romanian translations (@iDrinkCoffee-TG)

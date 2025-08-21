@@ -1,0 +1,2 @@
+- Updated hooks API's
+- Additional hooks for Enhanced data protection feature

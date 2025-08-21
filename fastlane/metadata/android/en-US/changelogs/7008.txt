@@ -1,0 +1,3 @@
+- New app icon
+- Additional hooks for JDM devices
+- Fix landscape UI on tablets

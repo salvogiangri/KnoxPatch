@@ -1,0 +1,3 @@
+- Samsung Checkout support
+- Fix Private Share for One UI 5.1.1 and above
+- Fix Enhanced data protection feature
