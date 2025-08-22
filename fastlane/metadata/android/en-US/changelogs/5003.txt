@@ -1,0 +1,3 @@
+- General code cleanup
+- Remove Auth Framework hook
+- SAK fix for Samsung Cloud app

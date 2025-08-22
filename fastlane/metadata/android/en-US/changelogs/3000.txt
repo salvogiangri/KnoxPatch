@@ -1,0 +1,4 @@
+- Initial Android 10/11 support (One UI 2.x/3.x)
+- Fixed KnoxGuard patch
+- Added additional patches for SAK
+- Added multi-language support

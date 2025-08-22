@@ -1,0 +1,2 @@
+- Additional hooks for One UI 3.x
+- Show a warning on One UI 3.x for Secure Folder support

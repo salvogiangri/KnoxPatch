@@ -1,0 +1,2 @@
+- Initial Android 9 support (One UI 1.x)
+- One UI 5.1 support

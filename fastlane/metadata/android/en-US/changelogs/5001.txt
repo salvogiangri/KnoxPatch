@@ -1,0 +1,2 @@
+- Rework UI code
+- Minor hooks bug fixes

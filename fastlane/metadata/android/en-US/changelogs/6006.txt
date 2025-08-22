@@ -1,0 +1,2 @@
+- Auto Blocker support
+- Additional hooks for Enhanced data protection feature

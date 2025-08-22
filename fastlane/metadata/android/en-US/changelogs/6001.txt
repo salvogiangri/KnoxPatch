@@ -1,0 +1,1 @@
+- One UI 6.0 support

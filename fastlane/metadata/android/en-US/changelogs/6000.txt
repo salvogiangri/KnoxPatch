@@ -1,0 +1,4 @@
+- Enhancer v0.4
+  - Fix Android 10 Secure Folder fix for non-FBE devices (requires flashing in recovery mode)
+  - Add Secure Folder fix for Android 10/11 FBE devices (requires flashing in recovery mode)
+- One UI 5.1.1 support
