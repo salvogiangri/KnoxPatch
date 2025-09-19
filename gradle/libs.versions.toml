@@ -1,7 +1,7 @@
 [versions]
-agp = "8.12.1"
-kotlin = "2.2.10"
-ksp = "2.2.10-2.0.2"
+agp = "8.13.0"
+kotlin = "2.2.20"
+ksp = "2.2.20-2.0.3"
 # Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
 appcompat = "1.7.1+1.0.21-sesl8+rev0"
 material = "1.12.0+1.0.31-sesl8+rev2"
@@ -11,7 +11,7 @@ window = "1.4.0"
 # Xposed: https://github.com/rovo89/XposedBridge
 xposed = "82"
 # YukiHookAPI: https://github.com/HighCapable/YukiHookAPI
-yukihookapi = "1.3.0"
+yukihookapi = "1.3.1"
 # KavaRef: https://github.com/HighCapable/KavaRef
 kavaref = "1.0.1"
 # AndroidHiddenApiBypass: https://github.com/LSPosed/AndroidHiddenApiBypass
