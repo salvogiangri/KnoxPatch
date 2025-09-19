@@ -99,6 +99,7 @@ object BuildUtils {
             37 -> EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_10
             38 -> EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_11
             39 -> EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_12
+            40 -> EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_3_13
             else -> EnterpriseKnoxSdkVersion.KNOX_ENTERPRISE_SDK_VERSION_2_1
         }
     }
