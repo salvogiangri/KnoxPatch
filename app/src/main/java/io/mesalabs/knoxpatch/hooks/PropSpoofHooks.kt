@@ -62,7 +62,7 @@ object PropSpoofHooks : YukiBaseHooker() {
 
                     // Fix SmartThings
                     if (key == "ro.boot.flash.locked") {
-                        result = "1"
+                        result = ""
                     }
                 }
             }
