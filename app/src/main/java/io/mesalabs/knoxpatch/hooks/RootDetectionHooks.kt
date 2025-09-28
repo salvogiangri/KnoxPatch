@@ -55,7 +55,8 @@ object RootDetectionHooks : YukiBaseHooker() {
         "com.chelpus.lackypatch",
         "com.ramdroid.appquarantine",
         "com.ramdroid.appquarantinepro",
-        "stericson.busybox"
+        "stericson.busybox",
+        "com.topjohnwu.magisk"
     )
 
     override fun onHook() {
