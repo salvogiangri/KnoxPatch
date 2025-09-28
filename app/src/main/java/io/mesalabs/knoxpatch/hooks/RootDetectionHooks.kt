@@ -110,10 +110,10 @@ object RootDetectionHooks : YukiBaseHooker() {
                 parameters(String::class)
             }.hook {
                 before {
-                    val command: String = args(0).string()
+                    var command: String = args(0).string()
 
                     if (command == "su") {
-                        IOException().throwToApp()
+                        args(0).set(command.replace("su","zu"))
                     }
                 }
             }
@@ -125,9 +125,9 @@ object RootDetectionHooks : YukiBaseHooker() {
                 before {
                     val cmdarray: Array<String> = args(0).array()
 
-                    for (cmd in cmdarray) {
-                        if (cmd.endsWith("/which") || cmd == "su") {
-                            IOException().throwToApp()
+                    for (i in cmdarray.indices) {
+                        if (cmdarray[i].endsWith("/which") || cmdarray[i] == "su") {
+                            cmdarray[i] = cmdarray[i].replace("su","zu")
                         }
                     }
                 }
