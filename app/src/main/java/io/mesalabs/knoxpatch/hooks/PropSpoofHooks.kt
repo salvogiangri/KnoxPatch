@@ -18,8 +18,6 @@
 
 package io.mesalabs.knoxpatch.hooks
 
-import java.util.Properties
-
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
 import com.highcapable.yukihookapi.hook.log.YLog
 
@@ -47,22 +45,6 @@ object PropSpoofHooks : YukiBaseHooker() {
                             "ro.build.type" -> args(0).set(
                                 arrayOf("/system/bin/echo", "eng"))
                         }
-                    }
-                }
-            }
-
-        Properties::class.resolve()
-            .firstMethod {
-                name = "getProperty"
-                parameters(String::class, String::class)
-                returnType = String::class
-            }.hook {
-                before {
-                    val key: String = args(0).string()
-
-                    // Fix SmartThings
-                    if (key == "ro.boot.flash.locked") {
-                        result = "1"
                     }
                 }
             }
