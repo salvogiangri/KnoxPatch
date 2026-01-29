@@ -23,6 +23,7 @@ import android.os.Build
 
 import java.lang.reflect.Member
 import java.security.cert.Certificate
+import java.security.KeyPair
 
 import de.robv.android.xposed.XposedBridge
 
@@ -60,17 +61,34 @@ object SystemHooks : YukiBaseHooker()  {
 
     private fun applySAKHooks() {
         if (Build.VERSION.SDK_INT >= 35) {
-            "com.samsung.android.security.keystore.AttestParameterSpec".toClass().resolve()
-                .constructor {  }
-                .hookAll {
-                    after {
-                        instance.asResolver()
-                            .firstField {
-                                name = "mVerifiableIntegrity"
-                                type = Boolean::class
-                            }.set(true)
+            if (Build.VERSION.SDK_INT_FULL >= Build.VERSION_CODES_FULL.BAKLAVA_1) {
+                "com.samsung.android.security.keystore.AttestationUtils".toClass().resolve()
+                    .firstMethod {
+                        name = "generateKeyPair"
+                        parameterCount = 1
+                        returnType = KeyPair::class
+                    }.hook {
+                        before {
+                            "com.samsung.android.security.keystore.AttestParameterSpec".toClass().resolve()
+                                .firstField {
+                                    name = "mVerifiableIntegrity"
+                                    type = Boolean::class
+                                }.of(args(0)).set(true)
+                        }
                     }
-                }
+            } else {
+                "com.samsung.android.security.keystore.AttestParameterSpec".toClass().resolve()
+                    .constructor {  }
+                    .hookAll {
+                        after {
+                            instance.asResolver()
+                                .firstField {
+                                    name = "mVerifiableIntegrity"
+                                    type = Boolean::class
+                                }.set(true)
+                        }
+                    }
+            }
         }
 
         if (Build.VERSION.SDK_INT >= 31) {
