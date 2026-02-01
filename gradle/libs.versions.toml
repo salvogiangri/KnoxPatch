@@ -1,8 +1,8 @@
 [versions]
 agp = "9.0.0"
-ksp = "2.3.4"
+ksp = "2.3.5"
 # Sesl: https://github.com/tribalfs/sesl-androidx/tree/sesl-androidx-main
-appcompat = "1.7.1+1.0.21-sesl8+rev7"
+appcompat = "1.7.1+1.0.21-sesl8+rev8"
 material = "1.12.0+1.0.32-sesl8+rev2"
 # AndroidX: https://developer.android.com/jetpack/androidx/versions
 annotation = "1.9.1"
