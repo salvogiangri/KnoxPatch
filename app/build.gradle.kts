@@ -5,10 +5,10 @@ plugins {
     id("KnoxPatchPlugin")
 }
 
-val releaseStoreFile: String? by rootProject
-val releaseStorePassword: String? by rootProject
-val releaseKeyAlias: String? by rootProject
-val releaseKeyPassword: String? by rootProject
+val releaseStoreFile = rootProject.findProperty("releaseStoreFile") as? String
+val releaseStorePassword = rootProject.findProperty("releaseStorePassword") as? String
+val releaseKeyAlias = rootProject.findProperty("releaseKeyAlias") as? String
+val releaseKeyPassword = rootProject.findProperty("releaseKeyPassword") as? String
 
 android {
     namespace = "io.mesalabs.knoxpatch"
