@@ -72,7 +72,7 @@ object SystemHooks : YukiBaseHooker()  {
                             .firstField {
                                 name = "mVerifiableIntegrity"
                                 type = Boolean::class
-                            }.of(args(0)).set(true)
+                            }.of(args(0).cast()).set(true)
                     }
                 }
         }
