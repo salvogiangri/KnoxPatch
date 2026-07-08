@@ -87,6 +87,3 @@ KnoxPatch Enhancer is a flashable zip that will take care of the (currently) non
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 ```
-
-## Stargazers over time
-[![Stargazers over time](https://starchart.cc/salvogiangri/KnoxPatch.svg)](https://starchart.cc/salvogiangri/KnoxPatch)
