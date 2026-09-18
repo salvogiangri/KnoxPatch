@@ -106,6 +106,7 @@ object MainHook : IYukiHookXposedInit {
         }
 
         loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, KnoxSDKHooks)
+        loadApp(Constants.SAMSUNG_HEALTH_PACKAGE_NAME, SamsungKeystoreHooks)
 
         loadApp(Constants.KNOX_MATRIX_SERVICE_PACKAGE_NAME, KnoxMatrixHooks)
 
