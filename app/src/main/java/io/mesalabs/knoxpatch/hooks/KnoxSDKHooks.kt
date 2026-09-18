@@ -38,6 +38,25 @@ object KnoxSDKHooks : YukiBaseHooker() {
             }.hook {
                 replaceTo(-1)
             }
+
+        /* Bypass Samsung Health's Knox integrity gate before key initialization */
+        "com.samsung.android.service.health.security.KnoxAdapter".toClassOrNull()?.resolve()?.apply {
+            firstMethodOrNull {
+                name = "checkKnoxCompromisedExternal"
+                parameterCount = 1
+                returnType = String::class
+            }?.hook {
+                replaceTo(null)
+            }
+
+            firstMethodOrNull {
+                name = "checkKnoxCompromisedInternal"
+                parameterCount = 1
+                returnType = Int::class
+            }?.hook {
+                replaceTo(0)
+            }
+        }
     }
 
 }
