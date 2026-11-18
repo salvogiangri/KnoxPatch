@@ -1,10 +1,17 @@
 <resources>
+    <string name="module_description">Faça os recursos Knox voltarem a funcionar no seu dispositivo Samsung Galaxy com root.</string>
+
     <string name="app_info">Informações do aplicativo</string>
     <string name="oneui_version_title">Versão do One UI</string>
     <string name="oneui_version_title_seplite">Versão do One UI Core</string>
     <string name="android_version_title">Versão Android</string>
     <string name="build_number_title">Número de compilação</string>
     <string name="knox_version_title">Versão Knox</string>
+    <string name="knox_features_title">Recursos Knox</string>
+
+    <string name="crypto_warning_dialog_title">Sua partição de dados está criptografada</string>
+    <string name="crypto_warning_dialog_message">Este aplicativo detectou que a partição de dados do seu dispositivo está criptografada, o que significa que a Pasta Segura pode não funcionar corretamente.</string>
+    <string name="crypto_warning_dialog_btn">Entendi</string>
 
     <string name="activity_not_found">Nenhum aplicativo disponível para concluir esta ação.</string>
 </resources>
